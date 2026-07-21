@@ -126,7 +126,7 @@ export default async function Home() {
       <ExploreTabs products={activeProducts} courses={activeCourses} />
 
       {/* Why Choose JCRM Section (Styled with Tailwind) */}
-      <section className="py-20 bg-slate-50/20">
+      <section className="py-24 md:py-32">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
             <div className="glass p-8 md:p-10 shadow-lg shadow-primary/5">
@@ -170,7 +170,7 @@ export default async function Home() {
       </section>
 
       {/* Talent Network Section (Styled with Tailwind) */}
-      <section className="py-20">
+      <section className="py-24 md:py-32 section-bg-alt section-divider-top section-divider-bottom">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
             <div className="glass p-8 md:p-10 shadow-lg shadow-primary/5">

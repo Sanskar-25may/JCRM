@@ -42,7 +42,7 @@ export default async function ErpSolutions() {
   return (
     <div className="pt-24 font-sans bg-slate-50/20">
       {/* Banner */}
-      <section className="bg-white/80 border-b border-primary/5 py-16 text-center">
+      <section className="py-20 text-center">
         <div className="container-custom">
           <h1 className="text-3xl lg:text-4xl font-extrabold text-[#051937] tracking-tight">
             Enterprise ERP Solutions

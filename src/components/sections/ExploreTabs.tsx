@@ -34,16 +34,16 @@ export default function ExploreTabs({ products, courses }: ExploreTabsProps) {
   const [activeTab, setActiveTab] = useState<'erp' | 'training'>('erp');
 
   return (
-    <section className="py-20">
+    <section className="py-24 md:py-32 section-bg-alt section-divider-top section-divider-bottom">
       <div className="container-custom">
-        <div className="text-center max-w-xl mx-auto mb-12 glass p-8 shadow-lg shadow-primary/5">
+        <div className="text-center max-w-2xl mx-auto mb-16 glass p-8 md:p-10 shadow-lg shadow-primary/5 rounded-[28px]">
           <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
             EXPLORE JCRM
           </span>
           <h2 className="text-3xl font-extrabold text-[#051937] tracking-tight">
             What Are You Looking For?
           </h2>
-          <p className="text-sm text-[#0a2e5c]/85 mt-2.5 leading-relaxed">
+          <p className="text-sm text-[#0a2e5c]/85 mt-2.5 leading-relaxed max-w-lg mx-auto">
             Select your path below to explore our enterprise solutions or our professional training programs.
           </p>
 

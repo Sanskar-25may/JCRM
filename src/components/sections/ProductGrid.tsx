@@ -17,7 +17,7 @@ interface ProductGridProps {
 
 export default function ProductGrid({ products = [] }: ProductGridProps) {
   return (
-    <section className="py-20">
+    <section className="py-24 bg-white/30 backdrop-blur-sm section-divider-top">
       <div className="container-custom">
         <div className="text-center max-w-xl mx-auto mb-16 glass p-8 shadow-lg shadow-primary/5">
           <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">

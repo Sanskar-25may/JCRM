@@ -61,7 +61,7 @@ export default function CoursesClient({ courses }: CoursesClientProps) {
   return (
     <div className="pt-24 font-sans bg-slate-50/20">
       {/* Banner */}
-      <section className="bg-white/80 border-b border-primary/5 py-16 text-center">
+      <section className="py-20 text-center">
         <div className="container-custom">
           <h1 className="text-3xl lg:text-4xl font-extrabold text-[#051937] tracking-tight">
             Professional Training Courses
@@ -73,7 +73,7 @@ export default function CoursesClient({ courses }: CoursesClientProps) {
       </section>
 
       {/* Controls Bar */}
-      <section className="py-6 border-b border-slate-100 bg-white/40">
+      <section className="py-6 border-y border-slate-200/30 bg-white/40 backdrop-blur-sm">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
             {/* Category Chips */}
@@ -109,7 +109,7 @@ export default function CoursesClient({ courses }: CoursesClientProps) {
       </section>
 
       {/* Grid listing */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="container-custom">
           {filteredCourses.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

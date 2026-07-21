@@ -393,3 +393,15 @@ a {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+.section-bg-alt {
+  background-color: var(--bg-surface);
+}
+
+.section-divider-top {
+  border-top: 1px solid var(--border-soft);
+}
+
+.section-divider-bottom {
+  border-bottom: 1px solid var(--border-soft);
+}

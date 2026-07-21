@@ -7,9 +7,9 @@ export default function Hero() {
   const [simulatorTab, setSimulatorTab] = useState<'lms' | 'hr' | 'chatbot'>('lms');
 
   return (
-    <section className="relative overflow-hidden py-20 lg:py-28">
+    <section className="relative overflow-hidden py-24 lg:py-36">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-16 lg:gap-20 items-center">
           {/* Hero Left Content Column */}
           <div className="flex flex-col items-start text-left">
             <span className="inline-flex items-center gap-2 bg-[#0066ff]/8 border border-[#0066ff]/15 px-5 py-1.5 rounded-full text-xs font-bold text-[#0066ff] mb-6">

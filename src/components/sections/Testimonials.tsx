@@ -14,7 +14,7 @@ interface TestimonialsProps {
 
 export default function Testimonials({ testimonials = [] }: TestimonialsProps) {
   return (
-    <section className="py-20 bg-slate-50/40 border-y border-slate-100">
+    <section className="py-24 md:py-32 section-bg-alt section-divider-top">
       <div className="container-custom">
         <div className="text-center max-w-xl mx-auto mb-16 glass p-8 shadow-lg shadow-primary/5">
           <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
