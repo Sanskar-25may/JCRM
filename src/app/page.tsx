@@ -1,7 +1,6 @@
 import React from 'react';
 import { client, projectId } from '@/lib/sanity/client';
 import {
-  siteStatsQuery,
   allProductsQuery,
   allCoursesQuery,
   allPlacedCandidatesQuery,
@@ -10,20 +9,18 @@ import {
 
 // Import section components
 import Hero from '@/components/sections/Hero';
-import StatsCounter from '@/components/sections/StatsCounter';
+import BentoGrid from '@/components/sections/BentoGrid';
 import ExploreTabs from '@/components/sections/ExploreTabs';
 import PlacedCandidates from '@/components/sections/PlacedCandidates';
 import Testimonials from '@/components/sections/Testimonials';
 
 // Import fallbacks
 import { mockCandidates, mockErpProducts, mockTestimonials, mockCourses } from '@/data/mockData';
-import Link from 'next/link';
 
 export const revalidate = 60; // revalidate every 60 seconds
 
 export default async function Home() {
   // Fetch from Sanity with try-catch and fall back to mock data
-  let stats = null;
   let products = [];
   let courses = [];
   let candidates = [];
@@ -33,7 +30,6 @@ export default async function Home() {
 
   if (isSanityConfigured) {
     try {
-      stats = await client.fetch(siteStatsQuery);
       products = await client.fetch(allProductsQuery);
       courses = await client.fetch(allCoursesQuery);
       candidates = await client.fetch(allPlacedCandidatesQuery);
@@ -44,13 +40,6 @@ export default async function Home() {
   }
 
   // Fallbacks mapping
-  const activeStats = stats || {
-    erpDeployments: 50,
-    industryModules: 10,
-    clientSatisfaction: 98,
-    supportHours: 240
-  };
-
   const activeProducts = products && products.length > 0
     ? products.map((p: any) => ({
         _id: p._id,
@@ -119,95 +108,11 @@ export default async function Home() {
       {/* Hero fold */}
       <Hero />
 
-      {/* Counter bar */}
-      <StatsCounter stats={activeStats} />
+      {/* Bento Grid Features Panel */}
+      <BentoGrid />
 
       {/* Explore Section (Tabs) */}
       <ExploreTabs products={activeProducts} courses={activeCourses} />
-
-      {/* Why Choose JCRM Section (Styled with Tailwind) */}
-      <section className="py-24 md:py-32">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
-            <div className="glass p-8 md:p-10 shadow-lg shadow-primary/5">
-              <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
-                THE JCRM ADVANTAGE
-              </span>
-              <h2 className="text-3xl font-extrabold text-[#051937] tracking-tight mb-5">
-                Why Choose JCRM Technologies
-              </h2>
-              <p className="text-sm leading-relaxed text-[#0a2e5c]/85 mb-8">
-                We combine industry-leading software deployments with high-impact professional mentorship. Whether you are looking to automate your enterprise or scale your career, we provide the platform to succeed.
-              </p>
-              <ul className="flex flex-col gap-4 list-none p-0 m-0">
-                <li className="flex items-center gap-3.5">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
-                  <span className="text-sm font-semibold text-[#0a2e5c]">100% Practical &amp; Job-Oriented Training</span>
-                </li>
-                <li className="flex items-center gap-3.5">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
-                  <span className="text-sm font-semibold text-[#0a2e5c]">Hands-on Guidance &amp; Real Live Projects</span>
-                </li>
-                <li className="flex items-center gap-3.5">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
-                  <span className="text-sm font-semibold text-[#0a2e5c]">Dedicated Placements &amp; Industry HR Connections</span>
-                </li>
-                <li className="flex items-center gap-3.5">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
-                  <span className="text-sm font-semibold text-[#0a2e5c]">Post-Placement Support &amp; Lifetime Alumni Network</span>
-                </li>
-              </ul>
-            </div>
-            <div className="flex justify-center">
-              <img
-                src="https://jcrm.in/assets/img/why-us.svg"
-                alt="JCRM Team"
-                className="w-full max-w-sm transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Talent Network Section (Styled with Tailwind) */}
-      <section className="py-24 md:py-32 section-bg-alt section-divider-top section-divider-bottom">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
-            <div className="glass p-8 md:p-10 shadow-lg shadow-primary/5">
-              <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
-                TALENT NETWORK
-              </span>
-              <h2 className="text-3xl font-extrabold text-[#051937] tracking-tight mb-5">
-                Connecting Trainees to Industry Networks
-              </h2>
-              <p className="text-sm leading-relaxed text-[#0a2e5c]/85 mb-8">
-                JCRM acts as a bridge between top-tier tech talent and high-growth ERP enterprises. We help companies recruit vetted developers while assisting candidates in launching careers.
-              </p>
-              <div className="flex gap-4">
-                <Link
-                  href="/join-us"
-                  className="bg-[#ffb700] hover:bg-[#ffaa00] text-[#051937] font-bold px-6 py-3.5 rounded-full text-sm transition-all shadow-md hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  Join as Trainee
-                </Link>
-                <Link
-                  href="/contact-us"
-                  className="border-2 border-[#0066ff] text-[#0066ff] hover:bg-[#0066ff] hover:text-white font-bold px-6 py-3.5 rounded-full text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  Hire from Us
-                </Link>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <img
-                src="https://jcrm.in/assets/img/talent.svg"
-                alt="Talent network illustration"
-                className="w-full max-w-sm transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Candidate Carousel */}
       <PlacedCandidates candidates={activeCandidates} />
