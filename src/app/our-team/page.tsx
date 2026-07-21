@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { client, projectId } from '@/lib/sanity/client';
 import { allTeamMembersQuery } from '@/lib/sanity/queries';
 import { urlFor } from '@/lib/sanity/image';
-import styles from './ourteam.module.css';
 
 export const revalidate = 60;
 
@@ -60,22 +59,26 @@ export default async function OurTeam() {
       ];
 
   return (
-    <div className={styles.teamPage}>
+    <div className="pt-24 font-sans bg-transparent">
       {/* Header Banner */}
-      <section className={styles.banner}>
-        <div className={styles.container}>
-          <h1 className="reveal">Meet Our Team</h1>
-          <p className="reveal delay-1">Architects, engineers, and mentors committed to business and career transformation</p>
+      <section className="py-20 text-center">
+        <div className="container-custom">
+          <h1 className="text-4xl lg:text-5xl font-black text-[#051937] tracking-tight">
+            Meet Our <span className="bg-gradient-to-r from-[#0066ff] to-[#38bdf8] bg-clip-text text-transparent">Principal Team</span>
+          </h1>
+          <p className="text-sm text-slate-500 mt-3.5 max-w-xl mx-auto leading-relaxed">
+            Architects, engineers, and mentors committed to business automation and developer training.
+          </p>
         </div>
       </section>
 
       {/* Team Grid */}
-      <section className={styles.teamList}>
-        <div className={styles.container}>
-          <div className={styles.grid}>
-            {activeMembers.map((member: any, idx: number) => (
-              <div key={member.name} className={`${styles.card} reveal`} style={{ animationDelay: `${idx * 0.1}s` }}>
-                <div className={`${styles.imgWrapper} relative w-full h-[250px]`}>
+      <section className="py-16 bg-white/30 backdrop-blur-sm border-t border-slate-200/30">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {activeMembers.map((member: any) => (
+              <div key={member.name} className="glass card-hover rounded-[24px] overflow-hidden border border-slate-200/30 flex flex-col">
+                <div className="relative w-full h-[250px] border-b border-slate-200/20">
                   <Image
                     src={member.imgUrl}
                     alt={member.name}
@@ -85,10 +88,10 @@ export default async function OurTeam() {
                     className="object-cover"
                   />
                 </div>
-                <div className={styles.info}>
-                  <h4 className="text-base font-bold text-[#051937] mb-1">{member.name}</h4>
-                  <span className={styles.role}>{member.role}</span>
-                  <p className={styles.bio}>{member.bio}</p>
+                <div className="p-6 text-left flex flex-col flex-1 justify-start">
+                  <h4 className="text-base font-bold text-[#051937] mb-0.5">{member.name}</h4>
+                  <span className="text-[10px] font-bold text-[#0066ff] uppercase tracking-wider block mb-3">{member.role}</span>
+                  <p className="text-xs text-[#0a2e5c]/85 leading-relaxed">{member.bio}</p>
                 </div>
               </div>
             ))}

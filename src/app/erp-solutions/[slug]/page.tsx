@@ -68,7 +68,7 @@ export default async function ErpProductDetail({ params }: PageProps) {
         </Link>
 
         {/* Content Box */}
-        <div className="bg-white border border-slate-100 rounded-3xl p-8 lg:p-12 shadow-xl shadow-slate-100/50">
+        <div className="glass rounded-[32px] border border-slate-200/40 p-8 lg:p-12 shadow-xl shadow-primary/5">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
             
             {/* Left Info Column */}
@@ -90,23 +90,23 @@ export default async function ErpProductDetail({ params }: PageProps) {
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link
                   href="/contact-us"
-                  className="inline-flex items-center justify-center text-white font-bold px-7 py-3 rounded-full text-xs transition-all hover:brightness-95 hover:shadow-lg shadow-black/5"
+                  className="inline-flex items-center justify-center text-white font-bold px-8 py-3.5 rounded-full text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10"
                   style={{ backgroundColor: accentColor }}
                 >
                   Schedule Free Live Demo
                 </Link>
                 <a
                   href="tel:+918310531309"
-                  className="inline-flex items-center justify-center border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold px-7 py-3 rounded-full text-xs transition-all"
+                  className="inline-flex items-center justify-center border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 font-bold px-8 py-3.5 rounded-full text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm"
                 >
-                  Call Sales
+                  Call Advisor
                 </a>
               </div>
             </div>
 
             {/* Right Features Column */}
-            <div className="w-full lg:w-[400px] bg-slate-50/70 border border-slate-100 p-8 rounded-2xl flex flex-col justify-start">
-              <h3 className="text-sm font-bold text-[#051937] uppercase tracking-wider mb-6 pb-2 border-b border-slate-200/60">
+            <div className="w-full lg:w-[400px] bg-[#f3f0eb] border border-slate-200/40 p-8 rounded-[24px] flex flex-col justify-start">
+              <h3 className="text-xs font-bold text-[#051937] uppercase tracking-wider mb-6 pb-2 border-b border-slate-200/60">
                 Core Modules &amp; Specs
               </h3>
               
