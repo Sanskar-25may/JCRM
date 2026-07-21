@@ -1,0 +1,225 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  background: color-mix(in srgb, var(--bg-card) 72%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border-soft);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+}
+
+.scrolled {
+  padding: 12px 0;
+  background: color-mix(in srgb, var(--bg-card) 85%, transparent);
+  box-shadow: 0 4px 20px var(--glow-primary);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.brand:hover {
+  transform: scale(1.02);
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-soft);
+  object-fit: cover;
+}
+
+.brandText {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navItem {
+  display: inline-block;
+}
+
+.navLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navLink:hover {
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+
+.activeLink {
+  color: var(--bg-card) !important;
+  background: var(--accent-primary);
+  box-shadow: 0 4px 12px var(--glow-primary);
+}
+
+.toggler {
+  display: none;
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1010;
+}
+
+.burger {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  position: absolute;
+  left: 6px;
+  top: 15px;
+  transition: all 0.3s ease;
+}
+
+.burger::before,
+.burger::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.burger::before {
+  top: -6px;
+}
+
+.burger::after {
+  top: 6px;
+}
+
+.burger.open {
+  background: transparent;
+}
+
+.burger.open::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.burger.open::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.themeToggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.themeToggle:hover {
+  transform: translateY(-1px);
+}
+
+/* Responsive Navigation for Mobile */
+@media (max-width: 991px) {
+  .toggler {
+    display: block;
+  }
+
+  .navigation {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: color-mix(in srgb, var(--bg-card) 98%, transparent);
+    backdrop-filter: blur(20px);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    padding: 100px 30px 40px 30px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-left: 1px solid var(--border-soft);
+  }
+
+  .navigation.active {
+    right: 0;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .navLink {
+    display: block;
+    font-size: 16px;
+    padding: 10px 20px;
+    width: 100%;
+  }
+
+  .rightActions {
+    margin-left: auto;
+    margin-right: 16px;
+  }
+}

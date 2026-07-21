@@ -1,0 +1,80 @@
+.termsPage {
+  width: 100%;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: var(--border-soft);
+  margin: 50px 0;
+}
+
+/* =================================
+   BANNER
+================================= */
+.banner {
+  background: linear-gradient(135deg, var(--text-primary), var(--text-primary));
+  padding: 80px 0;
+  color: var(--bg-card);
+  text-align: center;
+}
+
+.banner h1 {
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 18px;
+  color: var(--border-soft);
+}
+
+/* =================================
+   POLICIES CONTENT
+================================= */
+.content {
+  padding: 80px 0;
+  background: var(--bg-card);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.section h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.date {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section p {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+@media (max-width: 767px) {
+  .banner h1 {
+    font-size: 32px;
+  }
+}
