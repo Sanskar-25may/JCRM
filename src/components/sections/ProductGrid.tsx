@@ -19,7 +19,7 @@ export default function ProductGrid({ products = [] }: ProductGridProps) {
   return (
     <section className="py-20">
       <div className="container-custom">
-        <div className="text-center max-w-xl mx-auto mb-16 bg-white/90 border border-primary/25 rounded-2xl py-5 px-10 shadow-lg shadow-primary/8">
+        <div className="text-center max-w-xl mx-auto mb-16 glass p-8 shadow-lg shadow-primary/5">
           <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
             Enterprise Solutions
           </span>

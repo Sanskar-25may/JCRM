@@ -116,7 +116,7 @@ export default function CoursesClient({ courses }: CoursesClientProps) {
               {filteredCourses.map((course) => (
                 <div
                   key={course._id}
-                  className="flex flex-col bg-white border border-slate-100 rounded-2xl p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+                  className="flex flex-col glass card-hover p-7 rounded-[24px]"
                 >
                   <div className="flex-1 mb-5 flex flex-col justify-start">
                     <div className="flex justify-between items-center mb-4">
@@ -138,13 +138,13 @@ export default function CoursesClient({ courses }: CoursesClientProps) {
                       {course.description}
                     </p>
                   </div>
-                  <div className="flex justify-between items-center border-t border-slate-50 pt-4">
+                  <div className="flex justify-between items-center border-t border-slate-200/30 pt-4">
                     <span className="text-xs font-semibold text-slate-500 flex items-center">
                       <i className="fa-solid fa-clock mr-1"></i> {course.duration || '3 Months'}
                     </span>
                     <Link
                       href={`/courses/${course.slug}`}
-                      className="inline-flex justify-center items-center text-xs font-bold py-2 px-4 border border-primary/20 text-[#0066ff] hover:bg-[#0066ff] hover:text-white rounded-xl transition-all duration-200"
+                      className="inline-flex justify-center items-center text-xs font-bold py-2.5 px-4 border border-primary/20 text-[#0066ff] hover:bg-[#0066ff] hover:text-white rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow"
                     >
                       Explore Syllabus <i className="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
                     </Link>
@@ -153,7 +153,7 @@ export default function CoursesClient({ courses }: CoursesClientProps) {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20 bg-white border border-slate-100 rounded-3xl p-10 max-w-md mx-auto shadow-sm">
+            <div className="text-center py-16 glass p-10 max-w-md mx-auto shadow-lg shadow-primary/5">
               <i className="fa-solid fa-triangle-exclamation text-3xl text-amber-500 mb-4"></i>
               <h3 className="text-lg font-bold text-[#051937] mb-2">No Courses Found</h3>
               <p className="text-xs text-slate-500 mb-6">

@@ -19,7 +19,7 @@ export default function ProductCard({
   accentColor = '#0066ff',
 }: ProductCardProps) {
   return (
-    <div className="flex flex-col bg-white border border-primary/10 rounded-2xl p-6 shadow-md shadow-primary/4 transition-all duration-300 hover:shadow-xl hover:shadow-primary/8 hover:-translate-y-1 hover:border-primary/20">
+    <div className="flex flex-col glass card-hover p-7 rounded-[24px]">
       <div className="flex-1 mb-5">
         <span
           className="inline-block text-[11px] font-bold py-1 px-3 rounded-full mb-3 uppercase tracking-wider"
@@ -36,10 +36,10 @@ export default function ProductCard({
       </div>
 
       {stats.length > 0 && (
-        <div className="grid grid-cols-2 gap-3 mb-6 bg-slate-50/70 p-3.5 rounded-xl border border-slate-100/50">
+        <div className="grid grid-cols-2 gap-3 mb-6 bg-[#fafafa]/50 backdrop-blur-sm p-3.5 rounded-2xl border border-slate-200/30">
           {stats.slice(0, 2).map((stat, i) => (
             <div key={i} className="flex flex-col">
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide">
                 Key Stat
               </span>
               <span className="text-sm font-bold text-[#051937] mt-0.5">{stat}</span>
@@ -50,7 +50,7 @@ export default function ProductCard({
 
       <Link
         href={`/erp-solutions/${slug}`}
-        className="inline-flex justify-between items-center text-sm font-bold py-2.5 px-5 rounded-xl transition-all duration-200 text-center"
+        className="inline-flex justify-between items-center text-sm font-bold py-2.5 px-5 rounded-xl transition-all duration-200 text-center hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow"
         style={{ backgroundColor: accentColor, color: '#ffffff' }}
       >
         <span>Explore Solution</span>

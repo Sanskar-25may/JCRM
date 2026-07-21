@@ -37,19 +37,23 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'py-3 bg-white/90 shadow-md border-b border-primary/10 shadow-primary/5'
-          : 'py-5 bg-white/75 backdrop-blur-md border-b border-primary/5'
+          ? 'py-3.5 bg-white/70 backdrop-blur-md shadow-md border-b border-primary/10 shadow-primary/5'
+          : 'py-5 bg-transparent border-b border-transparent'
       }`}
     >
       <div className="container-custom flex justify-between items-center">
         {/* Brand Logo & Name */}
-        <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-[1.02]" onClick={closeMenu}>
-          <img
-            src="https://jcrm.in/assets/img/logo.jpeg"
-            alt="JCRM Logo"
-            className="h-10 w-10 rounded-full border border-primary/10 object-cover"
-          />
-          <span className="font-extrabold text-lg text-[#051937] tracking-wide heading-font">JCRM</span>
+        <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-[1.02] group" onClick={closeMenu}>
+          <div className="relative w-10 h-10 rounded-full bg-gradient-to-tr from-[#0066ff] to-[#ffb700] p-[2px] flex items-center justify-center shadow-md">
+            <img
+              src="https://jcrm.in/assets/img/logo.jpeg"
+              alt="JCRM Logo"
+              className="h-full w-full rounded-full object-cover bg-white"
+            />
+          </div>
+          <span className="font-extrabold text-xl text-[#051937] tracking-wide heading-font">
+            JCRM<span className="bg-gradient-to-r from-[#0066ff] to-[#38bdf8] bg-clip-text text-transparent ml-0.5 font-bold">Tech</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -64,7 +68,7 @@ export default function Navbar() {
                     className={`text-sm font-semibold py-2 px-4 rounded-full transition-all duration-200 ${
                       isActive
                         ? 'text-white bg-[#0066ff] shadow-lg shadow-primary/20'
-                        : 'text-[#0a2e5c] hover:text-[#051937] hover:bg-[#f1f5f9]'
+                        : 'text-[#0a2e5c] hover:text-[#051937] hover:bg-[#f3f0eb]'
                     }`}
                   >
                     {item.label}
@@ -103,7 +107,7 @@ export default function Navbar() {
                     className={`block text-base font-semibold py-2.5 px-5 rounded-xl transition-all duration-200 ${
                       isActive
                         ? 'text-white bg-[#0066ff] shadow-lg shadow-primary/20'
-                        : 'text-[#0a2e5c] hover:text-[#051937] hover:bg-[#f1f5f9]'
+                        : 'text-[#0a2e5c] hover:text-[#051937] hover:bg-[#f3f0eb]'
                     }`}
                   >
                     {item.label}

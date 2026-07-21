@@ -28,15 +28,15 @@ export default function StatsCounter({ stats }: StatsCounterProps) {
   ];
 
   return (
-    <section className="py-12 border-y border-primary/5 bg-[#f8fafc]/30">
+    <section className="py-16">
       <div className="container-custom">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="glass p-8 md:p-10 shadow-lg shadow-primary/5 grid grid-cols-2 md:grid-cols-4 gap-8">
           {statItems.map((item, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-extrabold text-[#0066ff] flex items-center justify-center">
+            <div key={index} className="flex flex-col items-center text-center space-y-2">
+              <span className="text-4xl md:text-5xl font-extrabold text-[#0066ff] flex items-center justify-center bg-gradient-to-r from-[#0066ff] to-[#38bdf8] bg-clip-text text-transparent heading-font">
                 <AnimatedCounter value={item.value} suffix={item.suffix} />
               </span>
-              <span className="text-xs md:text-sm font-semibold text-[#0a2e5c]/70 uppercase tracking-wider mt-1.5">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                 {item.label}
               </span>
             </div>

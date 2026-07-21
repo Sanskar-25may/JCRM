@@ -72,8 +72,8 @@ export default function DynamicBackground() {
       // ── THEME COLORS SWITCH ──
       // Dark Mode Palette: Cyber terminal (Neon Greens, Glowing Cyans, Deep Purples)
       // Light Mode Palette: Warm editorial (Warm Amber, Peach, Lavender, Soft Lilac)
-      // Bright color palette for light mode (yellow, orange, green, red)
-      const particleColors = ['#ffcc00', '#ff6600', '#00ff99', '#ff3366'];
+      // Bright color palette matching JCRM logo (electric blue, gold, sky blue, cyan)
+      const particleColors = ['#0066ff', '#ffb700', '#38bdf8', '#00d2ff'];
 
       // Set canvas composition
       ctx.globalCompositeOperation = 'source-over';
@@ -94,17 +94,17 @@ export default function DynamicBackground() {
         ctx.fillStyle = grad2;
         ctx.fillRect(0, 0, width, height);
       } else {
-        // Light theme blobs - warm amber & lavender
-        // Blob 1 - Warm Amber top right
+        // Light theme blobs - electric blue & gold
+        // Blob 1 - Electric Blue top right
         const grad1 = ctx.createRadialGradient(width * 0.8, height * 0.15, 0, width * 0.8, height * 0.15, Math.max(width, height) * 0.4);
-        grad1.addColorStop(0, 'rgba(217, 119, 6, 0.06)');
+        grad1.addColorStop(0, 'rgba(0, 102, 255, 0.06)');
         grad1.addColorStop(1, 'rgba(250, 249, 247, 0)');
         ctx.fillStyle = grad1;
         ctx.fillRect(0, 0, width, height);
 
-        // Blob 2 - Lilac bottom left
+        // Blob 2 - Gold/Yellow bottom left
         const grad2 = ctx.createRadialGradient(width * 0.15, height * 0.8, 0, width * 0.15, height * 0.8, Math.max(width, height) * 0.4);
-        grad2.addColorStop(0, 'rgba(0, 102, 255, 0.06)');
+        grad2.addColorStop(0, 'rgba(255, 183, 0, 0.06)');
         grad2.addColorStop(1, 'rgba(250, 249, 247, 0)');
         ctx.fillStyle = grad2;
         ctx.fillRect(0, 0, width, height);
@@ -186,8 +186,8 @@ export default function DynamicBackground() {
           zIndex: -1,
           transition: 'background 0.5s ease',
           background: isDark
-            ? 'radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.2) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(88, 230, 217, 0.12) 0%, transparent 50%), radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 70%)'
-            : 'radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.08) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(0, 102, 255, 0.08) 0%, transparent 60%)',
+            ? 'radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.15) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(255, 183, 0, 0.12) 0%, transparent 50%)'
+            : 'radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.08) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(255, 183, 0, 0.08) 0%, transparent 60%)',
         }}
       />
     </>

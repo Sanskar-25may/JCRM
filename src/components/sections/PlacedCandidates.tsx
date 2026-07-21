@@ -89,7 +89,7 @@ export default function PlacedCandidates({ candidates = [] }: PlacedCandidatesPr
   return (
     <section className="py-20">
       <div className="container-custom">
-        <div className="text-center max-w-xl mx-auto mb-16 bg-white/90 border border-primary/25 rounded-2xl py-5 px-10 shadow-lg shadow-primary/8">
+        <div className="text-center max-w-xl mx-auto mb-16 glass p-8 shadow-lg shadow-primary/5">
           <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
             Our Placed Alumni
           </span>
@@ -130,7 +130,7 @@ export default function PlacedCandidates({ candidates = [] }: PlacedCandidatesPr
                 return (
                   <div
                     key={cand._id}
-                    className="flex-shrink-0 w-[240px] bg-white border border-slate-100 rounded-2xl p-5 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5 flex flex-col items-center justify-between"
+                    className="flex-shrink-0 w-[240px] glass card-hover p-6 rounded-[24px] flex flex-col items-center justify-between"
                   >
                     <div className="flex flex-col items-center">
                       <Image

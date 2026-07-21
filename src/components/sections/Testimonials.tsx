@@ -16,7 +16,7 @@ export default function Testimonials({ testimonials = [] }: TestimonialsProps) {
   return (
     <section className="py-20 bg-slate-50/40 border-y border-slate-100">
       <div className="container-custom">
-        <div className="text-center max-w-xl mx-auto mb-16 bg-white/90 border border-primary/25 rounded-2xl py-5 px-10 shadow-lg shadow-primary/8">
+        <div className="text-center max-w-xl mx-auto mb-16 glass p-8 shadow-lg shadow-primary/5">
           <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
             Success Stories
           </span>
@@ -31,7 +31,7 @@ export default function Testimonials({ testimonials = [] }: TestimonialsProps) {
         {testimonials.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((item) => (
-              <div key={item._id} className="flex flex-col bg-white border border-slate-100 rounded-2xl p-7 shadow-sm transition-shadow hover:shadow-md">
+              <div key={item._id} className="flex flex-col glass card-hover p-7 rounded-[24px]">
                 {/* Rating stars */}
                 <div className="flex gap-1 mb-4 text-[#ffb700] text-sm">
                   {Array.from({ length: item.rating ?? 5 }).map((_, i) => (

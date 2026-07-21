@@ -36,10 +36,10 @@
   --radius: 0.75rem;
 
   /* Custom Tokens - Transparent/Glassmorphic and Bright */
-  --bg-base:     transparent;
+  --bg-base:     #faf9f7;
   --bg-card:     #ffffff;
-  --bg-surface:  #f1f5f9;
-  --bg-elevated: #e2e8f0;
+  --bg-surface:  #f3f0eb;
+  --bg-elevated: #edeae3;
 
   --text-primary:   #051937;   /* Contrast enhanced deep blue */
   --text-secondary: #0a2e5c;
@@ -80,7 +80,7 @@ body {
   overflow-x: hidden;
   font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
   color: var(--text-primary);
-  background: transparent;
+  background: var(--bg-base);
   scroll-behavior: smooth;
   transition: background-color 0.35s ease, color 0.35s ease;
   -webkit-font-smoothing: antialiased;

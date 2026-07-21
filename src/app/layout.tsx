@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
+import DynamicBackground from "@/components/DynamicBackground";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -35,7 +35,7 @@ export default function RootLayout({
         {/* Dark mode script removed to keep light mode only */}
       </head>
       <body>
-        <AnimatedBackground />
+        <DynamicBackground />
         <Navbar />
         <main style={{ flex: 1, position: 'relative', zIndex: 1 }}>{children}</main>
         <Footer />

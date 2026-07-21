@@ -129,7 +129,7 @@ export default async function Home() {
       <section className="py-20 bg-slate-50/20">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
-            <div className="bg-white border border-[#0066ff]/25 rounded-2xl p-8 shadow-lg shadow-[#0066ff]/8">
+            <div className="glass p-8 md:p-10 shadow-lg shadow-primary/5">
               <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
                 THE JCRM ADVANTAGE
               </span>
@@ -140,20 +140,20 @@ export default async function Home() {
                 We combine industry-leading software deployments with high-impact professional mentorship. Whether you are looking to automate your enterprise or scale your career, we provide the platform to succeed.
               </p>
               <ul className="flex flex-col gap-4 list-none p-0 m-0">
-                <li className="flex items-center gap-3">
-                  <span className="text-emerald-500 font-bold text-lg">✓</span>
+                <li className="flex items-center gap-3.5">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
                   <span className="text-sm font-semibold text-[#0a2e5c]">100% Practical &amp; Job-Oriented Training</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-emerald-500 font-bold text-lg">✓</span>
+                <li className="flex items-center gap-3.5">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
                   <span className="text-sm font-semibold text-[#0a2e5c]">Hands-on Guidance &amp; Real Live Projects</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-emerald-500 font-bold text-lg">✓</span>
+                <li className="flex items-center gap-3.5">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
                   <span className="text-sm font-semibold text-[#0a2e5c]">Dedicated Placements &amp; Industry HR Connections</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-emerald-500 font-bold text-lg">✓</span>
+                <li className="flex items-center gap-3.5">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
                   <span className="text-sm font-semibold text-[#0a2e5c]">Post-Placement Support &amp; Lifetime Alumni Network</span>
                 </li>
               </ul>
@@ -162,7 +162,7 @@ export default async function Home() {
               <img
                 src="https://jcrm.in/assets/img/why-us.svg"
                 alt="JCRM Team"
-                className="w-full max-w-sm"
+                className="w-full max-w-sm transition-transform duration-500 hover:scale-105"
               />
             </div>
           </div>
@@ -173,7 +173,7 @@ export default async function Home() {
       <section className="py-20">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
-            <div className="bg-white border border-[#0066ff]/25 rounded-2xl p-8 shadow-lg shadow-[#0066ff]/8">
+            <div className="glass p-8 md:p-10 shadow-lg shadow-primary/5">
               <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
                 TALENT NETWORK
               </span>
@@ -186,13 +186,13 @@ export default async function Home() {
               <div className="flex gap-4">
                 <Link
                   href="/join-us"
-                  className="bg-[#ffb700] hover:bg-[#d97706] text-[#051937] font-bold px-6 py-3 rounded-full text-sm transition-all shadow-md hover:-translate-y-0.5"
+                  className="bg-[#ffb700] hover:bg-[#ffaa00] text-[#051937] font-bold px-6 py-3.5 rounded-full text-sm transition-all shadow-md hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Join as Trainee
                 </Link>
                 <Link
                   href="/contact-us"
-                  className="border border-[#0066ff] text-[#0066ff] hover:bg-[#0066ff] hover:text-white font-bold px-6 py-3 rounded-full text-sm transition-all hover:-translate-y-0.5"
+                  className="border-2 border-[#0066ff] text-[#0066ff] hover:bg-[#0066ff] hover:text-white font-bold px-6 py-3.5 rounded-full text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Hire from Us
                 </Link>
@@ -202,7 +202,7 @@ export default async function Home() {
               <img
                 src="https://jcrm.in/assets/img/talent.svg"
                 alt="Talent network illustration"
-                className="w-full max-w-sm"
+                className="w-full max-w-sm transition-transform duration-500 hover:scale-105"
               />
             </div>
           </div>

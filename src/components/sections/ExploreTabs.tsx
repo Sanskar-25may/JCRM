@@ -36,7 +36,7 @@ export default function ExploreTabs({ products, courses }: ExploreTabsProps) {
   return (
     <section className="py-20">
       <div className="container-custom">
-        <div className="text-center max-w-xl mx-auto mb-12 bg-white/90 border border-primary/25 rounded-2xl py-5 px-10 shadow-lg shadow-primary/8">
+        <div className="text-center max-w-xl mx-auto mb-12 glass p-8 shadow-lg shadow-primary/5">
           <span className="inline-block text-xs font-bold text-[#0066ff] uppercase tracking-widest mb-2.5">
             EXPLORE JCRM
           </span>
@@ -47,9 +47,9 @@ export default function ExploreTabs({ products, courses }: ExploreTabsProps) {
             Select your path below to explore our enterprise solutions or our professional training programs.
           </p>
 
-          <div className="flex bg-[#f1f5f9] p-1 rounded-xl mt-6 border border-slate-200">
+          <div className="flex bg-[#f3f0eb] p-1 rounded-2xl mt-6 border border-slate-200/50">
             <button
-              className={`flex-1 text-xs font-bold py-2.5 px-4 rounded-lg capitalize transition-all duration-200 flex items-center justify-center gap-2 ${
+              className={`flex-1 text-xs font-bold py-2.5 px-4 rounded-xl capitalize transition-all duration-200 flex items-center justify-center gap-2 ${
                 activeTab === 'erp'
                   ? 'bg-white text-[#051937] shadow-sm'
                   : 'text-slate-500 hover:text-slate-800'
@@ -59,7 +59,7 @@ export default function ExploreTabs({ products, courses }: ExploreTabsProps) {
               <i className="fa-solid fa-server"></i> Enterprise ERP Systems
             </button>
             <button
-              className={`flex-1 text-xs font-bold py-2.5 px-4 rounded-lg capitalize transition-all duration-200 flex items-center justify-center gap-2 ${
+              className={`flex-1 text-xs font-bold py-2.5 px-4 rounded-xl capitalize transition-all duration-200 flex items-center justify-center gap-2 ${
                 activeTab === 'training'
                   ? 'bg-white text-[#051937] shadow-sm'
                   : 'text-slate-500 hover:text-slate-800'
@@ -106,12 +106,12 @@ export default function ExploreTabs({ products, courses }: ExploreTabsProps) {
                 {courses.slice(0, 6).map((course) => (
                   <div
                     key={course._id}
-                    className="flex flex-col bg-white border border-slate-100 rounded-2xl p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+                    className="flex flex-col glass card-hover p-7 rounded-[24px]"
                   >
                     <div className="flex-1 mb-5 flex flex-col justify-start">
                       <div className="flex justify-between items-center mb-4">
                         <span className="text-2xl">{course.icon || '💻'}</span>
-                        <span className="text-[10px] font-bold py-1 px-3 bg-slate-50 border border-slate-100 text-slate-500 rounded-full uppercase tracking-wider">
+                        <span className="text-[10px] font-bold py-1 px-3 bg-[#fafafa]/50 border border-slate-200/30 text-slate-500 rounded-full uppercase tracking-wider">
                           {course.duration || '3 Months'}
                         </span>
                       </div>
@@ -124,7 +124,7 @@ export default function ExploreTabs({ products, courses }: ExploreTabsProps) {
                     </div>
                     <Link
                       href={`/courses/${course.slug}`}
-                      className="inline-flex justify-between items-center text-xs font-bold py-2 px-4 border border-primary/20 text-[#0066ff] hover:bg-[#0066ff] hover:text-white rounded-xl transition-all duration-200"
+                      className="inline-flex justify-between items-center text-xs font-bold py-2.5 px-4 border border-primary/20 text-[#0066ff] hover:bg-[#0066ff] hover:text-white rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow"
                     >
                       <span>Explore Syllabus</span>
                       <i className="fa-solid fa-circle-chevron-right ml-2 text-xs"></i>
