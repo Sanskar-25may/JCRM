@@ -23,48 +23,44 @@ export default function HeroSection() {
   return (
     <section className={styles.heroWrapper}>
       <div className={styles.container}>
-        {/* 1. Highlighted Tagline / Badge Pill */}
-        <Link href="/erp-solutions" className={styles.badgeLink}>
-          <span className={styles.badgeDot} />
-          <span className={styles.badgeText}>Enterprise ERP & Professional IT Training</span>
-          <span className={styles.badgeArrow}>→</span>
-        </Link>
+        {/* Main Glassmorphism Pane for Text Bifurcation & Enhanced Visibility */}
+        <div className={styles.glassPane}>
+          {/* Main Hero Heading (H1) */}
+          <h1 className={styles.title}>
+            Build Smarter Enterprises.{' '}
+            <span className={styles.titleGradient}>Master Next-Gen Tech.</span>
+          </h1>
 
-        {/* 2. Main Hero Heading (H1) */}
-        <h1 className={styles.title}>
-          Build Smarter Enterprises.{' '}
-          <span className={styles.titleGradient}>Master Next-Gen Tech.</span>
-        </h1>
+          {/* Sub-heading / Description Content */}
+          <p className={styles.description}>
+            JCRM Technologies delivers cloud-ready, enterprise-grade ERP systems for HR, Accounting,
+            Hospitality, LMS, and E-Commerce — while empowering ambitious professionals with
+            job-oriented IT training and 100% placement support.
+          </p>
 
-        {/* 3. Sub-heading / Description Content */}
-        <p className={styles.description}>
-          JCRM Technologies delivers cloud-ready, enterprise-grade ERP systems for HR, Accounting,
-          Hospitality, LMS, and E-Commerce — while empowering ambitious professionals with
-          job-oriented IT training and 100% placement support.
-        </p>
+          {/* Call-to-Action (CTA) Button Group */}
+          <div className={styles.ctaGroup}>
+            <Link href="/contact-us" className={styles.primaryBtn}>
+              <span>Request Free Demo</span>
+              <i className="fa-solid fa-arrow-right" />
+            </Link>
+            <Link href="/erp-solutions" className={styles.secondaryBtn}>
+              <span>Explore ERP Solutions</span>
+            </Link>
+          </div>
 
-        {/* 4. Call-to-Action (CTA) Button Group */}
-        <div className={styles.ctaGroup}>
-          <Link href="/contact-us" className={styles.primaryBtn}>
-            <span>Request Free Demo</span>
-            <i className="fa-solid fa-arrow-right" />
-          </Link>
-          <Link href="/erp-solutions" className={styles.secondaryBtn}>
-            <span>Explore ERP Solutions</span>
-          </Link>
+          {/* Floating Feature Chips */}
+          <div className={styles.featureChips}>
+            {featureChips.map((chip, idx) => (
+              <div key={idx} className={styles.chip}>
+                <span className={styles.chipIcon}>{chip.icon}</span>
+                <span>{chip.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* 5. Floating Feature Chips */}
-        <div className={styles.featureChips}>
-          {featureChips.map((chip, idx) => (
-            <div key={idx} className={styles.chip}>
-              <span className={styles.chipIcon}>{chip.icon}</span>
-              <span>{chip.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* 6. Key Metrics Stats Strip */}
+        {/* Key Metrics Stats Strip */}
         <div className={styles.statsStrip}>
           {stats.map((stat, idx) => (
             <div key={idx} className={styles.statItem}>
