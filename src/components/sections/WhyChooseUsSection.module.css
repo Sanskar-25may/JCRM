@@ -1,0 +1,225 @@
+.sectionWrapper {
+  position: relative;
+  width: 100%;
+  padding: 40px 24px 80px 24px;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Greyish Glassmorphism Section Pane */
+.glassPane {
+  width: 100%;
+  max-width: 1380px;
+  padding: 68px 56px;
+  border-radius: 42px;
+  background: rgba(241, 245, 249, 0.76);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(0, 85, 229, 0.20);
+  box-shadow: 
+    0 28px 80px rgba(0, 85, 229, 0.12),
+    0 8px 32px rgba(15, 23, 42, 0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 56px;
+  max-width: 860px;
+}
+
+.title {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+  color: #0a0f1e;
+  margin-bottom: 16px;
+}
+
+.titleHighlight {
+  background: linear-gradient(135deg, #0055e5 0%, #0077ff 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 19px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* 2-Column Split Content Layout */
+.contentGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Left Column: Checklist Features */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.checkList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 85, 229, 0.08);
+  transition: all 0.3s ease;
+}
+
+.checkItem:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateX(6px);
+  border-color: rgba(0, 85, 229, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 85, 229, 0.08);
+}
+
+.checkIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0055e5;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 85, 229, 0.25);
+}
+
+.checkText {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0a0f1e;
+}
+
+/* Right Column: 4 Pillars Inner Glass Card */
+.rightCol {
+  width: 100%;
+}
+
+.pillarsCard {
+  padding: 44px 36px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 85, 229, 0.16);
+  box-shadow: 0 12px 40px rgba(0, 85, 229, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px 28px;
+}
+
+.pillarItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pillarIconBox {
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0, 85, 229, 0.1) 0%, rgba(56, 189, 248, 0.15) 100%);
+  border: 1px solid rgba(0, 85, 229, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #0055e5;
+  margin-bottom: 16px;
+  transition: all 0.35s ease;
+}
+
+.pillarItem:hover .pillarIconBox {
+  background: linear-gradient(135deg, #0055e5 0%, #0077ff 100%);
+  color: #ffffff;
+  transform: scale(1.1) rotate(4deg);
+  box-shadow: 0 8px 24px rgba(0, 85, 229, 0.3);
+}
+
+.pillarTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0a0f1e;
+  margin-bottom: 6px;
+}
+
+.pillarDesc {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Responsiveness */
+@media (max-width: 991px) {
+  .glassPane {
+    padding: 48px 32px;
+    border-radius: 32px;
+  }
+  .title {
+    font-size: 38px;
+  }
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .pillarsCard {
+    padding: 32px 24px;
+    gap: 28px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sectionWrapper {
+    padding: 20px 16px 60px 16px;
+  }
+  .glassPane {
+    padding: 36px 20px;
+    border-radius: 26px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .pillarsCard {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

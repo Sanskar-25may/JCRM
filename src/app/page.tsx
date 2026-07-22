@@ -2,6 +2,7 @@ import InteractiveDotGrid from "@/components/InteractiveDotGrid";
 import HeroSection from "@/components/sections/HeroSection";
 import ErpProductsSection from "@/components/sections/ErpProductsSection";
 import TransformCtaSection from "@/components/sections/TransformCtaSection";
+import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <HeroSection />
       <ErpProductsSection />
       <TransformCtaSection />
+      <WhyChooseUsSection />
     </div>
   );
 }
