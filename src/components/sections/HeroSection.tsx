@@ -25,9 +25,9 @@ export default function HeroSection() {
       <div className={styles.container}>
         {/* Main Glassmorphism Pane for Text Bifurcation & Enhanced Visibility */}
         <div className={styles.glassPane}>
-          {/* Main Hero Heading (H1) */}
+          {/* Main Hero Heading (H1) divided into two parts */}
           <h1 className={styles.title}>
-            Build Smarter Enterprises.{' '}
+            <span className={styles.titlePrimary}>Build Smarter Enterprises.</span>
             <span className={styles.titleGradient}>Master Next-Gen Tech.</span>
           </h1>
 

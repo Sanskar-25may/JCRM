@@ -1,17 +1,17 @@
 .heroWrapper {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 90px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 120px 20px 60px 20px;
+  padding: 40px 24px 40px 24px;
   z-index: 1;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1240px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -20,53 +20,73 @@
   text-align: center;
 }
 
-/* Glassmorphism Hero Pane - Greyish Translucent Slate Glass Finish for Maximum Glow on White Background */
+/* Spacious Glassmorphism Hero Pane for Readability & Screen Filling */
 .glassPane {
   width: 100%;
-  max-width: 1080px;
-  padding: 60px 48px 44px 48px;
-  border-radius: 36px;
-  background: rgba(241, 245, 249, 0.76);
+  max-width: 1200px;
+  padding: 68px 64px 52px 64px;
+  border-radius: 38px;
+  background: rgba(241, 245, 249, 0.78);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid rgba(0, 85, 229, 0.20);
   box-shadow: 
-    0 24px 70px rgba(0, 85, 229, 0.12),
-    0 8px 30px rgba(15, 23, 42, 0.06),
+    0 24px 75px rgba(0, 85, 229, 0.12),
+    0 8px 32px rgba(15, 23, 42, 0.06),
     inset 0 1px 2px rgba(255, 255, 255, 0.95);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 36px;
+  margin-bottom: 28px;
   transition: all 0.4s ease;
 }
 
-/* 1. Main Hero Heading (H1) */
+/* Main Hero Heading (H1) divided into 2 distinct lines */
 .title {
   font-family: 'Space Grotesk', 'Plus Jakarta Sans', -apple-system, sans-serif;
-  font-size: 58px;
+  font-size: 64px;
   font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -1.5px;
-  color: #0a0f1e;
-  max-width: 920px;
-  margin-bottom: 24px;
+  line-height: 1.15;
+  letter-spacing: -1.8px;
+  max-width: 1000px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
+/* Part 1: Plain Black/Navy Text Above */
+.titlePrimary {
+  color: #0a0f1e;
+  display: block;
+}
+
+/* Part 2: Dynamic Animated Color Gradient Shift Text Below */
 .titleGradient {
-  background: linear-gradient(135deg, #0055e5 0%, #0077ff 50%, #38bdf8 100%);
+  display: block;
+  background: linear-gradient(135deg, #0055e5 0%, #0077ff 35%, #38bdf8 70%, #0055e5 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* 2. Sub-heading / Description */
 .description {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.75;
   color: #334155;
-  max-width: 760px;
-  margin-bottom: 36px;
+  max-width: 860px;
+  margin-bottom: 40px;
 }
 
 /* 3. CTA Button Group */
@@ -74,20 +94,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 18px;
   flex-wrap: wrap;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 .primaryBtn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 34px;
+  gap: 12px;
+  padding: 18px 38px;
   border-radius: 30px;
   background: #0055e5;
   color: #ffffff;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   text-decoration: none;
   border: none;
@@ -103,7 +123,7 @@
 }
 
 .primaryBtn i {
-  font-size: 13px;
+  font-size: 14px;
   transition: transform 0.3s ease;
 }
 
@@ -115,13 +135,13 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 16px 32px;
+  padding: 18px 36px;
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: #0a0f1e;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   text-decoration: none;
   border: 1px solid rgba(0, 85, 229, 0.22);
@@ -142,7 +162,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
@@ -150,13 +170,13 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.90);
+  padding: 10px 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 85, 229, 0.15);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #1e293b;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
@@ -171,18 +191,18 @@
 }
 
 .chipIcon {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* 5. Key Metrics Stats Strip */
 .statsStrip {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1200px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  padding: 28px 36px;
-  border-radius: 28px;
+  padding: 32px 48px;
+  border-radius: 30px;
   background: rgba(241, 245, 249, 0.78);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -210,7 +230,7 @@
 
 .statNumber {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 34px;
+  font-size: 38px;
   font-weight: 800;
   color: #0055e5;
   line-height: 1.1;
@@ -218,7 +238,7 @@
 }
 
 .statLabel {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #475569;
   letter-spacing: 0.2px;
@@ -226,15 +246,19 @@
 
 /* Responsiveness */
 @media (max-width: 991px) {
+  .heroWrapper {
+    min-height: auto;
+    padding: 60px 20px 40px 20px;
+  }
   .glassPane {
-    padding: 40px 24px 32px 24px;
+    padding: 48px 32px 36px 32px;
     border-radius: 28px;
   }
   .title {
-    font-size: 44px;
+    font-size: 46px;
   }
   .description {
-    font-size: 16px;
+    font-size: 17px;
   }
   .statsStrip {
     grid-template-columns: repeat(2, 1fr);
@@ -248,18 +272,18 @@
 
 @media (max-width: 576px) {
   .heroWrapper {
-    padding: 100px 16px 40px 16px;
+    padding: 40px 16px 30px 16px;
   }
   .glassPane {
-    padding: 32px 18px 24px 18px;
+    padding: 36px 20px 28px 20px;
     border-radius: 24px;
   }
   .title {
-    font-size: 32px;
+    font-size: 34px;
     letter-spacing: -0.8px;
   }
   .description {
-    font-size: 14px;
+    font-size: 15px;
   }
   .ctaGroup {
     flex-direction: column;
@@ -275,7 +299,7 @@
     padding: 20px 16px;
   }
   .statNumber {
-    font-size: 26px;
+    font-size: 28px;
   }
   .statLabel {
     font-size: 12px;
