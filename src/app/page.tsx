@@ -57,10 +57,10 @@ export default function Home() {
 
   return (
     <div className={styles.homepage}>
-      {/* ── Interactive Physics Dot Grid Background (Extracted from Design5.html with enlarged matrix dots & vibrant hover colors) ── */}
+      {/* Interactive Physics Dot Grid Background */}
       <InteractiveDotGrid />
 
-      {/* ── HERO SECTION — Full-screen cinematic centered layout ── */}
+      {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroCenter}>
 
