@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { mockCandidates, mockErpProducts, mockTestimonials, mockCourses } from '@/data/mockData';
 import CandidateSlider from '@/components/CandidateSlider';
-import InteractiveDotGrid from '@/components/InteractiveDotGrid';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -56,10 +55,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={styles.homepage}>
-      {/* ── Interactive Physics Dot Grid Background (Extracted from Design5.html with enlarged matrix dots & vibrant hover colors) ── */}
-      <InteractiveDotGrid />
-
+    <div className={`${styles.homepage} dot-grid`}>
       {/* ── HERO SECTION — Full-screen cinematic centered layout ── */}
       <section className={styles.hero}>
         <div className={styles.heroCenter}>
@@ -167,6 +163,7 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* Marquee Tech & Partners Banners */}
       <section className={styles.marqueeSection}>
         <div className={styles.marqueeContainer}>
@@ -215,7 +212,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Main Split Toggle */}
       <section className={styles.exploreSection}>
         <div className={styles.container}>
@@ -225,7 +221,7 @@ export default function Home() {
             <p className={styles.sectionSubtitle}>
               Select your path below to explore our enterprise solutions or our professional training programs.
             </p>
-
+            
             <div className={styles.tabToggle}>
               <button
                 className={`${styles.tabBtn} ${activeTab === 'erp' ? styles.activeTab : ''}`}
@@ -339,7 +335,7 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-
+            
             <div className={`${styles.whyRight} reveal delay-1`}>
               <div className={styles.metricsGrid}>
                 <div className={styles.metricCard}>
@@ -378,7 +374,7 @@ export default function Home() {
               Our trainees are working at top technology companies in India and globally.
             </p>
           </div>
-
+          
           <div className={styles.sliderRow}>
             <CandidateSlider candidates={mockCandidates} />
           </div>
@@ -417,7 +413,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-
+            
             <div className={`${styles.talentRight} reveal delay-1`}>
               <div className={styles.quoteCard}>
                 <i className="fa-solid fa-quote-left"></i>
@@ -438,7 +434,7 @@ export default function Home() {
             <span className={styles.sectionBadge}>TESTIMONIALS</span>
             <h2 className={styles.sectionTitle}>What People Say About Us</h2>
           </div>
-
+          
           <div className={styles.testimonialsGrid}>
             {mockTestimonials.map((t) => (
               <div key={t.id} className={styles.testimonialCard}>
