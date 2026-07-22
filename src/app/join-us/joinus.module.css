@@ -12,11 +12,17 @@
    BANNER
 ================================= */
 .banner {
-  background: #0a0f1e;
+  background: rgba(10, 15, 30, 0.82);
   padding: 80px 0;
   color: var(--bg-card);
   text-align: center;
-}
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 85, 229, 0.2);
+  border-radius: 24px;
+  max-width: 1200px;
+  margin: 30px auto;}
 
 .banner h1 {
   color: #ffffff !important;
@@ -38,7 +44,7 @@
 ================================= */
 .content {
   padding: 80px 0;
-  background: var(--bg-card);
+  background: transparent;
 }
 
 .grid {

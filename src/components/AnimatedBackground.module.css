@@ -9,27 +9,21 @@
   pointer-events: none;
 }
 
-/* Brighten the video itself — CSS brightness filter lightens the footage */
 .video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  /* Increase exposure: brightness(1.6) makes the video look washed-bright,
-     combined with the overlay below this gives a clean light canvas */
-  filter: brightness(1.6) saturate(0.7);
+  /* Clean, natural video playback without brightness distortion */
+  filter: none;
 }
 
-/* 
-  Soft white overlay: adds a consistent light wash on top of the video.
-  This ensures ALL text and components have a readable background.
-  Opacity kept moderate so the video still shows through beautifully.
-*/
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.40);
+  /* No white overlay filter — video is 100% visible */
+  background: transparent;
 }
