@@ -2,10 +2,10 @@
 
 import React, { useEffect, useRef } from 'react';
 
-// Exact JCRM Technologies Logo Blue Color Palette:
-// Deep Cobalt / Sapphire Blue (Logo core text & ring): rgb(0, 75, 204)
-// Royal Azure Blue (Logo accent lines): rgb(26, 115, 232)
-// Soft Ice / Periwinkle Blue (Outer logo halo): rgb(147, 197, 253)
+// JCRM Logo Blue Palette:
+// Deep Cobalt Blue (Sphere Center): rgb(0, 75, 204)
+// Royal Azure Blue (Sphere Slope): rgb(26, 115, 232)
+// Soft Ice Blue (Sphere Edge): rgb(147, 197, 253)
 
 interface RGB {
   r: number;
@@ -13,27 +13,25 @@ interface RGB {
   b: number;
 }
 
-const BLUE_INNER: RGB = { r: 0, g: 75, b: 204 };    // Deep Cobalt Blue (Cursor Center)
-const BLUE_MID: RGB   = { r: 26, g: 115, b: 232 };  // Royal Azure Blue (Mid Radial)
-const BLUE_OUTER: RGB = { r: 147, g: 197, b: 253 }; // Soft Ice Blue (Outer Edge)
+const BLUE_CENTER: RGB = { r: 0, g: 75, b: 204 };   // Deep Cobalt Blue
+const BLUE_SLOPE: RGB  = { r: 26, g: 115, b: 232 }; // Royal Azure Blue
+const BLUE_EDGE: RGB   = { r: 147, g: 197, b: 253 };// Soft Ice Blue
 
-function getRadialLogoBlue(normDist: number): RGB {
-  // normDist ranges from 0 (center under mouse) to 1 (outer edge of hover radius)
-  const clamped = Math.max(0, Math.min(1, normDist));
-  
-  if (clamped <= 0.45) {
-    const t = clamped / 0.45;
+function getSphereGlowColor(normDist: number): RGB {
+  const r = Math.max(0, Math.min(1, normDist));
+  if (r <= 0.5) {
+    const t = r / 0.5;
     return {
-      r: Math.round(BLUE_INNER.r + (BLUE_MID.r - BLUE_INNER.r) * t),
-      g: Math.round(BLUE_INNER.g + (BLUE_MID.g - BLUE_INNER.g) * t),
-      b: Math.round(BLUE_INNER.b + (BLUE_MID.b - BLUE_INNER.b) * t),
+      r: Math.round(BLUE_CENTER.r + (BLUE_SLOPE.r - BLUE_CENTER.r) * t),
+      g: Math.round(BLUE_CENTER.g + (BLUE_SLOPE.g - BLUE_CENTER.g) * t),
+      b: Math.round(BLUE_CENTER.b + (BLUE_SLOPE.b - BLUE_CENTER.b) * t),
     };
   } else {
-    const t = (clamped - 0.45) / 0.55;
+    const t = (r - 0.5) / 0.5;
     return {
-      r: Math.round(BLUE_MID.r + (BLUE_OUTER.r - BLUE_MID.r) * t),
-      g: Math.round(BLUE_MID.g + (BLUE_OUTER.g - BLUE_MID.g) * t),
-      b: Math.round(BLUE_MID.b + (BLUE_OUTER.b - BLUE_MID.b) * t),
+      r: Math.round(BLUE_SLOPE.r + (BLUE_EDGE.r - BLUE_SLOPE.r) * t),
+      g: Math.round(BLUE_SLOPE.g + (BLUE_EDGE.g - BLUE_SLOPE.g) * t),
+      b: Math.round(BLUE_SLOPE.b + (BLUE_EDGE.b - BLUE_SLOPE.b) * t),
     };
   }
 }
@@ -62,9 +60,9 @@ export default function InteractiveDotGrid() {
     }
 
     let dots: Dot[] = [];
-    const spacing = 44; // Crisp grid spacing
-    const baseRadius = 4.5; // Base dot radius
-    const mouseRadius = 240; // Radial interaction radius
+    const spacing = 38; // Dense, refined grid spacing
+    const baseRadius = 2.5; // Smaller, crisp dot radius
+    const mouseRadius = 140; // Smaller, elegant hover radius
 
     const mouse = { x: -1000, y: -1000, active: false };
 
@@ -117,23 +115,23 @@ export default function InteractiveDotGrid() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth radial ambient spotlight in JCRM Logo Blue under cursor
+      // Render glowing sphere / ball light beneath the blanket of dots
       if (mouse.active && mouse.x > 0 && mouse.y > 0) {
-        const spotGrad = ctx.createRadialGradient(
+        const ballGrad = ctx.createRadialGradient(
           mouse.x,
           mouse.y,
           0,
           mouse.x,
           mouse.y,
-          mouseRadius * 1.35
+          mouseRadius
         );
-        spotGrad.addColorStop(0, 'rgba(0, 75, 204, 0.14)');
-        spotGrad.addColorStop(0.45, 'rgba(26, 115, 232, 0.07)');
-        spotGrad.addColorStop(0.85, 'rgba(147, 197, 253, 0.02)');
-        spotGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        ctx.fillStyle = spotGrad;
+        ballGrad.addColorStop(0, 'rgba(0, 75, 204, 0.16)');
+        ballGrad.addColorStop(0.5, 'rgba(26, 115, 232, 0.08)');
+        ballGrad.addColorStop(0.85, 'rgba(147, 197, 253, 0.03)');
+        ballGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = ballGrad;
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, mouseRadius * 1.35, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, mouseRadius, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -144,46 +142,47 @@ export default function InteractiveDotGrid() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         let currentRadius = baseRadius;
-        let fillStyle = 'rgba(148, 163, 184, 0.32)'; // Soft slate base
+        let fillStyle = 'rgba(148, 163, 184, 0.32)'; // Crisp slate base
         let shadowBlur = 0;
         let shadowColor = 'transparent';
 
         if (dist < mouseRadius) {
-          const force = (mouseRadius - dist) / mouseRadius;
           const normDist = dist / mouseRadius; // 0 at center, 1 at edge
+          const sphereHeight = Math.sqrt(1 - normDist * normDist); // 3D hemisphere elevation curve
           const angle = Math.atan2(dy, dx);
 
-          // Physics repulsion effect from Design5
-          const targetX = dot.ox - Math.cos(angle) * force * 38;
-          const targetY = dot.oy - Math.sin(angle) * force * 38;
+          // Smooth 3D dome displacement: max lateral movement along sphere slopes (sin(r*pi))
+          const lateralPush = Math.sin(normDist * Math.PI) * 16;
+          const targetX = dot.ox - Math.cos(angle) * lateralPush;
+          const targetY = dot.oy - Math.sin(angle) * lateralPush;
 
-          dot.vx += (targetX - dot.x) * 0.12;
-          dot.vy += (targetY - dot.y) * 0.12;
+          dot.vx += (targetX - dot.x) * 0.14;
+          dot.vy += (targetY - dot.y) * 0.14;
 
-          // Enlarge dot size on hover (up to 9.5px)
-          currentRadius = baseRadius + force * 5.0;
+          // Swell dot size smoothly over the top of the sphere (up to 5.5px)
+          currentRadius = baseRadius + sphereHeight * 3.2;
 
-          // Pure Radial Gradient of JCRM Logo Blues
-          const rgb = getRadialLogoBlue(normDist);
-          const alpha = 0.7 + force * 0.3;
+          // Glowing JCRM Blue palette based on 3D sphere elevation
+          const rgb = getSphereGlowColor(normDist);
+          const alpha = 0.55 + sphereHeight * 0.45;
 
           fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
-          shadowBlur = 20 * force;
-          shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${force * 0.9})`;
+          shadowBlur = 14 * sphereHeight;
+          shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${sphereHeight * 0.9})`;
         } else {
-          // Spring force return to grid origin
-          dot.vx += (dot.ox - dot.x) * 0.07;
-          dot.vy += (dot.oy - dot.y) * 0.07;
+          // Elastic spring return to grid origin
+          dot.vx += (dot.ox - dot.x) * 0.08;
+          dot.vy += (dot.oy - dot.y) * 0.08;
         }
 
-        // Damping friction
-        dot.vx *= 0.78;
-        dot.vy *= 0.78;
+        // Friction damping
+        dot.vx *= 0.76;
+        dot.vy *= 0.76;
 
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // Render main dot with JCRM logo blue glow
+        // Render main dot with 3D sphere glow
         ctx.save();
         if (shadowBlur > 0) {
           ctx.shadowBlur = shadowBlur;
@@ -195,12 +194,13 @@ export default function InteractiveDotGrid() {
         ctx.fillStyle = fillStyle;
         ctx.fill();
 
-        // Luminous white inner core for dots right under cursor
-        if (dist < mouseRadius * 0.6) {
-          const coreForce = 1 - dist / (mouseRadius * 0.6);
+        // Luminous white core for dots directly on top of the glowing sphere
+        if (dist < mouseRadius * 0.5) {
+          const normDist = dist / (mouseRadius * 0.5);
+          const coreIntensity = 1 - normDist;
           ctx.beginPath();
-          ctx.arc(dot.x, dot.y, Math.max(1.5, currentRadius * 0.45), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${coreForce * 0.95})`;
+          ctx.arc(dot.x, dot.y, Math.max(1.0, currentRadius * 0.4), 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${coreIntensity * 0.95})`;
           ctx.fill();
         }
         ctx.restore();
