@@ -1,9 +1,7 @@
 .footer {
-  position: relative;
-  z-index: 10;
-  background: #0f172a;
-  color: #ffffff;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--text-primary);
+  color: var(--bg-card);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   font-family: inherit;
 }
 
