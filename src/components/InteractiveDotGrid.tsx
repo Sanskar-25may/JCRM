@@ -23,31 +23,34 @@ export default function InteractiveDotGrid() {
       y: number;
       vx: number;
       vy: number;
-      hueOffset: number;
+      baseHue: number;
     }
 
     let dots: Dot[] = [];
-    const spacing = 44; // Distance between grid dots
-    const baseRadius = 4; // Enlarged dot matrix base radius
-    const mouseRadius = 240; // Interaction radius
+    const spacing = 44; // Grid spacing
+    const baseRadius = 4.5; // Bigger base dot matrix radius
+    const mouseRadius = 230; // Interactive hover radius
 
-    const mouse = { x: -1000, y: -1000 };
+    const mouse = { x: -1000, y: -1000, active: false };
 
     const handleMouseMove = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      mouse.active = true;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
         mouse.x = e.touches[0].clientX;
         mouse.y = e.touches[0].clientY;
+        mouse.active = true;
       }
     };
 
     const handleMouseLeave = () => {
       mouse.x = -1000;
       mouse.y = -1000;
+      mouse.active = false;
     };
 
     const initDots = () => {
@@ -64,6 +67,8 @@ export default function InteractiveDotGrid() {
       dots = [];
       for (let x = 0; x <= width + spacing; x += spacing) {
         for (let y = 0; y <= height + spacing; y += spacing) {
+          // Modern hue distribution: Cyan -> Indigo -> Violet -> Magenta
+          const baseHue = (x / width) * 80 + 190;
           dots.push({
             ox: x,
             oy: y,
@@ -71,7 +76,7 @@ export default function InteractiveDotGrid() {
             y: y,
             vx: 0,
             vy: 0,
-            hueOffset: Math.random() * 60 - 30, // Subtle per-dot color variation
+            baseHue,
           });
         }
       }
@@ -80,6 +85,25 @@ export default function InteractiveDotGrid() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
+      // Subtle ambient cursor glow spot
+      if (mouse.active && mouse.x > 0 && mouse.y > 0) {
+        const spotGrad = ctx.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          0,
+          mouse.x,
+          mouse.y,
+          mouseRadius * 1.25
+        );
+        spotGrad.addColorStop(0, 'rgba(99, 102, 241, 0.09)');
+        spotGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.04)');
+        spotGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = spotGrad;
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, mouseRadius * 1.25, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       for (let i = 0; i < dots.length; i++) {
         const dot = dots[i];
         const dx = mouse.x - dot.ox;
@@ -87,54 +111,67 @@ export default function InteractiveDotGrid() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         let currentRadius = baseRadius;
-        let fillStyle = 'rgba(0, 85, 229, 0.22)'; // Default subtle blue-gray
+        let fillStyle = 'rgba(148, 163, 184, 0.32)'; // Clean slate base
+        let shadowBlur = 0;
+        let shadowColor = 'transparent';
 
         if (dist < mouseRadius) {
           const force = (mouseRadius - dist) / mouseRadius;
           const angle = Math.atan2(dy, dx);
 
-          // Elastic physics displacement
-          const targetX = dot.ox - Math.cos(angle) * force * 35;
-          const targetY = dot.oy - Math.sin(angle) * force * 35;
+          // Physics repulsion effect from Design5
+          const targetX = dot.ox - Math.cos(angle) * force * 38;
+          const targetY = dot.oy - Math.sin(angle) * force * 38;
 
           dot.vx += (targetX - dot.x) * 0.12;
           dot.vy += (targetY - dot.y) * 0.12;
 
-          // Enlarged radius on hover (grows up to 8.5px)
-          currentRadius = baseRadius + force * 4.5;
+          // Bigger dot on hover (up to 9.5px)
+          currentRadius = baseRadius + force * 5.0;
 
-          // Vibrant multi-color gradient based on cursor angle & distance
-          const hue = ((angle * (180 / Math.PI) + 360 + dot.hueOffset) % 360);
-          // High saturation and brightness when hovered
-          const alpha = 0.4 + force * 0.6;
-          fillStyle = `hsla(${hue}, 90%, 52%, ${alpha})`;
+          // Colorful yet modern palette (cyan, indigo, violet, rose)
+          const dynamicHue = (dot.baseHue + (angle * (180 / Math.PI) + 360) * 0.3) % 360;
+          const saturation = 85 + force * 15;
+          const lightness = 55 + force * 15;
+          const alpha = 0.55 + force * 0.45;
+
+          fillStyle = `hsla(${dynamicHue}, ${saturation}%, ${lightness}%, ${alpha})`;
+          shadowBlur = 16 * force;
+          shadowColor = `hsla(${dynamicHue}, 90%, 65%, ${force * 0.85})`;
         } else {
-          // Spring return to original position
-          dot.vx += (dot.ox - dot.x) * 0.06;
-          dot.vy += (dot.oy - dot.y) * 0.06;
+          // Spring return to grid origin
+          dot.vx += (dot.ox - dot.x) * 0.07;
+          dot.vy += (dot.oy - dot.y) * 0.07;
         }
 
-        // Friction / Damping
-        dot.vx *= 0.76;
-        dot.vy *= 0.76;
+        // Friction damping
+        dot.vx *= 0.78;
+        dot.vy *= 0.78;
 
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // Draw Dot
+        // Render main dot with colorful glow
+        ctx.save();
+        if (shadowBlur > 0) {
+          ctx.shadowBlur = shadowBlur;
+          ctx.shadowColor = shadowColor;
+        }
+
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, currentRadius, 0, Math.PI * 2);
         ctx.fillStyle = fillStyle;
         ctx.fill();
 
-        // Optional subtle glow halo for hovered dots
-        if (dist < mouseRadius * 0.6) {
-          const glowForce = 1 - dist / (mouseRadius * 0.6);
+        // Draw luminous inner core on hover
+        if (dist < mouseRadius * 0.65) {
+          const coreForce = 1 - dist / (mouseRadius * 0.65);
           ctx.beginPath();
-          ctx.arc(dot.x, dot.y, currentRadius + 3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(0, 102, 255, ${glowForce * 0.15})`;
+          ctx.arc(dot.x, dot.y, Math.max(1.5, currentRadius * 0.45), 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${coreForce * 0.85})`;
           ctx.fill();
         }
+        ctx.restore();
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -167,7 +204,7 @@ export default function InteractiveDotGrid() {
         inset: 0,
         width: '100vw',
         height: '100vh',
-        zIndex: -1,
+        zIndex: 0,
         pointerEvents: 'none',
       }}
     />
