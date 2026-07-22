@@ -77,16 +77,16 @@ export default function Footer() {
               <h5 className={styles.heading}>Company</h5>
               <ul className={styles.links}>
                 <li>
-                  <Link href="/aboutus" className={styles.link}>About Us</Link>
+                  <Link href="/about-us" className={styles.link}>About Us</Link>
                 </li>
                 <li>
                   <Link href="/courses" className={styles.link}>Courses</Link>
                 </li>
                 <li>
-                  <Link href="/ourteam" className={styles.link}>Our Team</Link>
+                  <Link href="/our-team" className={styles.link}>Our Team</Link>
                 </li>
                 <li>
-                  <Link href="/contactus" className={styles.link}>Contact</Link>
+                  <Link href="/contact-us" className={styles.link}>Contact</Link>
                 </li>
               </ul>
             </div>
@@ -96,7 +96,7 @@ export default function Footer() {
               <h5 className={styles.heading}>Solutions</h5>
               <ul className={styles.links}>
                 <li>
-                  <Link href="/erpsolutions" className={styles.link}>ERP Software</Link>
+                  <Link href="/erp-solutions" className={styles.link}>ERP Software</Link>
                 </li>
                 <li>
                   <Link href="/courses" className={styles.link}>Automation</Link>

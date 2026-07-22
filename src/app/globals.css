@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-@import "tailwindcss";
-
 /* ─────────────────────────────────────────────────────────────────────────────
    CodersSpot Design System — Premium Coder Aesthetic (Adapted for JCRM)
    Light Theme -> Warm editorial VS Code light
@@ -10,60 +8,63 @@
 
 :root {
   /* Core JCRM Variable Mapping - Bright Logo Theme (Vibrant Blue & Gold) */
-  --primary: #0066ff;         /* Electric blue */
-  --primary-dark: #0044cc;    /* Rich blue */
-  --secondary: #ffb700;       /* Bright gold */
-  --gold: #ffb700;
+  --primary: #0055e5;
+  /* Rich electric blue */
+  --primary-dark: #003eaa;
+  /* Deep blue */
+  --secondary: #f59e0b;
+  /* Amber gold */
+  --gold: #f59e0b;
   --gold-dark: #d97706;
   --background: transparent;
-  --foreground: #051937;      /* Clear dark blue for readability */
-  --card-bg: rgba(255, 255, 255, 0.45);
-  --border-color: rgba(0, 102, 255, 0.15);
+  --foreground: #0a0f1e;
+  /* Near-black for max contrast */
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --border-color: rgba(0, 85, 229, 0.18);
 
-  /* shadcn/ui variables mapping */
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  --secondary-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent-foreground: 240 5.9% 10%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --radius: 0.75rem;
+  /* Background tokens — keep body transparent so video shows */
+  --bg-base: transparent;
+  --bg-card: rgba(255, 255, 255, 0.90);
+  --bg-surface: rgba(255, 255, 255, 0.93);
+  --bg-elevated: rgba(255, 255, 255, 0.95);
 
-  /* Custom Tokens - Transparent/Glassmorphic and Bright */
-  --bg-base:     #faf9f7;
-  --bg-card:     #ffffff;
-  --bg-surface:  #f3f0eb;
-  --bg-elevated: #edeae3;
+  /* TEXT — all solid dark so they always read against a bright background */
+  --text-primary: #0a0f1e;
+  /* Near-black — maximum contrast */
+  --text-secondary: #1e2a45;
+  /* Dark navy */
+  --text-tertiary: #0055e5;
+  /* Electric blue for labels/badges */
 
-  --text-primary:   #051937;   /* Contrast enhanced deep blue */
-  --text-secondary: #0a2e5c;
-  --text-tertiary:  #0055ff;
+  /* Borders */
+  --border-soft: rgba(0, 85, 229, 0.12);
+  --border-med: rgba(0, 85, 229, 0.22);
+  --border-strong: rgba(0, 85, 229, 0.35);
 
-  --border-soft:   rgba(0, 102, 255, 0.12);
-  --border-med:    rgba(0, 102, 255, 0.2);
-  --border-strong: rgba(0, 102, 255, 0.35);
+  /* Accent colours */
+  --accent-primary: #0055e5;
+  /* Electric blue */
+  --accent-light: #38bdf8;
+  /* Sky blue */
+  --accent-green: #059669;
+  /* Emerald green */
+  --accent-cyan: #0891b2;
+  /* Deep cyan */
+  --accent-amber: #f59e0b;
+  /* Gold */
+  --accent-red: #dc2626;
+  /* Red */
 
-  --accent-primary: #0066ff;   /* Bright electric blue matching logo */
-  --accent-light:   #38bdf8;   /* sky blue */
-  --accent-green:   #10b981;   /* bright green */
-  --accent-cyan:    #00d2ff;   /* bright cyan */
-  --accent-amber:   #ffb700;   /* bright gold/yellow */
-  --accent-red:     #ef4444;   /* bright red */
+  /* Glow */
+  --glow-primary: rgba(0, 85, 229, 0.20);
+  --glow-green: rgba(5, 150, 105, 0.15);
+  --glow-cyan: rgba(8, 145, 178, 0.15);
 
-  --glow-primary: rgba(0, 102, 255, 0.15);
-  --glow-green:   rgba(16, 185, 129, 0.12);
-  --glow-cyan:    rgba(0, 210, 255, 0.12);
-
-  --shadow-sm: 0 2px 4px rgba(0, 50, 150, 0.04);
-  --shadow-md: 0 4px 16px rgba(0, 50, 150, 0.07);
-  --shadow-lg: 0 16px 36px rgba(0, 50, 150, 0.1);
-  --shadow-xl: 0 24px 56px rgba(0, 50, 150, 0.12);
+  /* Shadows — slightly stronger for light-on-light legibility */
+  --shadow-sm: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.14);
 }
 
 
@@ -80,7 +81,7 @@ body {
   overflow-x: hidden;
   font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
   color: var(--text-primary);
-  background: var(--bg-base);
+  background: transparent;
   scroll-behavior: smooth;
   transition: background-color 0.35s ease, color 0.35s ease;
   -webkit-font-smoothing: antialiased;
@@ -91,7 +92,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 80px; /* Offset for sticky navbar */
 }
 
 a {
@@ -159,61 +159,57 @@ a {
 
 /* Dot grid background texture */
 .dot-grid {
-  background-image: radial-gradient(
-    color-mix(in srgb, var(--border-strong) 25%, transparent) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(color-mix(in srgb, var(--border-strong) 25%, transparent) 1px,
+      transparent 1px);
   background-size: 28px 28px;
 }
 
 .grid-lines {
-  background-image: 
+  background-image:
     linear-gradient(color-mix(in srgb, var(--border-soft) 50%, transparent) 1px, transparent 1px);
   background-size: 100% 40px;
 }
 
 /* Card Interaction — lift + glow on hover */
 .card-hover {
-  transition: 
-    transform    0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow   0.35s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.35s ease;
 }
 
 .card-hover:hover {
   transform: translateY(-6px);
   border-color: color-mix(in srgb, var(--accent-primary) 40%, var(--border-soft));
-  box-shadow: 
+  box-shadow:
     0 24px 48px -16px var(--glow-primary),
-    0  0   60px -20px var(--glow-cyan),
-    0  1px  0    0px  color-mix(in srgb, var(--accent-primary) 20%, transparent) inset;
+    0 0 60px -20px var(--glow-cyan),
+    0 1px 0 0px color-mix(in srgb, var(--accent-primary) 20%, transparent) inset;
 }
 
 .card-hover-green {
-  transition: 
-    transform    0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow   0.35s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.35s ease;
 }
 
 .card-hover-green:hover {
   transform: translateY(-6px);
   border-color: color-mix(in srgb, var(--accent-green) 40%, var(--border-soft));
-  box-shadow: 
+  box-shadow:
     0 24px 48px -16px var(--glow-green),
-    0  0   60px -20px var(--glow-cyan);
+    0 0 60px -20px var(--glow-cyan);
 }
 
 /* Shimmer text */
 .shimmer-text {
-  background: linear-gradient(
-    90deg,
-    var(--accent-primary)  0%,
-    var(--accent-light)   25%,
-    var(--accent-cyan)    50%,
-    var(--accent-light)   75%,
-    var(--accent-primary) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--accent-primary) 0%,
+      var(--accent-light) 25%,
+      var(--accent-cyan) 50%,
+      var(--accent-light) 75%,
+      var(--accent-primary) 100%);
   background-size: 300% auto;
   color: transparent;
   background-clip: text;
@@ -222,17 +218,20 @@ a {
 }
 
 @keyframes shimmer-flow {
-  0%   { background-position: 0%   center; }
-  100% { background-position: 300% center; }
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 300% center;
+  }
 }
 
 .shimmer-green {
-  background: linear-gradient(
-    90deg,
-    var(--accent-green) 0%,
-    var(--accent-cyan)  40%,
-    var(--accent-green) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--accent-green) 0%,
+      var(--accent-cyan) 40%,
+      var(--accent-green) 100%);
   background-size: 250% auto;
   color: transparent;
   background-clip: text;
@@ -242,8 +241,13 @@ a {
 
 /* Scrolling marquee */
 @keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .marquee-track {
@@ -287,9 +291,17 @@ a {
 }
 
 @keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0   color-mix(in srgb, var(--accent-green) 70%, transparent); }
-  70%  { box-shadow: 0 0 0 8px transparent; }
-  100% { box-shadow: 0 0 0 0   transparent; }
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-green) 70%, transparent);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
 }
 
 .btn-glow {
@@ -326,6 +338,7 @@ a {
     opacity: 0;
     transform: translateY(25px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -353,55 +366,38 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 28px;
+  padding: 13px 30px;
   border-radius: 30px;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   border: none;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .btnGold {
-  background: linear-gradient(135deg, var(--primary), var(--accent-light));
-  color: #ffffff;
-  box-shadow: 0 4px 15px var(--glow-primary);
+  background: linear-gradient(135deg, #0055e5, #38bdf8);
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(0, 85, 229, 0.35);
 }
 
 .btnGold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--glow-primary);
+  box-shadow: 0 8px 28px rgba(0, 85, 229, 0.45);
 }
 
 .btnOutlineGold {
-  background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.92);
+  color: #0a0f1e !important;
+  border: 2px solid rgba(0, 85, 229, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .btnOutlineGold:hover {
-  background: var(--bg-surface);
-  border-color: var(--border-med);
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(0, 85, 229, 0.45);
   transform: translateY(-2px);
-}
-
-.container-custom {
-  max-width: 1200px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.section-bg-alt {
-  background-color: var(--bg-surface);
-}
-
-.section-divider-top {
-  border-top: 1px solid var(--border-soft);
-}
-
-.section-divider-bottom {
-  border-bottom: 1px solid var(--border-soft);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }

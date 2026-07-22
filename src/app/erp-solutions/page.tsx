@@ -1,60 +1,79 @@
+'use client';
+
 import React from 'react';
-import { client, projectId } from '@/lib/sanity/client';
-import { allProductsQuery } from '@/lib/sanity/queries';
-import ProductGrid from '@/components/sections/ProductGrid';
+import Link from 'next/link';
 import { mockErpProducts } from '@/data/mockData';
+import styles from './erpsolutions.module.css';
 
-export const revalidate = 60;
-
-export default async function ErpSolutions() {
-  let products = [];
-  const isSanityConfigured = projectId && projectId !== "jcrm-project-id";
-
-  if (isSanityConfigured) {
-    try {
-      products = await client.fetch(allProductsQuery);
-    } catch (err) {
-      console.error("Failed to fetch products from Sanity, using mock data fallback:", err);
-    }
-  }
-
-  // Fallback if empty
-  const activeProducts = products && products.length > 0
-    ? products.map((p: any) => ({
-        _id: p._id,
-        title: p.title,
-        slug: p.slug,
-        tagline: p.tagline || 'ERP System',
-        description: p.description || '',
-        stats: p.stats || [],
-        accentColor: p.accentColor || '#0066ff'
-      }))
-    : mockErpProducts.map((p) => ({
-        _id: p.id,
-        title: p.name,
-        slug: p.id,
-        tagline: p.badge || 'ERP System',
-        description: p.description,
-        stats: p.features || [],
-        accentColor: '#0066ff'
-      }));
-
+export default function ErpSolutions() {
   return (
-    <div className="pt-24 font-sans bg-slate-50/20">
-      {/* Banner */}
-      <section className="py-20 text-center">
-        <div className="container-custom">
-          <h1 className="text-3xl lg:text-4xl font-extrabold text-[#051937] tracking-tight">
-            Enterprise ERP Solutions
-          </h1>
-          <p className="text-slate-500 text-sm mt-3.5 max-w-xl mx-auto">
-            Secure, cloud-ready, and purpose-built software systems designed to scale your operations.
-          </p>
+    <div className={styles.erpPage}>
+      {/* Header Banner */}
+      <section className={styles.banner}>
+        <div className={styles.container}>
+          <h1 className="reveal">Enterprise ERP Solutions</h1>
+          <p className="reveal delay-1">Secure, cloud-ready, and purpose-built software systems designed to scale your operations</p>
         </div>
       </section>
 
-      {/* Render Product Grid */}
-      <ProductGrid products={activeProducts} />
+      {/* Main Grid: Sidebar Index & Product Details */}
+      <section className={styles.content}>
+        <div className={styles.container}>
+          <div className={styles.layout}>
+            {/* Sidebar Navigation Index */}
+            <aside className={styles.sidebar}>
+              <h5 className={styles.indexTitle}>ERP Catalog</h5>
+              <div className={styles.indexLinks}>
+                {mockErpProducts.map((prod) => (
+                  <a key={prod.id} href={`#${prod.id}`} className={styles.indexLink}>
+                    <i className="fa-solid fa-angle-right me-2"></i> {prod.name.split(' (')[0]}
+                  </a>
+                ))}
+              </div>
+            </aside>
+
+            {/* Products Detail Column */}
+            <div className={styles.detailsCol}>
+              {mockErpProducts.map((prod) => (
+                <div key={prod.id} id={prod.id} className={`${styles.productSection} reveal`}>
+                  <div className={styles.productHeader}>
+                    <div className={styles.titleArea}>
+                      <div className={styles.iconBox}>
+                        <i className={`fa-solid ${prod.icon}`}></i>
+                      </div>
+                      <div>
+                        <h2>{prod.name}</h2>
+                        <span className={styles.badge}>{prod.badge}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className={styles.description}>{prod.description}</p>
+
+                  <div className={styles.featuresSection}>
+                    <h4>Key System Modules &amp; Capabilities</h4>
+                    <div className={styles.featuresGrid}>
+                      {prod.features?.map((feat, idx) => (
+                        <div key={idx} className={styles.featureItem}>
+                          <i className="fa-solid fa-circle-check"></i>
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.cardActions}>
+                    <Link href="/contact-us?product=lms" className="btnCustom btnGold">
+                      Request Demo <i className="fa-solid fa-arrow-pointer ms-1"></i>
+                    </Link>
+                  </div>
+                  <hr className={styles.divider} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

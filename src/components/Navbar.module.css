@@ -3,20 +3,21 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 0;
-  background: color-mix(in srgb, var(--bg-card) 72%, transparent);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--border-soft);
+  padding: 18px 0;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(0, 85, 229, 0.12);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1000;
 }
 
 .scrolled {
   padding: 12px 0;
-  background: color-mix(in srgb, var(--bg-card) 85%, transparent);
-  box-shadow: 0 4px 20px var(--glow-primary);
-  border-bottom: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 85, 229, 0.15);
 }
 
 .container {
@@ -86,14 +87,14 @@
 }
 
 .navLink:hover {
-  color: var(--text-primary);
-  background: var(--bg-surface);
+  color: #0a0f1e;
+  background: rgba(0, 85, 229, 0.08);
 }
 
 .activeLink {
-  color: var(--bg-card) !important;
-  background: var(--accent-primary);
-  box-shadow: 0 4px 12px var(--glow-primary);
+  color: #ffffff !important;
+  background: #0055e5;
+  box-shadow: 0 4px 12px rgba(0, 85, 229, 0.30);
 }
 
 .toggler {

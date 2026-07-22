@@ -1,140 +1,165 @@
-import React from 'react';
-import { client, projectId } from '@/lib/sanity/client';
-import { courseBySlugQuery, allCoursesQuery } from '@/lib/sanity/queries';
-import { mockCourses } from '@/data/mockData';
-import { notFound } from 'next/navigation';
+'use client';
+
+import React, { use } from 'react';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { mockCourses } from '@/data/mockData';
+import styles from './courseDetail.module.css';
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ courseId: string }>;
 }
 
-export async function generateStaticParams() {
-  const isSanityConfigured = projectId && projectId !== "jcrm-project-id";
-  if (!isSanityConfigured) {
-    return mockCourses.map((c) => ({ slug: c.id }));
-  }
-  try {
-    const courses = await client.fetch(allCoursesQuery);
-    return courses.map((course: any) => ({
-      slug: course.slug || 'unknown',
-    }));
-  } catch (err) {
-    console.error("Static params fallback for courses:", err);
-    return mockCourses.map((c) => ({ slug: c.id }));
-  }
-}
+export default function CourseDetailPage({ params }: PageProps) {
+  const { courseId } = use(params);
+  const course = mockCourses.find((c) => c.id === courseId);
 
-export default async function CourseDetail({ params }: PageProps) {
-  const { slug } = await params;
-  
-  let course = null;
-  const isSanityConfigured = projectId && projectId !== "jcrm-project-id";
-
-  if (isSanityConfigured) {
-    try {
-      course = await client.fetch(courseBySlugQuery, { slug });
-    } catch (err) {
-      console.error("Failed to fetch course by slug:", err);
-    }
-  }
-
-  // Fallback to mock data if not found in Sanity
   if (!course) {
-    const mock = mockCourses.find((c) => c.id === slug);
-    if (!mock) {
-      notFound();
-    }
-    course = {
-      title: mock.title,
-      slug: mock.id,
-      tagline: mock.badge || 'Trending Course',
-      description: mock.description,
-      duration: mock.duration || '3 Months',
-      features: mock.tools || [],
-      accentColor: '#0066ff',
-      icon: mock.icon || '💻'
-    };
+    notFound();
   }
-
-  const accentColor = course.accentColor || '#0066ff';
 
   return (
-    <div className="pt-24 font-sans bg-slate-50/20">
-      <div className="container-custom py-12">
-        {/* Back Link */}
-        <Link href="/courses" className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#0066ff] transition-colors mb-8">
-          <i className="fa-solid fa-arrow-left"></i> Back to Courses
-        </Link>
+    <div className={styles.detailPage}>
+      {/* Banner */}
+      <section className={styles.banner}>
+        <div className={styles.container}>
+          <div className={styles.bannerContent}>
+            <span className={styles.badge}>{course.badge || 'Professional Course'}</span>
+            <h1 className={styles.title}>
+              <span className={styles.icon}>{course.icon}</span> {course.title}
+            </h1>
+            <p className={styles.subtitle}>{course.description}</p>
+          </div>
+        </div>
+      </section>
 
-        {/* Content Box */}
-        <div className="glass rounded-[32px] border border-slate-200/40 p-8 lg:p-12 shadow-xl shadow-primary/5">
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
-            
-            {/* Left Info Column */}
-            <div className="flex-1">
-              <div className="flex items-center gap-3.5 mb-4">
-                <span className="text-3xl">{course.icon || '💻'}</span>
-                <span
-                  className="inline-block text-[11px] font-bold py-1.5 px-4 rounded-full uppercase tracking-wider"
-                  style={{ backgroundColor: `${accentColor}12`, color: accentColor }}
-                >
-                  {course.tagline}
-                </span>
+      {/* Main Grid */}
+      <section className={styles.content}>
+        <div className={styles.container}>
+          <div className={styles.grid}>
+            {/* Left Content */}
+            <div className={styles.leftCol}>
+              {/* Overview Image */}
+              <div className={styles.imageWrapper}>
+                <img
+                  src={
+                    course.id === 'ai-ml' ? 'https://jcrm.in/uploads/profile/1779200699_343fb3c993abc88328a5.jpeg' :
+                    course.id === 'frontend' ? 'https://res.cloudinary.com/dcd2rjd1x/image/upload/v1779995273/jcrm/profile/gcy2wmbjaiscaqyajc0q.jpg' :
+                    course.id === 'backend' ? 'https://jcrm.in/uploads/profile/1778152018_e62753474594f2619563.jpg' :
+                    'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80'
+                  }
+                  alt={course.title}
+                  className={styles.courseImg}
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80';
+                  }}
+                />
               </div>
-              <h1 className="text-3xl lg:text-4xl font-extrabold text-[#051937] tracking-tight mb-6">
-                {course.title}
-              </h1>
-              <div className="flex items-center gap-2 mb-6">
-                <span className="text-slate-500 text-xs font-bold bg-[#f3f0eb] px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
-                  <i className="fa-solid fa-clock"></i> Course Duration: {course.duration || '3 Months'}
-                </span>
-              </div>
-              <p className="text-sm leading-relaxed text-[#0a2e5c]/80 mb-8 whitespace-pre-wrap">
-                {course.description}
-              </p>
 
-              {/* Dynamic Accent colored call to action */}
-              <div className="flex flex-wrap gap-4 mt-8">
-                <Link
-                  href="/contact-us"
-                  className="inline-flex items-center justify-center text-white font-bold px-8 py-3.5 rounded-full text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10"
-                  style={{ backgroundColor: accentColor }}
-                >
-                  Enroll / Enquire Now
-                </Link>
-                <a
-                  href="tel:+918310531309"
-                  className="inline-flex items-center justify-center border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 font-bold px-8 py-3.5 rounded-full text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm"
-                >
-                  Call Advisor
-                </a>
-              </div>
-            </div>
+              {/* Instructor */}
+              {course.instructor && (
+                <div className={styles.instructorSection}>
+                  <h3>Course Instructor</h3>
+                  <div className={styles.instructorCard}>
+                    <img
+                      src={course.instructor.imgUrl}
+                      alt={course.instructor.name}
+                      className={styles.instructorImg}
+                    />
+                    <div className={styles.instructorInfo}>
+                      <h5>{course.instructor.name}</h5>
+                      <p>{course.instructor.role}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
 
-            {/* Right Features Column */}
-            <div className="w-full lg:w-[400px] bg-[#f3f0eb] border border-slate-200/40 p-8 rounded-[24px] flex flex-col justify-start">
-              <h3 className="text-xs font-bold text-[#051937] uppercase tracking-wider mb-6 pb-2 border-b border-slate-200/60">
-                Syllabus Topics &amp; Technologies
-              </h3>
-              
-              {course.features && course.features.length > 0 ? (
-                <ul className="flex flex-col gap-4 list-none p-0 m-0">
-                  {course.features.map((feat: string, index: number) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="text-emerald-500 font-bold text-base mt-0.5" style={{ color: accentColor }}>✓</span>
-                      <span className="text-xs font-semibold text-[#0a2e5c] leading-normal">{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <span className="text-xs text-slate-400">No custom topics loaded.</span>
+              <hr className={styles.divider} />
+
+              {/* Course Overview */}
+              <div className={styles.section}>
+                <h3>Course Description</h3>
+                <p className={styles.text}>
+                  This course is designed to guide you step-by-step from zero foundation to absolute command of the topic. Engineered to meet modern enterprise demands, it focuses heavily on hands-on practical exercises, daily code challenges, and a capstone live project modeled after JCRM ERP applications. You will learn to deploy, audit, and scale applications in simulated production environments.
+                </p>
+              </div>
+
+              <hr className={styles.divider} />
+
+              {/* What you'll learn */}
+              {course.syllabus && (
+                <div className={styles.section}>
+                  <h3>What you will learn in this program:</h3>
+                  <div className={styles.learningChecklist}>
+                    {course.syllabus.map((item, idx) => (
+                      <div key={idx} className={styles.checkItem}>
+                        <i className="fa-solid fa-circle-check"></i>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Tools Covered */}
+              {course.tools && (
+                <div className={styles.section}>
+                  <h3>Technologies &amp; Tools Covered:</h3>
+                  <div className={styles.toolsList}>
+                    {course.tools.map((tool) => (
+                      <span key={tool} className={styles.toolBadge}>
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
 
+            {/* Right Column (Sidebar Widget) */}
+            <div className={styles.rightCol}>
+              <div className={styles.enrollCard}>
+                <h4 className={styles.enrollTitle}>This Program Includes:</h4>
+                <ul className={styles.inclusions}>
+                  <li>
+                    <i className="fa-solid fa-video"></i>
+                    <span>52+ Hours Live Lectures &amp; Videos</span>
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-file-invoice"></i>
+                    <span>75+ Assessment Sheets &amp; Mock Labs</span>
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-circle-check"></i>
+                    <span>100% Guaranteed Job Placements Help</span>
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-infinity"></i>
+                    <span>Lifetime Access to Lectures &amp; Notes</span>
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-mobile-screen-button"></i>
+                    <span>Access on Mobile and TV Screen</span>
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-trophy"></i>
+                    <span>Verified Placement Certification</span>
+                  </li>
+                </ul>
+
+                <div className={styles.enrollAction}>
+                  <Link href="/join-us" className="btnCustom btnGold w-100 justify-content-center">
+                    Enroll in this Course
+                  </Link>
+                  <p className={styles.enrollNote}>
+                    * Our coordinators will review your application and schedule a 1-on-1 counseling call within 24 hours.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

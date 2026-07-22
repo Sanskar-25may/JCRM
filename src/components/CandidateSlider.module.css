@@ -28,12 +28,14 @@
 .card {
   flex: 0 0 calc(20% - 20px);
   min-width: 220px;
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
   overflow: hidden;
   padding: 16px;
   text-align: center;
-  border: 1px solid var(--border-soft);
+  border: 1px solid rgba(0, 102, 255, 0.12);
   box-shadow: var(--shadow-sm);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   scroll-snap-align: start;
@@ -42,7 +44,7 @@
 .card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--border-soft);
+  border-color: rgba(255, 255, 255, 0.95);
 }
 
 .imageBox {
@@ -118,8 +120,10 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 102, 255, 0.12);
   color: var(--text-primary);
   font-size: 14px;
   display: flex;
@@ -133,7 +137,7 @@
 
 .controlBtn:hover {
   background: var(--bg-surface);
-  border-color: var(--border-soft);
+  border-color: rgba(255, 255, 255, 0.95);
   color: var(--accent-primary);
   box-shadow: var(--shadow-lg);
 }

@@ -12,21 +12,25 @@
    BANNER
 ================================= */
 .banner {
-  background: linear-gradient(135deg, var(--text-primary), var(--text-primary));
+  background: #0a0f1e;
   padding: 80px 0;
   color: var(--bg-card);
   text-align: center;
 }
 
 .banner h1 {
+  color: #ffffff !important;
+
   font-size: 40px;
   font-weight: 800;
   margin-bottom: 10px;
 }
 
 .banner p {
+  color: rgba(255, 255, 255, 0.95) !important;
+
   font-size: 18px;
-  color: var(--border-soft);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 /* =================================
@@ -44,7 +48,7 @@
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.93);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
@@ -60,7 +64,7 @@
 .card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--border-soft);
+  border-color: rgba(255, 255, 255, 0.95);
 }
 
 .cardHeader {
@@ -177,6 +181,8 @@
     margin: 0 auto;
   }
   .banner h1 {
+  color: #ffffff !important;
+
     font-size: 32px;
   }
 }

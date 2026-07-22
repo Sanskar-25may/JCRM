@@ -29,12 +29,12 @@ export default function Navbar() {
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Courses', href: '/courses' },
-    { label: 'ERP Solutions', href: '/erpsolutions' },
-    { label: 'Our Team', href: '/ourteam' },
+    { label: 'ERP Solutions', href: '/erp-solutions' },
+    { label: 'Our Team', href: '/our-team' },
     { label: 'Workshop', href: '/workshops' },
-    { label: 'Join', href: '/joinus' },
-    { label: 'About', href: '/aboutus' },
-    { label: 'Contact', href: '/contactus' },
+    { label: 'Join', href: '/join-us' },
+    { label: 'About', href: '/about-us' },
+    { label: 'Contact', href: '/contact-us' },
   ];
 
   return (

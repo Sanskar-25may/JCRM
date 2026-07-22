@@ -40,7 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Backups and media
-Background video.mp4
-codersspot.zip
+# temp & media
+/*.mp4
+*.zip
 codersspot_src/
+read_strings.js
+get_meta.ps1
+
