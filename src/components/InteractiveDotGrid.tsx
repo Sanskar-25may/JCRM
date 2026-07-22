@@ -2,10 +2,10 @@
 
 import React, { useEffect, useRef } from 'react';
 
-// JCRM Technologies Logo Brand Palette:
-// Electric Royal Blue: rgb(0, 85, 229)
-// Vibrant Sky Cyan: rgb(56, 189, 248)
-// JCRM Amber Gold: rgb(245, 158, 11)
+// Exact JCRM Technologies Logo Blue Color Palette:
+// Deep Cobalt / Sapphire Blue (Logo core text & ring): rgb(0, 75, 204)
+// Royal Azure Blue (Logo accent lines): rgb(26, 115, 232)
+// Soft Ice / Periwinkle Blue (Outer logo halo): rgb(147, 197, 253)
 
 interface RGB {
   r: number;
@@ -13,28 +13,29 @@ interface RGB {
   b: number;
 }
 
-const JCRM_BRAND_COLORS: RGB[] = [
-  { r: 0, g: 85, b: 229 },    // Electric Royal Blue (#0055e5)
-  { r: 56, g: 189, b: 248 },  // Vibrant Sky Cyan (#38bdf8)
-  { r: 245, g: 158, b: 11 },   // JCRM Amber Gold (#f59e0b)
-  { r: 0, g: 85, b: 229 },    // Seamless Loop back to Royal Blue
-];
+const BLUE_INNER: RGB = { r: 0, g: 75, b: 204 };    // Deep Cobalt Blue (Cursor Center)
+const BLUE_MID: RGB   = { r: 26, g: 115, b: 232 };  // Royal Azure Blue (Mid Radial)
+const BLUE_OUTER: RGB = { r: 147, g: 197, b: 253 }; // Soft Ice Blue (Outer Edge)
 
-function getJCRMBrandColor(factor: number): RGB {
-  const normalized = Math.max(0, Math.min(1, factor));
-  const scaled = normalized * (JCRM_BRAND_COLORS.length - 1);
-  const idx = Math.floor(scaled);
-  const nextIdx = Math.min(idx + 1, JCRM_BRAND_COLORS.length - 1);
-  const t = scaled - idx;
-
-  const c1 = JCRM_BRAND_COLORS[idx];
-  const c2 = JCRM_BRAND_COLORS[nextIdx];
-
-  return {
-    r: Math.round(c1.r + (c2.r - c1.r) * t),
-    g: Math.round(c1.g + (c2.g - c1.g) * t),
-    b: Math.round(c1.b + (c2.b - c1.b) * t),
-  };
+function getRadialLogoBlue(normDist: number): RGB {
+  // normDist ranges from 0 (center under mouse) to 1 (outer edge of hover radius)
+  const clamped = Math.max(0, Math.min(1, normDist));
+  
+  if (clamped <= 0.45) {
+    const t = clamped / 0.45;
+    return {
+      r: Math.round(BLUE_INNER.r + (BLUE_MID.r - BLUE_INNER.r) * t),
+      g: Math.round(BLUE_INNER.g + (BLUE_MID.g - BLUE_INNER.g) * t),
+      b: Math.round(BLUE_INNER.b + (BLUE_MID.b - BLUE_INNER.b) * t),
+    };
+  } else {
+    const t = (clamped - 0.45) / 0.55;
+    return {
+      r: Math.round(BLUE_MID.r + (BLUE_OUTER.r - BLUE_MID.r) * t),
+      g: Math.round(BLUE_MID.g + (BLUE_OUTER.g - BLUE_MID.g) * t),
+      b: Math.round(BLUE_MID.b + (BLUE_OUTER.b - BLUE_MID.b) * t),
+    };
+  }
 }
 
 export default function InteractiveDotGrid() {
@@ -58,13 +59,12 @@ export default function InteractiveDotGrid() {
       y: number;
       vx: number;
       vy: number;
-      colorFactor: number;
     }
 
     let dots: Dot[] = [];
-    const spacing = 44; // Clean grid spacing
-    const baseRadius = 4.5; // Bigger dot radius
-    const mouseRadius = 230; // Interactive hover radius
+    const spacing = 44; // Crisp grid spacing
+    const baseRadius = 4.5; // Base dot radius
+    const mouseRadius = 240; // Radial interaction radius
 
     const mouse = { x: -1000, y: -1000, active: false };
 
@@ -102,7 +102,6 @@ export default function InteractiveDotGrid() {
       dots = [];
       for (let x = 0; x <= width + spacing; x += spacing) {
         for (let y = 0; y <= height + spacing; y += spacing) {
-          const colorFactor = ((x / width) * 0.5 + (y / height) * 0.5) % 1;
           dots.push({
             ox: x,
             oy: y,
@@ -110,7 +109,6 @@ export default function InteractiveDotGrid() {
             y: y,
             vx: 0,
             vy: 0,
-            colorFactor,
           });
         }
       }
@@ -119,7 +117,7 @@ export default function InteractiveDotGrid() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Subtle ambient cursor spotlight in JCRM Blue & Gold
+      // Smooth radial ambient spotlight in JCRM Logo Blue under cursor
       if (mouse.active && mouse.x > 0 && mouse.y > 0) {
         const spotGrad = ctx.createRadialGradient(
           mouse.x,
@@ -127,15 +125,15 @@ export default function InteractiveDotGrid() {
           0,
           mouse.x,
           mouse.y,
-          mouseRadius * 1.3
+          mouseRadius * 1.35
         );
-        spotGrad.addColorStop(0, 'rgba(0, 85, 229, 0.10)');
-        spotGrad.addColorStop(0.5, 'rgba(56, 189, 248, 0.05)');
-        spotGrad.addColorStop(0.85, 'rgba(245, 158, 11, 0.02)');
+        spotGrad.addColorStop(0, 'rgba(0, 75, 204, 0.14)');
+        spotGrad.addColorStop(0.45, 'rgba(26, 115, 232, 0.07)');
+        spotGrad.addColorStop(0.85, 'rgba(147, 197, 253, 0.02)');
         spotGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = spotGrad;
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, mouseRadius * 1.3, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, mouseRadius * 1.35, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -146,33 +144,32 @@ export default function InteractiveDotGrid() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         let currentRadius = baseRadius;
-        let fillStyle = 'rgba(148, 163, 184, 0.32)'; // Clean slate base
+        let fillStyle = 'rgba(148, 163, 184, 0.32)'; // Soft slate base
         let shadowBlur = 0;
         let shadowColor = 'transparent';
 
         if (dist < mouseRadius) {
           const force = (mouseRadius - dist) / mouseRadius;
+          const normDist = dist / mouseRadius; // 0 at center, 1 at edge
           const angle = Math.atan2(dy, dx);
 
-          // Physics displacement
+          // Physics repulsion effect from Design5
           const targetX = dot.ox - Math.cos(angle) * force * 38;
           const targetY = dot.oy - Math.sin(angle) * force * 38;
 
           dot.vx += (targetX - dot.x) * 0.12;
           dot.vy += (targetY - dot.y) * 0.12;
 
-          // Scale up dot radius on hover
+          // Enlarge dot size on hover (up to 9.5px)
           currentRadius = baseRadius + force * 5.0;
 
-          // Calculate JCRM brand color gradient based on position and angle
-          const angleNorm = (angle + Math.PI) / (2 * Math.PI);
-          const combinedFactor = (dot.colorFactor * 0.4 + angleNorm * 0.6) % 1;
-          const rgb = getJCRMBrandColor(combinedFactor);
+          // Pure Radial Gradient of JCRM Logo Blues
+          const rgb = getRadialLogoBlue(normDist);
+          const alpha = 0.7 + force * 0.3;
 
-          const alpha = 0.65 + force * 0.35;
           fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
-          shadowBlur = 18 * force;
-          shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${force * 0.85})`;
+          shadowBlur = 20 * force;
+          shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${force * 0.9})`;
         } else {
           // Spring force return to grid origin
           dot.vx += (dot.ox - dot.x) * 0.07;
@@ -186,7 +183,7 @@ export default function InteractiveDotGrid() {
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // Render main dot with JCRM theme glow
+        // Render main dot with JCRM logo blue glow
         ctx.save();
         if (shadowBlur > 0) {
           ctx.shadowBlur = shadowBlur;
@@ -198,12 +195,12 @@ export default function InteractiveDotGrid() {
         ctx.fillStyle = fillStyle;
         ctx.fill();
 
-        // Luminous inner core on hover
-        if (dist < mouseRadius * 0.65) {
-          const coreForce = 1 - dist / (mouseRadius * 0.65);
+        // Luminous white inner core for dots right under cursor
+        if (dist < mouseRadius * 0.6) {
+          const coreForce = 1 - dist / (mouseRadius * 0.6);
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, Math.max(1.5, currentRadius * 0.45), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${coreForce * 0.9})`;
+          ctx.fillStyle = `rgba(255, 255, 255, ${coreForce * 0.95})`;
           ctx.fill();
         }
         ctx.restore();
