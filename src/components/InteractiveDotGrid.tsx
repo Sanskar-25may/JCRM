@@ -2,6 +2,41 @@
 
 import React, { useEffect, useRef } from 'react';
 
+// JCRM Technologies Logo Brand Palette:
+// Electric Royal Blue: rgb(0, 85, 229)
+// Vibrant Sky Cyan: rgb(56, 189, 248)
+// JCRM Amber Gold: rgb(245, 158, 11)
+
+interface RGB {
+  r: number;
+  g: number;
+  b: number;
+}
+
+const JCRM_BRAND_COLORS: RGB[] = [
+  { r: 0, g: 85, b: 229 },    // Electric Royal Blue (#0055e5)
+  { r: 56, g: 189, b: 248 },  // Vibrant Sky Cyan (#38bdf8)
+  { r: 245, g: 158, b: 11 },   // JCRM Amber Gold (#f59e0b)
+  { r: 0, g: 85, b: 229 },    // Seamless Loop back to Royal Blue
+];
+
+function getJCRMBrandColor(factor: number): RGB {
+  const normalized = Math.max(0, Math.min(1, factor));
+  const scaled = normalized * (JCRM_BRAND_COLORS.length - 1);
+  const idx = Math.floor(scaled);
+  const nextIdx = Math.min(idx + 1, JCRM_BRAND_COLORS.length - 1);
+  const t = scaled - idx;
+
+  const c1 = JCRM_BRAND_COLORS[idx];
+  const c2 = JCRM_BRAND_COLORS[nextIdx];
+
+  return {
+    r: Math.round(c1.r + (c2.r - c1.r) * t),
+    g: Math.round(c1.g + (c2.g - c1.g) * t),
+    b: Math.round(c1.b + (c2.b - c1.b) * t),
+  };
+}
+
 export default function InteractiveDotGrid() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -23,12 +58,12 @@ export default function InteractiveDotGrid() {
       y: number;
       vx: number;
       vy: number;
-      baseHue: number;
+      colorFactor: number;
     }
 
     let dots: Dot[] = [];
-    const spacing = 44; // Grid spacing
-    const baseRadius = 4.5; // Bigger base dot matrix radius
+    const spacing = 44; // Clean grid spacing
+    const baseRadius = 4.5; // Bigger dot radius
     const mouseRadius = 230; // Interactive hover radius
 
     const mouse = { x: -1000, y: -1000, active: false };
@@ -67,8 +102,7 @@ export default function InteractiveDotGrid() {
       dots = [];
       for (let x = 0; x <= width + spacing; x += spacing) {
         for (let y = 0; y <= height + spacing; y += spacing) {
-          // Modern hue distribution: Cyan -> Indigo -> Violet -> Magenta
-          const baseHue = (x / width) * 80 + 190;
+          const colorFactor = ((x / width) * 0.5 + (y / height) * 0.5) % 1;
           dots.push({
             ox: x,
             oy: y,
@@ -76,7 +110,7 @@ export default function InteractiveDotGrid() {
             y: y,
             vx: 0,
             vy: 0,
-            baseHue,
+            colorFactor,
           });
         }
       }
@@ -85,7 +119,7 @@ export default function InteractiveDotGrid() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Subtle ambient cursor glow spot
+      // Subtle ambient cursor spotlight in JCRM Blue & Gold
       if (mouse.active && mouse.x > 0 && mouse.y > 0) {
         const spotGrad = ctx.createRadialGradient(
           mouse.x,
@@ -93,14 +127,15 @@ export default function InteractiveDotGrid() {
           0,
           mouse.x,
           mouse.y,
-          mouseRadius * 1.25
+          mouseRadius * 1.3
         );
-        spotGrad.addColorStop(0, 'rgba(99, 102, 241, 0.09)');
-        spotGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.04)');
+        spotGrad.addColorStop(0, 'rgba(0, 85, 229, 0.10)');
+        spotGrad.addColorStop(0.5, 'rgba(56, 189, 248, 0.05)');
+        spotGrad.addColorStop(0.85, 'rgba(245, 158, 11, 0.02)');
         spotGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = spotGrad;
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, mouseRadius * 1.25, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, mouseRadius * 1.3, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -119,39 +154,39 @@ export default function InteractiveDotGrid() {
           const force = (mouseRadius - dist) / mouseRadius;
           const angle = Math.atan2(dy, dx);
 
-          // Physics repulsion effect from Design5
+          // Physics displacement
           const targetX = dot.ox - Math.cos(angle) * force * 38;
           const targetY = dot.oy - Math.sin(angle) * force * 38;
 
           dot.vx += (targetX - dot.x) * 0.12;
           dot.vy += (targetY - dot.y) * 0.12;
 
-          // Bigger dot on hover (up to 9.5px)
+          // Scale up dot radius on hover
           currentRadius = baseRadius + force * 5.0;
 
-          // Colorful yet modern palette (cyan, indigo, violet, rose)
-          const dynamicHue = (dot.baseHue + (angle * (180 / Math.PI) + 360) * 0.3) % 360;
-          const saturation = 85 + force * 15;
-          const lightness = 55 + force * 15;
-          const alpha = 0.55 + force * 0.45;
+          // Calculate JCRM brand color gradient based on position and angle
+          const angleNorm = (angle + Math.PI) / (2 * Math.PI);
+          const combinedFactor = (dot.colorFactor * 0.4 + angleNorm * 0.6) % 1;
+          const rgb = getJCRMBrandColor(combinedFactor);
 
-          fillStyle = `hsla(${dynamicHue}, ${saturation}%, ${lightness}%, ${alpha})`;
-          shadowBlur = 16 * force;
-          shadowColor = `hsla(${dynamicHue}, 90%, 65%, ${force * 0.85})`;
+          const alpha = 0.65 + force * 0.35;
+          fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+          shadowBlur = 18 * force;
+          shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${force * 0.85})`;
         } else {
-          // Spring return to grid origin
+          // Spring force return to grid origin
           dot.vx += (dot.ox - dot.x) * 0.07;
           dot.vy += (dot.oy - dot.y) * 0.07;
         }
 
-        // Friction damping
+        // Damping friction
         dot.vx *= 0.78;
         dot.vy *= 0.78;
 
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // Render main dot with colorful glow
+        // Render main dot with JCRM theme glow
         ctx.save();
         if (shadowBlur > 0) {
           ctx.shadowBlur = shadowBlur;
@@ -163,12 +198,12 @@ export default function InteractiveDotGrid() {
         ctx.fillStyle = fillStyle;
         ctx.fill();
 
-        // Draw luminous inner core on hover
+        // Luminous inner core on hover
         if (dist < mouseRadius * 0.65) {
           const coreForce = 1 - dist / (mouseRadius * 0.65);
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, Math.max(1.5, currentRadius * 0.45), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${coreForce * 0.85})`;
+          ctx.fillStyle = `rgba(255, 255, 255, ${coreForce * 0.9})`;
           ctx.fill();
         }
         ctx.restore();
