@@ -63,18 +63,21 @@
   line-height: 1.6;
 }
 
-/* Efficient Responsive Grid Layout for CMS Dynamic Position Allocation */
+/* Efficient Center-Aligned Flex Layout for CMS Dynamic Card Position Allocation */
 .grid {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 24px;
 }
 
 /* Individual Product Card */
 .card {
   position: relative;
+  flex: 1 1 270px;
+  max-width: 290px;
+  min-width: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,9 +166,9 @@
   .title {
     font-size: 38px;
   }
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 18px;
+  .card {
+    flex: 1 1 220px;
+    max-width: 280px;
   }
 }
 
@@ -180,11 +183,8 @@
   .title {
     font-size: 30px;
   }
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    gap: 14px;
-  }
   .card {
-    padding: 26px 20px;
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 }
