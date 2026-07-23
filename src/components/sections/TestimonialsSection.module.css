@@ -14,20 +14,20 @@
   align-items: center;
 }
 
-/* Premium Golden Glassmorphism Pane with Glowing Amber Border */
+/* Unified Signature Glassmorphism Pane */
 .goldenGlassPane {
   width: 100%;
   max-width: 1380px;
   padding: 68px 56px;
   border-radius: 42px;
-  background: linear-gradient(135deg, rgba(254, 243, 199, 0.88) 0%, rgba(253, 230, 138, 0.80) 50%, rgba(251, 191, 36, 0.68) 100%);
+  background: rgba(241, 245, 249, 0.76);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1.5px solid rgba(120, 53, 15, 0.40);
+  border: 1.5px solid rgba(0, 85, 229, 0.40);
   box-shadow: 
-    0 0 25px rgba(245, 158, 11, 0.35),
-    0 24px 70px rgba(217, 119, 6, 0.20),
-    inset 0 0 15px rgba(255, 255, 255, 0.60);
+    0 0 25px rgba(0, 85, 229, 0.25),
+    0 24px 70px rgba(0, 85, 229, 0.14),
+    inset 0 0 15px rgba(0, 85, 229, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,14 +48,20 @@
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -1.2px;
-  color: #451a03;
+  color: #0a0f1e;
   margin-bottom: 14px;
+}
+
+.titleHighlight {
+  background: linear-gradient(135deg, #f59e0b 0%, #eab308 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
   font-size: 19px;
   font-weight: 500;
-  color: #78350f;
+  color: #475569;
   line-height: 1.6;
 }
 
@@ -67,8 +73,8 @@
   margin-bottom: 44px;
   padding: 6px;
   border-radius: 30px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1.5px solid rgba(120, 53, 15, 0.25);
+  background: rgba(255, 255, 255, 0.80);
+  border: 1.5px solid rgba(0, 85, 229, 0.20);
 }
 
 .tabBtn {
@@ -82,29 +88,29 @@
   border: none;
   cursor: pointer;
   background: transparent;
-  color: #78350f;
+  color: #475569;
   transition: all 0.3s ease;
 }
 
 .tabBtn.active {
-  background: #0a0f1e;
+  background: #0055e5;
   color: #ffffff;
-  box-shadow: 0 4px 16px rgba(10, 15, 30, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 85, 229, 0.30);
 }
 
-/* Text Testimonial Slider Matching Screenshot */
+/* Text Testimonial Slider */
 .sliderCard {
   width: 100%;
   max-width: 1100px;
   padding: 48px 40px;
   border-radius: 32px;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.90);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(120, 53, 15, 0.35);
+  border: 1.5px solid rgba(0, 85, 229, 0.18);
   box-shadow: 
-    0 0 20px rgba(245, 158, 11, 0.20),
-    0 12px 40px rgba(120, 53, 15, 0.10);
+    0 0 20px rgba(0, 85, 229, 0.10),
+    0 12px 40px rgba(15, 23, 42, 0.06);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,9 +122,9 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.90);
-  border: 1.5px solid rgba(120, 53, 15, 0.30);
-  color: #78350f;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid rgba(0, 85, 229, 0.25);
+  color: #0055e5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,11 +136,11 @@
 }
 
 .navBtn:hover {
-  background: #0a0f1e;
+  background: #0055e5;
   color: #ffffff;
-  border-color: #0a0f1e;
+  border-color: #0055e5;
   transform: scale(1.08);
-  box-shadow: 0 8px 24px rgba(10, 15, 30, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 85, 229, 0.35);
 }
 
 .quoteContent {
@@ -148,7 +154,7 @@
 .stars {
   display: flex;
   gap: 4px;
-  color: #d97706;
+  color: #f59e0b;
   font-size: 16px;
   margin-bottom: 16px;
 }
@@ -157,7 +163,7 @@
   font-family: 'Space Grotesk', Georgia, serif;
   font-size: 22px;
   font-weight: 700;
-  color: #451a03;
+  color: #0a0f1e;
   line-height: 1.6;
   margin-bottom: 20px;
   max-width: 800px;
@@ -166,13 +172,13 @@
 .authorName {
   font-size: 17px;
   font-weight: 800;
-  color: #78350f;
+  color: #0055e5;
 }
 
 .authorRole {
   font-size: 14px;
   font-weight: 600;
-  color: #b45309;
+  color: #64748b;
 }
 
 /* Video Testimonials Grid */
@@ -186,11 +192,11 @@
 .videoCard {
   position: relative;
   border-radius: 26px;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.90);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(120, 53, 15, 0.30);
-  box-shadow: 0 8px 30px rgba(120, 53, 15, 0.10);
+  border: 1.5px solid rgba(0, 85, 229, 0.18);
+  box-shadow: 0 8px 30px rgba(0, 85, 229, 0.08);
   overflow: hidden;
   cursor: pointer;
   transition: all 0.35s ease;
@@ -200,8 +206,8 @@
 
 .videoCard:hover {
   transform: translateY(-8px);
-  border-color: rgba(120, 53, 15, 0.60);
-  box-shadow: 0 16px 44px rgba(245, 158, 11, 0.30);
+  border-color: rgba(0, 85, 229, 0.45);
+  box-shadow: 0 16px 44px rgba(0, 85, 229, 0.20);
 }
 
 .videoThumbBox {
@@ -243,21 +249,21 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #0a0f1e;
+  background: #0055e5;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
   padding-left: 4px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 24px rgba(0, 85, 229, 0.4);
   transition: all 0.3s ease;
 }
 
 .videoCard:hover .playBtnIcon {
-  background: #0055e5;
+  background: #003eaa;
   transform: scale(1.15);
-  box-shadow: 0 8px 30px rgba(0, 85, 229, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 85, 229, 0.6);
 }
 
 .videoInfo {
@@ -269,14 +275,14 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 17px;
   font-weight: 700;
-  color: #451a03;
+  color: #0a0f1e;
   margin-bottom: 6px;
 }
 
 .videoDesc {
   font-size: 13.5px;
   font-weight: 500;
-  color: #78350f;
+  color: #64748b;
 }
 
 /* Modal Video Player */

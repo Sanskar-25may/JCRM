@@ -96,7 +96,9 @@ export default function TestimonialsSection() {
         <div className={styles.goldenGlassPane}>
           {/* Section Header */}
           <div className={styles.header}>
-            <h2 className={styles.title}>What Clients & Trainees Say</h2>
+            <h2 className={styles.title}>
+              What Clients & <span className={styles.titleHighlight}>Trainees Say</span>
+            </h2>
             <p className={styles.subtitle}>
               Real feedback & video reviews from our valued enterprise clients and successfully placed trainees.
             </p>

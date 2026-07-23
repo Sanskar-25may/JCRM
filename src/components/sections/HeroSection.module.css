@@ -194,7 +194,7 @@
   font-size: 16px;
 }
 
-/* 5. Key Metrics Stats Strip - Golden Glassmorphism Pane */
+/* 5. Key Metrics Stats Strip - Unified Glassmorphism Pane */
 .statsStrip {
   width: 100%;
   max-width: 1380px;
@@ -203,14 +203,14 @@
   gap: 20px;
   padding: 36px 60px;
   border-radius: 32px;
-  background: linear-gradient(135deg, rgba(254, 243, 199, 0.88) 0%, rgba(253, 230, 138, 0.80) 50%, rgba(251, 191, 36, 0.68) 100%);
+  background: rgba(241, 245, 249, 0.76);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1.5px solid rgba(120, 53, 15, 0.40);
+  border: 1.5px solid rgba(0, 85, 229, 0.40);
   box-shadow: 
-    0 0 25px rgba(245, 158, 11, 0.35),
-    0 20px 60px rgba(217, 119, 6, 0.18),
-    inset 0 0 15px rgba(254, 243, 199, 0.30);
+    0 0 25px rgba(0, 85, 229, 0.25),
+    0 20px 60px rgba(0, 85, 229, 0.14),
+    inset 0 0 15px rgba(0, 85, 229, 0.08);
 }
 
 .statItem {
@@ -228,7 +228,7 @@
   top: 15%;
   height: 70%;
   width: 1px;
-  background: rgba(245, 158, 11, 0.30);
+  background: rgba(0, 85, 229, 0.20);
 }
 
 .statNumber {
@@ -243,7 +243,7 @@
 .statLabel {
   font-size: 15px;
   font-weight: 700;
-  color: #78350f;
+  color: #475569;
   letter-spacing: 0.2px;
 }
 
