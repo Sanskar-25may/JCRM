@@ -29,13 +29,13 @@ export default function ErpSolutions() {
           </p>
         </div>
 
-        {/* 2-Column Split Content: Sticky ERP Catalog + Movable ERP Cards */}
+        {/* 2-Column Split Content: Dedicated ERP CATALOG Side Panel + Movable Details Column */}
         <div className={styles.contentGrid}>
-          {/* Sticky Left Side Panel: ERP CATALOG */}
-          <aside className={styles.stickySidebar}>
-            <div className={styles.catalogHeader}>
-              <i className={`fa-solid fa-list-check ${styles.catalogIcon}`} />
-              <h2 className={styles.catalogTitle}>ERP CATALOG</h2>
+          {/* Dedicated Sticky ERP CATALOG Side Panel */}
+          <aside className={styles.sidePanel}>
+            <div className={styles.panelHeader}>
+              <i className={`fa-solid fa-layer-group ${styles.panelIcon}`} />
+              <h2 className={styles.panelTitle}>ERP CATALOG</h2>
             </div>
             <nav className={styles.catalogMenu}>
               {mockErpProducts.map((prod) => {
@@ -48,8 +48,8 @@ export default function ErpSolutions() {
                     className={`${styles.menuItem} ${isActive ? styles.activeMenuItem : ''}`}
                     onClick={() => handleSelectCatalog(prod.id)}
                   >
-                    <i className="fa-solid fa-chevron-right" />
                     <span>{shortName}</span>
+                    <i className="fa-solid fa-chevron-right" />
                   </button>
                 );
               })}
