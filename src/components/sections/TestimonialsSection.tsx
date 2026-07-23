@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './TestimonialsSection.module.css';
 
 interface VideoReview {
@@ -16,6 +17,49 @@ export default function TestimonialsSection() {
   const [activeTab, setActiveTab] = useState<'text' | 'video'>('text');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Strictly lock scrolling when testimonial video modal is active
+  useEffect(() => {
+    if (!activeVideoUrl) return;
+
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalTouchAction = document.body.style.touchAction;
+
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+
+    const preventScroll = (e: Event) => {
+      e.preventDefault();
+    };
+
+    const preventKeyScroll = (e: KeyboardEvent) => {
+      const keys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
+      if (keys.includes(e.key)) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('wheel', preventScroll, { passive: false });
+    window.addEventListener('touchmove', preventScroll, { passive: false });
+    window.addEventListener('keydown', preventKeyScroll, { passive: false });
+
+    return () => {
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.touchAction = originalTouchAction;
+
+      window.removeEventListener('wheel', preventScroll);
+      window.removeEventListener('touchmove', preventScroll);
+      window.removeEventListener('keydown', preventKeyScroll);
+    };
+  }, [activeVideoUrl]);
 
   const textTestimonials = [
     {
@@ -92,7 +136,7 @@ export default function TestimonialsSection() {
   return (
     <section className={styles.sectionWrapper}>
       <div className={styles.container}>
-        {/* Golden Glassmorphism Section Pane */}
+        {/* Unified Glassmorphism Section Pane */}
         <div className={styles.goldenGlassPane}>
           {/* Section Header */}
           <div className={styles.header}>
@@ -188,27 +232,30 @@ export default function TestimonialsSection() {
         </div>
       </div>
 
-      {/* Video Player Modal */}
-      {activeVideoUrl && (
-        <div className={styles.modalBackdrop} onClick={() => setActiveVideoUrl(null)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button
-              className={styles.closeModalBtn}
-              onClick={() => setActiveVideoUrl(null)}
-              aria-label="Close video"
-            >
-              <i className="fa-solid fa-xmark" />
-            </button>
-            <iframe
-              src={activeVideoUrl}
-              className={styles.videoIframe}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Testimonial Video Player"
-            />
-          </div>
-        </div>
-      )}
+      {/* Video Player Portal */}
+      {activeVideoUrl &&
+        isMounted &&
+        createPortal(
+          <div className={styles.modalBackdrop}>
+            <div className={styles.modalContent}>
+              <button
+                className={styles.closeModalBtn}
+                onClick={() => setActiveVideoUrl(null)}
+                aria-label="Close video"
+              >
+                <i className="fa-solid fa-xmark" />
+              </button>
+              <iframe
+                src={activeVideoUrl}
+                className={styles.videoIframe}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Testimonial Video Player"
+              />
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

@@ -237,14 +237,17 @@
   letter-spacing: 0.2px;
 }
 
-/* Modal Video Player - Disables background scroll and interaction */
+/* Modal Video Player - Root Portal overlay with maximum z-index */
 .modalBackdrop {
   position: fixed;
-  inset: 0;
-  z-index: 999999;
-  background: rgba(6, 9, 19, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2147483647;
+  background: rgba(6, 9, 19, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;

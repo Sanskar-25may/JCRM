@@ -1,21 +1,54 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import styles from './HeroSection.module.css';
 
 export default function HeroSection() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Strictly disable site scroll when video modal is open
   useEffect(() => {
-    if (isVideoOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    setIsMounted(true);
+  }, []);
+
+  // 100% Strict Site Scroll Lock when Video Modal is Open
+  useEffect(() => {
+    if (!isVideoOpen) return;
+
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalTouchAction = document.body.style.touchAction;
+
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+
+    // Prevent wheel, touchmove, and scroll arrow key events
+    const preventScroll = (e: Event) => {
+      e.preventDefault();
+    };
+
+    const preventKeyScroll = (e: KeyboardEvent) => {
+      const keys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
+      if (keys.includes(e.key)) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('wheel', preventScroll, { passive: false });
+    window.addEventListener('touchmove', preventScroll, { passive: false });
+    window.addEventListener('keydown', preventKeyScroll, { passive: false });
+
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.touchAction = originalTouchAction;
+
+      window.removeEventListener('wheel', preventScroll);
+      window.removeEventListener('touchmove', preventScroll);
+      window.removeEventListener('keydown', preventKeyScroll);
     };
   }, [isVideoOpen]);
 
@@ -90,27 +123,30 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Embedded Video Modal - Strictly locks website interaction & scrolling until closed via cross button */}
-      {isVideoOpen && (
-        <div className={styles.modalBackdrop}>
-          <div className={styles.modalContent}>
-            <button
-              className={styles.closeModalBtn}
-              onClick={() => setIsVideoOpen(false)}
-              aria-label="Close video player"
-            >
-              <i className="fa-solid fa-xmark" />
-            </button>
-            <iframe
-              src="https://www.youtube.com/embed/AHzgyPR-Cy4?autoplay=1"
-              className={styles.videoIframe}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Why JCRM Video Player"
-            />
-          </div>
-        </div>
-      )}
+      {/* React Portal to Document Body - Mounts modal above all section wrappers with max z-index */}
+      {isVideoOpen &&
+        isMounted &&
+        createPortal(
+          <div className={styles.modalBackdrop}>
+            <div className={styles.modalContent}>
+              <button
+                className={styles.closeModalBtn}
+                onClick={() => setIsVideoOpen(false)}
+                aria-label="Close video player"
+              >
+                <i className="fa-solid fa-xmark" />
+              </button>
+              <iframe
+                src="https://www.youtube.com/embed/AHzgyPR-Cy4?autoplay=1"
+                className={styles.videoIframe}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Why JCRM Video Player"
+              />
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }
