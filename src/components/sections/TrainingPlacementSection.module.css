@@ -1,0 +1,300 @@
+.sectionWrapper {
+  position: relative;
+  width: 100%;
+  padding: 40px 24px 80px 24px;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Greyish Glassmorphism Section Pane */
+.glassPane {
+  width: 100%;
+  max-width: 1380px;
+  padding: 68px 56px;
+  border-radius: 42px;
+  background: rgba(241, 245, 249, 0.76);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(0, 85, 229, 0.40);
+  box-shadow: 
+    0 0 25px rgba(0, 85, 229, 0.25),
+    0 24px 70px rgba(0, 85, 229, 0.14),
+    inset 0 0 15px rgba(0, 85, 229, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  max-width: 860px;
+}
+
+.title {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+  color: #0a0f1e;
+  margin-bottom: 14px;
+}
+
+.titleHighlight {
+  background: linear-gradient(135deg, #0055e5 0%, #0077ff 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 19px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* 2-Column Split Content Grid */
+.contentGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 36px;
+  align-items: stretch;
+}
+
+/* Inner Glass Cards (Left & Right) */
+.innerGlassCard {
+  padding: 36px 32px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(0, 85, 229, 0.16);
+  box-shadow: 0 12px 40px rgba(0, 85, 229, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.35s ease;
+}
+
+.innerGlassCard:hover {
+  border-color: rgba(0, 85, 229, 0.35);
+  box-shadow: 0 16px 48px rgba(0, 85, 229, 0.12);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cardHeaderIcon {
+  font-size: 22px;
+  color: #0055e5;
+}
+
+.cardTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0a0f1e;
+}
+
+/* Left Column: Programs Grid */
+.programsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.programItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(241, 245, 249, 0.7);
+  border: 1px solid rgba(0, 85, 229, 0.10);
+  transition: all 0.3s ease;
+}
+
+.programItem:hover {
+  background: #ffffff;
+  border-color: #0055e5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 85, 229, 0.12);
+}
+
+.programLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.programIcon {
+  font-size: 18px;
+  color: #0055e5;
+  width: 24px;
+  text-align: center;
+}
+
+.programName {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #0a0f1e;
+}
+
+.viewBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #0055e5;
+  color: #0055e5;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.viewBtn:hover {
+  background: #0055e5;
+  color: #ffffff;
+}
+
+.leftFooterNote {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  text-align: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 85, 229, 0.10);
+}
+
+/* Right Column: IT Talent Network Steps */
+.rightDesc {
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.stepItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.stepNumber {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 85, 229, 0.12);
+  color: #0055e5;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.stepItem strong {
+  color: #0055e5;
+}
+
+.applyNowBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #0055e5 0%, #0077ff 100%);
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 8px 24px rgba(0, 85, 229, 0.35);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 16px;
+}
+
+.applyNowBtn:hover {
+  background: linear-gradient(135deg, #0047ba 0%, #0055e5 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(0, 85, 229, 0.45);
+}
+
+.rightFooterNote {
+  font-size: 13px;
+  font-weight: 500;
+  font-style: italic;
+  color: #64748b;
+  text-align: center;
+}
+
+/* Responsiveness */
+@media (max-width: 991px) {
+  .glassPane {
+    padding: 48px 32px;
+    border-radius: 32px;
+  }
+  .title {
+    font-size: 38px;
+  }
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .innerGlassCard {
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sectionWrapper {
+    padding: 20px 16px 60px 16px;
+  }
+  .glassPane {
+    padding: 36px 16px;
+    border-radius: 26px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .programsGrid {
+    grid-template-columns: 1fr;
+  }
+}
