@@ -1,11 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './HeroSection.module.css';
 
 export default function HeroSection() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  // Strictly disable site scroll when video modal is open
+  useEffect(() => {
+    if (isVideoOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isVideoOpen]);
 
   const featureChips = [
     { icon: '💼', label: 'HR Management ERP' },
@@ -78,14 +90,14 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Embedded Video Modal - Plays strictly in the same tab */}
+      {/* Embedded Video Modal - Strictly locks website interaction & scrolling until closed via cross button */}
       {isVideoOpen && (
-        <div className={styles.modalBackdrop} onClick={() => setIsVideoOpen(false)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.modalBackdrop}>
+          <div className={styles.modalContent}>
             <button
               className={styles.closeModalBtn}
               onClick={() => setIsVideoOpen(false)}
-              aria-label="Close video"
+              aria-label="Close video player"
             >
               <i className="fa-solid fa-xmark" />
             </button>
