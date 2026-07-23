@@ -294,7 +294,7 @@
   box-shadow: 0 6px 18px rgba(0, 188, 212, 0.48);
 }
 
-/* Modal Member Profile View */
+/* Modal Member Profile View - Matching Screenshot Layout */
 .modalBackdrop {
   position: fixed;
   inset: 0;
@@ -306,42 +306,45 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
+  overflow-y: auto;
 }
 
 .modalContent {
   width: 100%;
-  max-width: 600px;
-  border-radius: 32px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(20px);
+  max-width: 940px;
+  border-radius: 36px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(28px);
   border: 2px solid #f59e0b;
   box-shadow: 
-    0 0 35px rgba(245, 158, 11, 0.35),
-    0 20px 60px rgba(0, 0, 0, 0.4);
-  padding: 36px 32px;
+    0 0 40px rgba(245, 158, 11, 0.35),
+    0 25px 70px rgba(0, 0, 0, 0.45);
+  padding: 40px;
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  gap: 40px;
+  align-items: flex-start;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .closeModalBtn {
   position: absolute;
   top: 18px;
   right: 18px;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(241, 245, 249, 0.9);
   border: 1px solid rgba(0, 85, 229, 0.2);
   color: #0a0f1e;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.25s ease;
+  z-index: 10;
 }
 
 .closeModalBtn:hover {
@@ -350,112 +353,166 @@
   border-color: #ff0000;
 }
 
-.modalPhoto {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #f59e0b;
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.30);
-  margin-bottom: 18px;
+/* Left Column of Modal: Photo & Encrypted Contact Details */
+.modalLeftCol {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.modalName {
+.modalPhotoFrame {
+  width: 240px;
+  height: 270px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 3px solid #f59e0b;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.30);
+  margin-bottom: 14px;
+  background: #ffffff;
+}
+
+.modalPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.modalDeptBadge {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.modalNameTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #0a0f1e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.verifiedCheck {
+  color: #10b981;
+  font-size: 18px;
+}
+
+/* Encrypted Contact Table matching screenshots */
+.encryptedContactTable {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contactRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(241, 245, 249, 0.75);
+  border: 1px solid rgba(0, 85, 229, 0.08);
+  font-size: 13px;
+}
+
+.contactLabel {
+  font-weight: 600;
+  color: #64748b;
+}
+
+.contactValEncrypted {
+  font-weight: 700;
+  font-family: monospace;
+  color: #0a0f1e;
+  letter-spacing: 0.5px;
+}
+
+/* Right Column of Modal: Personal Info, Detailed Meta & Hire Now */
+.modalRightCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.personalInfoTitle {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 24px;
   font-weight: 800;
   color: #0a0f1e;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
 
-.modalRole {
-  font-size: 14px;
-  font-weight: 800;
-  color: #0055e5;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.personalBioText {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #334155;
   margin-bottom: 16px;
 }
 
-.metaGrid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+.divider {
+  border: 0;
+  height: 1.5px;
+  background: rgba(0, 85, 229, 0.12);
   margin-bottom: 20px;
 }
 
-.metaCard {
-  background: rgba(241, 245, 249, 0.75);
-  border: 1px solid rgba(0, 85, 229, 0.10);
-  padding: 10px 14px;
-  border-radius: 16px;
+.detailsTable {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
 }
 
-.metaLabel {
-  font-size: 11px;
-  font-weight: 700;
-  color: #64748b;
-  text-transform: uppercase;
-}
-
-.metaVal {
+.detailRow {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: baseline;
+  gap: 16px;
   font-size: 14px;
+}
+
+.detailLabel {
   font-weight: 800;
   color: #0a0f1e;
 }
 
-.skillsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 20px;
+.detailVal {
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.5;
 }
 
-.skillPill {
-  background: rgba(254, 243, 199, 0.9);
-  color: #b45309;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 12px;
-}
-
-.modalBio {
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: #475569;
-  margin-bottom: 24px;
-}
-
-.modalSocials {
-  display: flex;
-  gap: 14px;
-}
-
-.socialBtn {
-  padding: 10px 24px;
-  border-radius: 20px;
-  background: #0055e5;
-  color: #ffffff;
-  font-size: 13.5px;
-  font-weight: 700;
-  text-decoration: none;
+/* Red Hire Now Button matching screenshot */
+.hireNowBtn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 6px 18px rgba(0, 85, 229, 0.30);
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 36px;
+  border-radius: 24px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.40);
   transition: all 0.25s ease;
+  align-self: flex-start;
+  text-decoration: none;
 }
 
-.socialBtn:hover {
-  background: #003eaa;
-  transform: translateY(-2px);
+.hireNowBtn:hover {
+  background: #dc2626;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(239, 68, 68, 0.55);
 }
 
 /* Responsiveness */
@@ -475,6 +532,17 @@
   .title {
     font-size: 38px;
   }
+  .modalContent {
+    flex-direction: column;
+    align-items: center;
+  }
+  .modalLeftCol {
+    width: 100%;
+    flex: auto;
+  }
+  .hireNowBtn {
+    align-self: center;
+  }
 }
 
 @media (max-width: 576px) {
@@ -487,5 +555,9 @@
   .searchBarRow {
     flex-direction: column;
     align-items: stretch;
+  }
+  .detailRow {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }

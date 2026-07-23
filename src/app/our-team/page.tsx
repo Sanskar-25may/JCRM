@@ -2,23 +2,30 @@
 
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import Link from 'next/link';
 import styles from './ourteam.module.css';
 
 interface TeamMember {
   id: string;
   name: string;
   department: string;
+  phoneMasked: string;
+  emailMasked: string;
   city: string;
+  state: string;
+  education: string;
+  college: string;
   experience: string;
-  skills: string[];
+  skills: string;
   imgUrl: string;
   bio: string;
-  linkedin?: string;
 }
 
 export default function OurTeam() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchCriterion, setSearchCriterion] = useState<'all' | 'name' | 'city' | 'skills' | 'experience' | 'department'>('all');
+  const [searchCriterion, setSearchCriterion] = useState<
+    'all' | 'name' | 'city' | 'skills' | 'experience' | 'department'
+  >('all');
   const [selectedDept, setSelectedDept] = useState('All');
   const [activeMember, setActiveMember] = useState<TeamMember | null>(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -27,7 +34,7 @@ export default function OurTeam() {
     setIsMounted(true);
   }, []);
 
-  // Lock body scroll when member modal is open
+  // Lock body scroll when member profile modal is open
   useEffect(() => {
     if (!activeMember) return;
     const origOverflow = document.body.style.overflow;
@@ -42,89 +49,121 @@ export default function OurTeam() {
       id: 'm-1',
       name: 'Nisha Kumari',
       department: 'Other',
-      city: 'Delhi',
-      experience: '2 Years',
-      skills: ['Operations', 'Project Coordination', 'Agile'],
+      phoneMasked: 'xxxxxx9748',
+      emailMasked: 'byxxxxxxxxxx@gmail.com',
+      city: 'Bhabhua',
+      state: 'Bihar',
+      education: 'Physics',
+      college: 'G.B.college',
+      experience: 'Fresher',
+      skills: 'No skills',
       imgUrl: 'https://res.cloudinary.com/dcd2rjd1x/image/upload/v1782721421/jcrm/profile/xwi5bw1s4xsnnt1uttf0.jpg',
-      bio: 'Nisha manages cross-departmental operations and project workflow alignment at JCRM Technologies.',
-      linkedin: 'https://linkedin.com',
+      bio: 'I studied at araa university.',
     },
     {
       id: 'm-2',
       name: 'Yamini',
       department: 'Sales & Marketing',
-      city: 'Noida',
-      experience: '3 Years',
-      skills: ['Enterprise Sales', 'CRM Systems', 'Lead Generation'],
+      phoneMasked: 'xxxxxx2805',
+      emailMasked: 'doxxxxxxxxxx@gmail.com',
+      city: 'South West Delhi',
+      state: 'Delhi',
+      education: 'Sociology',
+      college: 'Miranda house university',
+      experience: '1–3 Years',
+      skills: 'Teaching, B2B Sales, Lead Generation, Client Communication, Cold Calling, Sociology, MS Office',
       imgUrl: 'https://res.cloudinary.com/dcd2rjd1x/image/upload/v1782722321/jcrm/profile/lfqcp7b7ersuto8ird3m.jpg',
-      bio: 'Yamini specializes in enterprise client acquisition and strategic marketing for JCRM ERP solutions.',
-      linkedin: 'https://linkedin.com',
+      bio: "I have around one year of experience in B2B sales and business development, including lead generation and client communication. I hold a Bachelor's degree from Motilal Nehru College, Delhi University, and I am currently pursuing my Master's in Sociology (MSO) from IGNOU. I am hardworking, a quick learner, and comfortable working in both teaching and sales oriented roles.",
     },
     {
       id: 'm-3',
-      name: 'Prajwal S R',
-      department: 'Backend Developer',
-      city: 'Bengaluru',
-      experience: '4 Years',
-      skills: ['Node.js', 'Python', 'PostgreSQL', 'REST API'],
+      name: 'Chahat Bajaj',
+      department: 'Sales & Marketing',
+      phoneMasked: 'xxxxxx6270',
+      emailMasked: 'baxxxxxxxxxx@gmail.com',
+      city: 'Delhi NCR',
+      state: 'Delhi',
+      education: 'Business Administration',
+      college: 'Delhi University',
+      experience: '1–3 Years',
+      skills: 'Sales & Business Development * CRM Management * Lead Generation * Client Relationship Management * Customer Support * Communication Skills * MS Excel * Basic Forex & Algorithmic Trading Knowledge',
       imgUrl: 'https://res.cloudinary.com/dcd2rjd1x/image/upload/v1779995273/jcrm/profile/gcy2wmbjaiscaqyajc0q.jpg',
-      bio: 'Prajwal crafts scalable backend services, microservices, and database architecture for enterprise ERP clients.',
-      linkedin: 'https://linkedin.com',
+      bio: 'I have worked in sales and genuinely enjoy communicating with people and building strong customer relationships. I am a quick learner, confident, and goal-oriented person who likes taking on new challenges. I am currently looking for a sales opportunity where I can apply my experience, improve my skills, and grow with the organization while delivering the best results.',
     },
     {
       id: 'm-4',
-      name: 'Priyanka Srivastava',
-      department: 'Human Resource',
-      city: 'Lucknow',
-      experience: '5 Years',
-      skills: ['Talent Acquisition', 'Placement Assistance', 'HR Policy'],
+      name: 'Prajwal S R',
+      department: 'Backend Developer',
+      phoneMasked: 'xxxxxx4412',
+      emailMasked: 'prxxxxxxxxxx@gmail.com',
+      city: 'Bengaluru',
+      state: 'Karnataka',
+      education: 'Computer Science & Engineering',
+      college: 'VTU Technological University',
+      experience: '3–5 Years',
+      skills: 'Node.js, Express.js, Python, PostgreSQL, Microservices, REST APIs, Redis, Docker, System Design',
       imgUrl: 'https://res.cloudinary.com/dcd2rjd1x/image/upload/v1783926278/jcrm/profile/wujkoqgrbnaxd3xteoca.jpg',
-      bio: 'Priyanka leads our HR operations and placement assistance network, placing talent in top companies.',
-      linkedin: 'https://linkedin.com',
+      bio: 'Experienced backend software developer specializing in scalable cloud architectures, high-concurrency database queries, and microservice APIs for enterprise ERP software suites.',
     },
     {
       id: 'm-5',
-      name: 'Shwati Singh',
-      department: 'DevOps Engineer',
-      city: 'Gurugram',
-      experience: '3 Years',
-      skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD'],
+      name: 'Priyanka Srivastava',
+      department: 'Human Resource',
+      phoneMasked: 'xxxxxx1980',
+      emailMasked: 'prxxxxxxxxxx@gmail.com',
+      city: 'Lucknow',
+      state: 'Uttar Pradesh',
+      education: 'Human Resource Management (MBA)',
+      college: 'Lucknow University',
+      experience: '3–5 Years',
+      skills: 'Talent Acquisition, Campus Recruitment, Employee Relations, Placement Cell Coordination, HR Auditing',
       imgUrl: 'https://jcrm.in/uploads/profile/1770543699_858dc4b8834b55529273.jpeg',
-      bio: 'Shwati optimizes cloud deployment pipelines, container orchestration, and server reliability.',
-      linkedin: 'https://linkedin.com',
+      bio: 'HR professional leading talent acquisition programs, corporate hiring partner tie-ups, and student placement assistance at JCRM Technologies.',
     },
     {
       id: 'm-6',
-      name: 'Satyam Upadhyay',
-      department: 'Full Stack Engineer',
-      city: 'Varanasi',
-      experience: '4 Years',
-      skills: ['React', 'Next.js', 'TypeScript', 'Node.js'],
+      name: 'Shwati Singh',
+      department: 'DevOps Engineer',
+      phoneMasked: 'xxxxxx8820',
+      emailMasked: 'shxxxxxxxxxx@gmail.com',
+      city: 'Gurugram',
+      state: 'Haryana',
+      education: 'Information Technology',
+      college: 'MDU University',
+      experience: '1–3 Years',
+      skills: 'AWS Cloud Services, Docker Containerization, Kubernetes Pod Orchestration, CI/CD GitHub Actions, Terraform',
       imgUrl: 'https://jcrm.in/uploads/profile/1779200699_343fb3c993abc88328a5.jpeg',
-      bio: 'Satyam builds modern web applications and frontend dashboards with high performance UI.',
-      linkedin: 'https://linkedin.com',
+      bio: 'Cloud DevOps engineer experienced in automated integration pipelines, server hardening, infrastructure as code, and cluster reliability.',
     },
     {
       id: 'm-7',
-      name: 'Adityaraj Dwivedi',
-      department: 'AI & ML Specialist',
-      city: 'Kanpur',
-      experience: '3 Years',
-      skills: ['Python', 'PyTorch', 'FastAPI', 'MLOps'],
+      name: 'Satyam Upadhyay',
+      department: 'Full Stack Engineer',
+      phoneMasked: 'xxxxxx5193',
+      emailMasked: 'saxxxxxxxxxx@gmail.com',
+      city: 'Varanasi',
+      state: 'Uttar Pradesh',
+      education: 'Software Engineering',
+      college: 'BHU Institute of Tech',
+      experience: '3–5 Years',
+      skills: 'React.js, Next.js App Router, TypeScript, Tailwind CSS, Node.js, GraphQL, PostgreSQL, Vercel',
       imgUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
-      bio: 'Adityaraj develops machine learning models and predictive analytics engines integrated into JCRM software.',
-      linkedin: 'https://linkedin.com',
+      bio: 'Full stack developer building high-performance web applications, responsive user interfaces, and serverless backend API integrations.',
     },
     {
       id: 'm-8',
       name: 'Vanshika Srivastava',
       department: 'UI/UX Designer',
-      city: 'Delhi NCR',
-      experience: '2 Years',
-      skills: ['Figma', 'Glassmorphism', 'Design Systems', 'User Research'],
+      phoneMasked: 'xxxxxx3390',
+      emailMasked: 'vaxxxxxxxxxx@gmail.com',
+      city: 'Noida',
+      state: 'Uttar Pradesh',
+      education: 'Visual Communication & Design',
+      college: 'Amity School of Design',
+      experience: '1–3 Years',
+      skills: 'Figma, Glassmorphic UI Systems, Prototyping, User Experience Mapping, Micro-animations, Wireframing',
       imgUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80',
-      bio: 'Vanshika designs intuitive, modern glassmorphic interfaces and user journeys across JCRM products.',
-      linkedin: 'https://linkedin.com',
+      bio: 'UI/UX product designer creating elegant, glassmorphism design systems and interactive digital experiences for web apps.',
     },
   ];
 
@@ -135,42 +174,38 @@ export default function OurTeam() {
     'Human Resource',
     'DevOps Engineer',
     'Full Stack Engineer',
-    'AI & ML Specialist',
     'UI/UX Designer',
     'Other',
   ];
 
-  // Smart Search & Filter Logic based on selected search criterion
+  // Search & Filter Logic
   const filteredMembers = teamMembers.filter((m) => {
-    // 1. Department Chip Check
     if (selectedDept !== 'All' && m.department.toLowerCase() !== selectedDept.toLowerCase()) {
       return false;
     }
 
-    // 2. Query Check
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase().trim();
 
     if (searchCriterion === 'name') return m.name.toLowerCase().includes(q);
     if (searchCriterion === 'city') return m.city.toLowerCase().includes(q);
-    if (searchCriterion === 'skills') return m.skills.some((s) => s.toLowerCase().includes(q));
+    if (searchCriterion === 'skills') return m.skills.toLowerCase().includes(q);
     if (searchCriterion === 'experience') return m.experience.toLowerCase().includes(q);
     if (searchCriterion === 'department') return m.department.toLowerCase().includes(q);
 
-    // Default 'all' - Smart Universal Search across all fields
     return (
       m.name.toLowerCase().includes(q) ||
       m.city.toLowerCase().includes(q) ||
       m.department.toLowerCase().includes(q) ||
       m.experience.toLowerCase().includes(q) ||
-      m.skills.some((s) => s.toLowerCase().includes(q))
+      m.skills.toLowerCase().includes(q)
     );
   });
 
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.container}>
-        {/* Signature Glassmorphism Outer Pane Matching Homepage */}
+        {/* Signature Glassmorphism Outer Section Pane */}
         <div className={styles.glassPane}>
           {/* Header */}
           <div className={styles.header}>
@@ -275,7 +310,7 @@ export default function OurTeam() {
         </div>
       </div>
 
-      {/* Member Profile Modal Portal */}
+      {/* Member Detail Profile Modal Portal (Matching Exact Screenshot Layout & Contact Encryption) */}
       {activeMember &&
         isMounted &&
         createPortal(
@@ -289,44 +324,76 @@ export default function OurTeam() {
                 <i className="fa-solid fa-xmark" />
               </button>
 
-              <img src={activeMember.imgUrl} alt={activeMember.name} className={styles.modalPhoto} />
-
-              <h2 className={styles.modalName}>{activeMember.name}</h2>
-              <div className={styles.modalRole}>{activeMember.department}</div>
-
-              <div className={styles.metaGrid}>
-                <div className={styles.metaCard}>
-                  <span className={styles.metaLabel}>City</span>
-                  <span className={styles.metaVal}>{activeMember.city}</span>
+              {/* Left Column: Photo & Encrypted Contact Box */}
+              <div className={styles.modalLeftCol}>
+                <div className={styles.modalPhotoFrame}>
+                  <img
+                    src={activeMember.imgUrl}
+                    alt={activeMember.name}
+                    className={styles.modalPhoto}
+                  />
                 </div>
-                <div className={styles.metaCard}>
-                  <span className={styles.metaLabel}>Experience</span>
-                  <span className={styles.metaVal}>{activeMember.experience}</span>
+
+                <div className={styles.modalDeptBadge}>{activeMember.department}</div>
+                <h2 className={styles.modalNameTitle}>
+                  <span>{activeMember.name}</span>
+                  <i className={`fa-solid fa-circle-check ${styles.verifiedCheck}`} title="Verified Member" />
+                </h2>
+
+                {/* Encrypted Contact Details Table */}
+                <div className={styles.encryptedContactTable}>
+                  <div className={styles.contactRow}>
+                    <span className={styles.contactLabel}>Phone:</span>
+                    <span className={styles.contactValEncrypted}>{activeMember.phoneMasked}</span>
+                  </div>
+                  <div className={styles.contactRow}>
+                    <span className={styles.contactLabel}>Email:</span>
+                    <span className={styles.contactValEncrypted}>{activeMember.emailMasked}</span>
+                  </div>
+                  <div className={styles.contactRow}>
+                    <span className={styles.contactLabel}>City:</span>
+                    <span className={styles.contactValEncrypted}>{activeMember.city}</span>
+                  </div>
+                  <div className={styles.contactRow}>
+                    <span className={styles.contactLabel}>State:</span>
+                    <span className={styles.contactValEncrypted}>{activeMember.state}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className={styles.skillsContainer}>
-                {activeMember.skills.map((skill) => (
-                  <span key={skill} className={styles.skillPill}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              {/* Right Column: Personal Info & Hire Now */}
+              <div className={styles.modalRightCol}>
+                <h3 className={styles.personalInfoTitle}>Personal Info</h3>
+                <p className={styles.personalBioText}>{activeMember.bio}</p>
 
-              <p className={styles.modalBio}>{activeMember.bio}</p>
+                <hr className={styles.divider} />
 
-              <div className={styles.modalSocials}>
-                {activeMember.linkedin && (
-                  <a
-                    href={activeMember.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialBtn}
-                  >
-                    <i className="fa-brands fa-linkedin" />
-                    <span>LinkedIn Profile</span>
-                  </a>
-                )}
+                <div className={styles.detailsTable}>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>Education:</span>
+                    <span className={styles.detailVal}>{activeMember.education}</span>
+                  </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>College:</span>
+                    <span className={styles.detailVal}>{activeMember.college}</span>
+                  </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>Experience:</span>
+                    <span className={styles.detailVal}>{activeMember.experience}</span>
+                  </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>Skills:</span>
+                    <span className={styles.detailVal}>{activeMember.skills}</span>
+                  </div>
+                </div>
+
+                {/* Red Hire Now CTA Button - Links strictly to JCRM Talent Hiring Request */}
+                <Link
+                  href={`/contact-us?hire=${encodeURIComponent(activeMember.name)}`}
+                  className={styles.hireNowBtn}
+                >
+                  Hire Now
+                </Link>
               </div>
             </div>
           </div>,
