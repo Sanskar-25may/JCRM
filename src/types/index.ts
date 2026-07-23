@@ -7,18 +7,34 @@ export interface Candidate {
   imgUrl: string;
 }
 
+export interface CourseGain {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+export interface WeeklyModule {
+  week: string;
+  title: string;
+  description: string;
+}
+
 export interface Course {
   id: string;
   title: string;
+  heroTagline?: string;
   icon: string;
   description: string;
   badge?: string;
   syllabus?: string[];
   duration?: string;
   tools?: string[];
+  gains?: CourseGain[];
+  weeklyModules?: WeeklyModule[];
   instructor?: {
     name: string;
     role: string;
+    experience?: string;
     imgUrl: string;
   };
 }
