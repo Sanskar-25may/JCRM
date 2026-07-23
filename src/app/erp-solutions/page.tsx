@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { mockErpProducts } from '@/data/mockData';
 import styles from './erpsolutions.module.css';
@@ -8,11 +8,41 @@ import styles from './erpsolutions.module.css';
 export default function ErpSolutions() {
   const [activeId, setActiveId] = useState<string>(mockErpProducts[0]?.id || 'lms');
 
+  // Automatically track scroll position to update active catalog item as user scrolls
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -50% 0px',
+      threshold: 0.1,
+    };
+
+    const handleIntersect: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveId(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    mockErpProducts.forEach((prod) => {
+      const el = document.getElementById(prod.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const handleSelectCatalog = (id: string) => {
     setActiveId(id);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const yOffset = -110;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -29,9 +59,9 @@ export default function ErpSolutions() {
           </p>
         </div>
 
-        {/* 2-Column Split Content: Dedicated ERP CATALOG Side Panel + Movable Details Column */}
+        {/* 2-Column Split Content: Stationary Sticky ERP CATALOG Side Panel + Movable Details Column */}
         <div className={styles.contentGrid}>
-          {/* Dedicated Sticky ERP CATALOG Side Panel */}
+          {/* Stationary Sticky ERP CATALOG Side Panel */}
           <aside className={styles.sidePanel}>
             <div className={styles.panelHeader}>
               <i className={`fa-solid fa-layer-group ${styles.panelIcon}`} />

@@ -56,7 +56,7 @@
   margin: 0 auto;
 }
 
-/* Layout: Dedicated Full-Height Side Panel + Movable Details Column */
+/* Layout: Stationary Side Panel + Movable Details Column */
 .contentGrid {
   display: flex;
   gap: 36px;
@@ -66,15 +66,16 @@
   margin: 0 auto;
 }
 
-/* Dedicated ERP CATALOG Side Panel */
+/* Stationary ERP CATALOG Side Panel */
 .sidePanel {
   flex: 0 0 310px;
   position: sticky;
-  top: 110px;
-  max-height: calc(100vh - 130px);
+  top: 100px;
+  height: calc(100vh - 120px);
+  align-self: flex-start;
   padding: 32px 24px;
   border-radius: 28px;
-  background: rgba(241, 245, 249, 0.88);
+  background: rgba(241, 245, 249, 0.90);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1.5px solid rgba(245, 158, 11, 0.40);
@@ -87,7 +88,7 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 85, 229, 0.2) transparent;
   transition: all 0.35s ease;
-  z-index: 10;
+  z-index: 20;
 }
 
 .sidePanel::-webkit-scrollbar {
@@ -103,9 +104,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
   border-bottom: 1.5px solid rgba(0, 85, 229, 0.15);
+  flex-shrink: 0;
 }
 
 .panelIcon {
@@ -125,21 +127,21 @@
 .catalogMenu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .menuItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
-  border-radius: 16px;
-  font-size: 14.5px;
+  padding: 11px 16px;
+  border-radius: 14px;
+  font-size: 14px;
   font-weight: 700;
   color: #334155;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1.5px solid rgba(245, 158, 11, 0.25);
+  background: rgba(255, 255, 255, 0.80);
+  border: 1.5px solid rgba(245, 158, 11, 0.22);
   transition: all 0.25s ease;
   cursor: pointer;
   width: 100%;
@@ -340,7 +342,7 @@
     flex: auto;
     position: relative;
     top: 0;
-    max-height: none;
+    height: auto;
   }
   .catalogMenu {
     display: grid;
