@@ -37,7 +37,7 @@ export default function Footer() {
                   href="https://youtu.be/AHzgyPR-Cy4?si=R0mJhdJ3DVLZGhSt"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialLink}
+                  className={`${styles.socialLink} ${styles.youtube}`}
                   aria-label="YouTube"
                 >
                   <i className="fab fa-youtube"></i>
@@ -46,7 +46,7 @@ export default function Footer() {
                   href="https://x.com/Yogsathi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialLink}
+                  className={`${styles.socialLink} ${styles.twitter}`}
                   aria-label="Twitter"
                 >
                   <i className="fab fa-twitter"></i>
@@ -55,7 +55,7 @@ export default function Footer() {
                   href="https://www.linkedin.com/company/jcrm-technologies-private-limited/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialLink}
+                  className={`${styles.socialLink} ${styles.linkedin}`}
                   aria-label="LinkedIn"
                 >
                   <i className="fab fa-linkedin-in"></i>
@@ -64,7 +64,7 @@ export default function Footer() {
                   href="https://www.instagram.com/jcrm_technologies?igsh=N2YydHQwdmNxN2Rx"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.socialLink}
+                  className={`${styles.socialLink} ${styles.instagram}`}
                   aria-label="Instagram"
                 >
                   <i className="fab fa-instagram"></i>
