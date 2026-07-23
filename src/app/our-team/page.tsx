@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import Link from 'next/link';
 import styles from './ourteam.module.css';
 
 interface TeamMember {
@@ -28,21 +27,46 @@ export default function OurTeam() {
   >('all');
   const [selectedDept, setSelectedDept] = useState('All');
   const [activeMember, setActiveMember] = useState<TeamMember | null>(null);
+  
+  // Smart Scheduling Hire Modal State
+  const [hireCandidate, setHireCandidate] = useState<TeamMember | null>(null);
+  const [scheduleForm, setScheduleForm] = useState({
+    name: '',
+    mobile: '',
+    email: '',
+    hiringType: 'Select',
+    interviewDate: '',
+    timeSlot: 'Select',
+  });
+  const [scheduleSubmitted, setScheduleSubmitted] = useState(false);
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Lock body scroll when member profile modal is open
+  // Lock body scroll when either profile modal or schedule modal is open
   useEffect(() => {
-    if (!activeMember) return;
+    if (!activeMember && !hireCandidate) return;
     const origOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = origOverflow;
     };
-  }, [activeMember]);
+  }, [activeMember, hireCandidate]);
+
+  const handleScheduleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!hireCandidate) return;
+
+    // Formatted WhatsApp message for JCRM Hiring Desk
+    const textMsg = `Hello JCRM Technologies! I would like to hire/interview candidate: ${hireCandidate.name} (${hireCandidate.department}).%0A%0AClient Details:%0A- Name: ${scheduleForm.name}%0A- Mobile: ${scheduleForm.mobile}%0A- Email: ${scheduleForm.email}%0A- Hiring Type: ${scheduleForm.hiringType}%0A- Proposed Date: ${scheduleForm.interviewDate}%0A- Time Slot: ${scheduleForm.timeSlot}`;
+    
+    // Open WhatsApp Web/App directly
+    window.open(`https://wa.me/918310531309?text=${textMsg}`, '_blank');
+    setScheduleSubmitted(true);
+  };
 
   const teamMembers: TeamMember[] = [
     {
@@ -271,7 +295,7 @@ export default function OurTeam() {
             Showing <span className={styles.highlightCount}>{filteredMembers.length}</span> team members
           </div>
 
-          {/* 4-Column Team Member Cards Grid (Matching User Screenshot Layout) */}
+          {/* 4-Column Team Member Cards Grid */}
           <div className={styles.grid}>
             {filteredMembers.map((member) => (
               <div key={member.id} className={styles.card}>
@@ -310,7 +334,7 @@ export default function OurTeam() {
         </div>
       </div>
 
-      {/* Member Detail Profile Modal Portal (Matching Exact Screenshot Layout & Contact Encryption) */}
+      {/* 1. Member Detail Profile Modal Portal */}
       {activeMember &&
         isMounted &&
         createPortal(
@@ -387,13 +411,168 @@ export default function OurTeam() {
                   </div>
                 </div>
 
-                {/* Red Hire Now CTA Button - Links strictly to JCRM Talent Hiring Request */}
-                <Link
-                  href={`/contact-us?hire=${encodeURIComponent(activeMember.name)}`}
+                {/* Red Hire Now CTA Button - Opens Scheduling Modal Directly */}
+                <button
+                  type="button"
                   className={styles.hireNowBtn}
+                  onClick={() => {
+                    const candidate = activeMember;
+                    setActiveMember(null);
+                    setHireCandidate(candidate);
+                    setScheduleSubmitted(false);
+                  }}
                 >
                   Hire Now
-                </Link>
+                </button>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+
+      {/* 2. Smart Scheduling Hire Form Modal Portal (Matching User Screenshots 1, 2, 3) */}
+      {hireCandidate &&
+        isMounted &&
+        createPortal(
+          <div className={styles.modalBackdrop} onClick={() => setHireCandidate(null)}>
+            <div className={styles.scheduleModalContent} onClick={(e) => e.stopPropagation()}>
+              {/* Periwinkle Header Bar */}
+              <div className={styles.scheduleHeader}>
+                <h3 className={styles.scheduleTitle}>
+                  Scheduling With {hireCandidate.name}
+                </h3>
+                <button
+                  className={styles.scheduleCloseBtn}
+                  onClick={() => setHireCandidate(null)}
+                  aria-label="Close scheduling modal"
+                >
+                  <i className="fa-solid fa-xmark" />
+                </button>
+              </div>
+
+              {/* Form Body */}
+              <div className={styles.scheduleFormBody}>
+                {!scheduleSubmitted ? (
+                  <form onSubmit={handleScheduleSubmit}>
+                    <div className={styles.scheduleFormGrid}>
+                      <div className={styles.scheduleFormGroup}>
+                        <label className={styles.scheduleLabel}>Name</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Your Name"
+                          value={scheduleForm.name}
+                          onChange={(e) =>
+                            setScheduleForm((prev) => ({ ...prev, name: e.target.value }))
+                          }
+                          className={styles.scheduleInput}
+                        />
+                      </div>
+
+                      <div className={styles.scheduleFormGroup}>
+                        <label className={styles.scheduleLabel}>Mobile</label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="Your Mobile Number"
+                          value={scheduleForm.mobile}
+                          onChange={(e) =>
+                            setScheduleForm((prev) => ({ ...prev, mobile: e.target.value }))
+                          }
+                          className={styles.scheduleInput}
+                        />
+                      </div>
+
+                      <div className={styles.scheduleFormGroup}>
+                        <label className={styles.scheduleLabel}>Email</label>
+                        <input
+                          type="email"
+                          required
+                          placeholder="Your Work Email"
+                          value={scheduleForm.email}
+                          onChange={(e) =>
+                            setScheduleForm((prev) => ({ ...prev, email: e.target.value }))
+                          }
+                          className={styles.scheduleInput}
+                        />
+                      </div>
+
+                      <div className={styles.scheduleFormGroup}>
+                        <label className={styles.scheduleLabel}>Hiring Type</label>
+                        <select
+                          value={scheduleForm.hiringType}
+                          onChange={(e) =>
+                            setScheduleForm((prev) => ({ ...prev, hiringType: e.target.value }))
+                          }
+                          className={styles.scheduleSelect}
+                        >
+                          <option value="Select">Select</option>
+                          <option value="Hourly">Hourly</option>
+                          <option value="Weekly">Weekly</option>
+                          <option value="Monthly">Monthly</option>
+                          <option value="Full Time">Full Time</option>
+                        </select>
+                      </div>
+
+                      <div className={styles.scheduleFormGroup}>
+                        <label className={styles.scheduleLabel}>Interview Date</label>
+                        <input
+                          type="date"
+                          required
+                          value={scheduleForm.interviewDate}
+                          onChange={(e) =>
+                            setScheduleForm((prev) => ({ ...prev, interviewDate: e.target.value }))
+                          }
+                          className={styles.scheduleInput}
+                        />
+                      </div>
+
+                      <div className={styles.scheduleFormGroup}>
+                        <label className={styles.scheduleLabel}>Interview Time Slot</label>
+                        <select
+                          value={scheduleForm.timeSlot}
+                          onChange={(e) =>
+                            setScheduleForm((prev) => ({ ...prev, timeSlot: e.target.value }))
+                          }
+                          className={styles.scheduleSelect}
+                        >
+                          <option value="Select">Select</option>
+                          <option value="6:00 PM – 6:30 PM">6:00 PM – 6:30 PM</option>
+                          <option value="6:30 PM – 7:00 PM">6:30 PM – 7:00 PM</option>
+                          <option value="7:00 PM – 7:30 PM">7:00 PM – 7:30 PM</option>
+                          <option value="7:30 PM – 8:00 PM">7:30 PM – 8:00 PM</option>
+                          <option value="8:00 PM – 8:30 PM">8:00 PM – 8:30 PM</option>
+                          <option value="8:30 PM – 9:00 PM">8:30 PM – 9:00 PM</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className={styles.scheduleActionRow}>
+                      <button type="submit" className={styles.whatsappBtn}>
+                        <i className="fa-brands fa-whatsapp" />
+                        <span>Send to WhatsApp</span>
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <div className={styles.scheduleSuccess}>
+                    <i className={`fa-solid fa-circle-check ${styles.scheduleSuccessIcon}`} />
+                    <h4 className={styles.scheduleSuccessTitle}>
+                      Interview Request Submitted!
+                    </h4>
+                    <p className={styles.scheduleSuccessText}>
+                      Your interview booking for <strong>{hireCandidate.name}</strong> on{' '}
+                      <strong>{scheduleForm.interviewDate}</strong> ({scheduleForm.timeSlot}) has been sent to JCRM Hiring Desk via WhatsApp. Our team will verify and confirm your slot.
+                    </p>
+                    <button
+                      type="button"
+                      className={styles.whatsappBtn}
+                      onClick={() => setHireCandidate(null)}
+                    >
+                      Done
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>,
