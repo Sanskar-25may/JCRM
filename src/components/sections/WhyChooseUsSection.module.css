@@ -91,16 +91,16 @@
   gap: 14px;
   padding: 12px 18px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(0, 85, 229, 0.08);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(245, 158, 11, 0.30);
   transition: all 0.3s ease;
 }
 
 .checkItem:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   transform: translateX(6px);
-  border-color: rgba(0, 85, 229, 0.25);
-  box-shadow: 0 4px 16px rgba(0, 85, 229, 0.08);
+  border-color: #f59e0b;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
 }
 
 .checkIcon {
@@ -114,7 +114,6 @@
   justify-content: center;
   font-size: 13px;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 85, 229, 0.25);
 }
 
 .checkText {
@@ -123,7 +122,7 @@
   color: #0a0f1e;
 }
 
-/* Right Column: 4 Pillars Inner Glass Card */
+/* Right Column: Key Pillars Card */
 .rightCol {
   width: 100%;
 }
@@ -131,14 +130,24 @@
 .pillarsCard {
   padding: 44px 36px;
   border-radius: 32px;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.90);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 85, 229, 0.16);
-  box-shadow: 0 12px 40px rgba(0, 85, 229, 0.08);
+  border: 1.5px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 
+    0 0 22px rgba(245, 158, 11, 0.22),
+    0 12px 40px rgba(217, 119, 6, 0.10);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 36px 28px;
+  transition: all 0.35s ease;
+}
+
+.pillarsCard:hover {
+  border-color: #f59e0b;
+  box-shadow: 
+    0 0 32px rgba(245, 158, 11, 0.40),
+    0 16px 48px rgba(217, 119, 6, 0.18);
 }
 
 .pillarItem {
