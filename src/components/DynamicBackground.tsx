@@ -17,7 +17,9 @@ const JCRM_KEYWORDS = [
   'JCRM Technologies', 'ERP Solutions', 'LMS Portal', 'HRMS Suite',
   'Hospital ERP', 'Next.js', 'React', 'TypeScript', 'Python',
   'PostgreSQL', 'Docker', 'AWS Cloud', 'AI & ML', 'CyberSecurity',
-  'Accounting ERP', 'E-Commerce', 'SaaS', 'API Gateway', 'Placement 100%'
+  'Accounting ERP', 'E-Commerce', 'SaaS', 'API Gateway', '100% Placement',
+  'DevOps', 'Rest API', 'Cloud Native', 'Node.js', 'Spring Boot', 'Tailwind',
+  'Enterprise Software', 'Data Analytics', 'Smart Automation', 'IT Training'
 ];
 
 export default function DynamicBackground() {
@@ -31,60 +33,78 @@ export default function DynamicBackground() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = 0;
+    let height = 0;
 
     let particles: Particle[] = [];
-    const maxParticles = 60;
+    const maxParticles = 120; // Increased density of floating text & nodes
 
     const createParticle = (initRandom = false): Particle => {
-      const size = Math.random() * 2 + 1.5;
-      const isText = Math.random() > 0.58;
+      const size = Math.random() * 2.5 + 2.0;
+      const isText = Math.random() > 0.50; // 50% text, 50% node particles
       return {
         x: Math.random() * width,
         y: initRandom ? Math.random() * height : height + 30,
         vx: (Math.random() - 0.5) * 0.35,
-        vy: -(Math.random() * 0.45 + 0.15), // Smooth upward float
-        size: isText ? Math.random() * 3 + 11.5 : size,
+        vy: -(Math.random() * 0.5 + 0.2), // Upward float
+        size: isText ? Math.floor(Math.random() * 3 + 12) : size,
         color: '',
         text: isText ? JCRM_KEYWORDS[Math.floor(Math.random() * JCRM_KEYWORDS.length)] : undefined,
-        alpha: isText ? Math.random() * 0.35 + 0.15 : Math.random() * 0.45 + 0.1,
+        alpha: isText ? Math.random() * 0.35 + 0.60 : Math.random() * 0.45 + 0.40, // High opacity for sharp text
       };
     };
 
-    // Initialize particle array
-    for (let i = 0; i < maxParticles; i++) {
-      particles.push(createParticle(true));
-    }
+    const initCanvas = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      const ratio = window.devicePixelRatio || 1;
 
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      // High-DPI Scaling for Ultra-Sharp Canvas Text
+      canvas.width = width * ratio;
+      canvas.height = height * ratio;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.scale(ratio, ratio);
+
+      particles = [];
+      for (let i = 0; i < maxParticles; i++) {
+        particles.push(createParticle(true));
+      }
     };
-    window.addEventListener('resize', handleResize);
+
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // JCRM Theme Particle Palette (Royal Blue, Azure Cyan, Soft Amber, Indigo)
-      const particleColors = ['#0055e5', '#38bdf8', '#f59e0b', '#6366f1'];
+      // Bright JCRM Palette (Royal Blue, Sky Cyan, Vibrant Amber, Deep Violet)
+      const particleColors = ['#0055e5', '#0284c7', '#d97706', '#4f46e5', '#2563eb'];
 
       ctx.globalCompositeOperation = 'source-over';
 
-      // 1. Soft Ambient Radial Gradient Blobs
-      // Blob 1 - JCRM Royal Blue Top Right
-      const grad1 = ctx.createRadialGradient(width * 0.85, height * 0.15, 0, width * 0.85, height * 0.15, Math.max(width, height) * 0.4);
-      grad1.addColorStop(0, 'rgba(0, 85, 229, 0.07)');
-      grad1.addColorStop(1, 'rgba(250, 249, 247, 0)');
+      // 1. Bright & Vibrant Background Gradient Blobs
+      // Blob 1 - Electric Royal Blue Top Right
+      const grad1 = ctx.createRadialGradient(width * 0.82, height * 0.18, 0, width * 0.82, height * 0.18, Math.max(width, height) * 0.45);
+      grad1.addColorStop(0, 'rgba(0, 85, 229, 0.18)');
+      grad1.addColorStop(0.5, 'rgba(56, 189, 248, 0.09)');
+      grad1.addColorStop(1, 'rgba(240, 244, 255, 0)');
       ctx.fillStyle = grad1;
       ctx.fillRect(0, 0, width, height);
 
-      // Blob 2 - Azure Cyan Bottom Left
-      const grad2 = ctx.createRadialGradient(width * 0.15, height * 0.8, 0, width * 0.15, height * 0.8, Math.max(width, height) * 0.4);
-      grad2.addColorStop(0, 'rgba(56, 189, 248, 0.07)');
-      grad2.addColorStop(1, 'rgba(250, 249, 247, 0)');
+      // Blob 2 - Ocean Cyan / Indigo Bottom Left
+      const grad2 = ctx.createRadialGradient(width * 0.18, height * 0.82, 0, width * 0.18, height * 0.82, Math.max(width, height) * 0.45);
+      grad2.addColorStop(0, 'rgba(56, 189, 248, 0.18)');
+      grad2.addColorStop(0.5, 'rgba(99, 102, 241, 0.10)');
+      grad2.addColorStop(1, 'rgba(240, 244, 255, 0)');
       ctx.fillStyle = grad2;
+      ctx.fillRect(0, 0, width, height);
+
+      // Blob 3 - Warm Amber Center Glow
+      const grad3 = ctx.createRadialGradient(width * 0.5, height * 0.5, 0, width * 0.5, height * 0.5, Math.max(width, height) * 0.35);
+      grad3.addColorStop(0, 'rgba(245, 158, 11, 0.10)');
+      grad3.addColorStop(1, 'rgba(240, 244, 255, 0)');
+      ctx.fillStyle = grad3;
       ctx.fillRect(0, 0, width, height);
 
       // 2. Draw & animate floating text keywords and particle nodes
@@ -92,7 +112,7 @@ export default function DynamicBackground() {
         p.x += p.vx;
         p.y += p.vy;
 
-        // Reset off-screen particles to the bottom
+        // Reset off-screen particles to bottom
         if (p.y < -40 || p.x < -40 || p.x > width + 40) {
           particles[idx] = createParticle(false);
           return;
@@ -106,12 +126,15 @@ export default function DynamicBackground() {
         ctx.globalAlpha = p.alpha;
 
         if (p.text) {
+          // Sharp High-Contrast Typography
           ctx.fillStyle = p.color;
-          ctx.font = `600 ${p.size}px 'JetBrains Mono', 'Space Grotesk', monospace`;
-          ctx.fillText(p.text, p.x, p.y);
+          ctx.font = `700 ${p.size}px 'Space Grotesk', -apple-system, sans-serif`;
+          ctx.textBaseline = 'middle';
+          ctx.fillText(p.text, Math.round(p.x), Math.round(p.y));
         } else {
+          // Crisp Circular Particle Node
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.arc(Math.round(p.x), Math.round(p.y), p.size, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
           ctx.fill();
         }
@@ -124,14 +147,14 @@ export default function DynamicBackground() {
     draw();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', initCanvas);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <>
-      {/* Floating Canvas Layer */}
+      {/* Floating High-DPI Canvas Layer */}
       <canvas
         ref={canvasRef}
         style={{
@@ -141,10 +164,10 @@ export default function DynamicBackground() {
           height: '100vh',
           pointerEvents: 'none',
           zIndex: -2,
-          backgroundColor: '#faf9f7',
+          backgroundColor: '#f1f5f9', // Brighter off-white/light-blue background base
         }}
       />
-      {/* Radial Gradient Filter Overlay Layer */}
+      {/* Vibrant Radial Gradient Overlay Layer */}
       <div
         style={{
           position: 'fixed',
@@ -154,7 +177,7 @@ export default function DynamicBackground() {
           pointerEvents: 'none',
           zIndex: -1,
           background:
-            'radial-gradient(circle at 85% 15%, rgba(0, 85, 229, 0.06) 0%, transparent 60%), radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.06) 0%, transparent 60%), radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.03) 0%, transparent 70%)',
+            'radial-gradient(circle at 82% 18%, rgba(0, 85, 229, 0.16) 0%, transparent 55%), radial-gradient(circle at 18% 82%, rgba(56, 189, 248, 0.16) 0%, transparent 55%), radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.10) 0%, transparent 65%), radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 50%)',
         }}
       />
     </>
