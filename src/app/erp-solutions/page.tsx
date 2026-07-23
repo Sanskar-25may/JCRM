@@ -1,79 +1,102 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { mockErpProducts } from '@/data/mockData';
 import styles from './erpsolutions.module.css';
 
 export default function ErpSolutions() {
+  const [activeId, setActiveId] = useState<string>(mockErpProducts[0]?.id || 'lms');
+
+  const handleSelectCatalog = (id: string) => {
+    setActiveId(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
-    <div className={styles.erpPage}>
-      {/* Header Banner */}
-      <section className={styles.banner}>
-        <div className={styles.container}>
-          <h1 className="reveal">Enterprise ERP Solutions</h1>
-          <p className="reveal delay-1">Secure, cloud-ready, and purpose-built software systems designed to scale your operations</p>
+    <div className={styles.pageWrapper}>
+      <div className={styles.container}>
+        {/* Signature Glassmorphism Header Banner Matching Homepage */}
+        <div className={styles.glassBanner}>
+          <h1 className={styles.bannerTitle}>
+            Enterprise ERP <span className={styles.titleHighlight}>Solutions</span>
+          </h1>
+          <p className={styles.bannerSubtitle}>
+            Secure, cloud-ready, and purpose-built software systems designed to scale your operations.
+          </p>
         </div>
-      </section>
 
-      {/* Main Grid: Sidebar Index & Product Details */}
-      <section className={styles.content}>
-        <div className={styles.container}>
-          <div className={styles.layout}>
-            {/* Sidebar Navigation Index */}
-            <aside className={styles.sidebar}>
-              <h5 className={styles.indexTitle}>ERP Catalog</h5>
-              <div className={styles.indexLinks}>
-                {mockErpProducts.map((prod) => (
-                  <a key={prod.id} href={`#${prod.id}`} className={styles.indexLink}>
-                    <i className="fa-solid fa-angle-right me-2"></i> {prod.name.split(' (')[0]}
-                  </a>
-                ))}
-              </div>
-            </aside>
+        {/* 2-Column Split Content: Sticky ERP Catalog + Movable ERP Cards */}
+        <div className={styles.contentGrid}>
+          {/* Sticky Left Side Panel: ERP CATALOG */}
+          <aside className={styles.stickySidebar}>
+            <div className={styles.catalogHeader}>
+              <i className={`fa-solid fa-list-check ${styles.catalogIcon}`} />
+              <h2 className={styles.catalogTitle}>ERP CATALOG</h2>
+            </div>
+            <nav className={styles.catalogMenu}>
+              {mockErpProducts.map((prod) => {
+                const shortName = prod.name.split(' (')[0];
+                const isActive = activeId === prod.id;
+                return (
+                  <button
+                    key={prod.id}
+                    type="button"
+                    className={`${styles.menuItem} ${isActive ? styles.activeMenuItem : ''}`}
+                    onClick={() => handleSelectCatalog(prod.id)}
+                  >
+                    <i className="fa-solid fa-chevron-right" />
+                    <span>{shortName}</span>
+                  </button>
+                );
+              })}
+            </nav>
+          </aside>
 
-            {/* Products Detail Column */}
-            <div className={styles.detailsCol}>
-              {mockErpProducts.map((prod) => (
-                <div key={prod.id} id={prod.id} className={`${styles.productSection} reveal`}>
-                  <div className={styles.productHeader}>
-                    <div className={styles.titleArea}>
-                      <div className={styles.iconBox}>
-                        <i className={`fa-solid ${prod.icon}`}></i>
-                      </div>
-                      <div>
-                        <h2>{prod.name}</h2>
-                        <span className={styles.badge}>{prod.badge}</span>
-                      </div>
-                    </div>
+          {/* Movable ERP Product Details Column */}
+          <main className={styles.detailsCol}>
+            {mockErpProducts.map((prod) => (
+              <article key={prod.id} id={prod.id} className={styles.erpCard}>
+                <div className={styles.cardHeader}>
+                  <div className={styles.iconBox}>
+                    <i className={`fa-solid ${prod.icon}`} />
                   </div>
+                  <div className={styles.titleArea}>
+                    <h2 className={styles.cardTitle}>{prod.name}</h2>
+                    {prod.badge && <span className={styles.badge}>{prod.badge}</span>}
+                  </div>
+                </div>
 
-                  <p className={styles.description}>{prod.description}</p>
+                <p className={styles.description}>{prod.description}</p>
 
+                {prod.features && prod.features.length > 0 && (
                   <div className={styles.featuresSection}>
-                    <h4>Key System Modules &amp; Capabilities</h4>
+                    <h3 className={styles.featuresTitle}>KEY SYSTEM MODULES &amp; CAPABILITIES</h3>
                     <div className={styles.featuresGrid}>
-                      {prod.features?.map((feat, idx) => (
+                      {prod.features.map((feat, idx) => (
                         <div key={idx} className={styles.featureItem}>
-                          <i className="fa-solid fa-circle-check"></i>
+                          <i className="fa-solid fa-circle-check" />
                           <span>{feat}</span>
                         </div>
                       ))}
                     </div>
                   </div>
+                )}
 
-                  <div className={styles.cardActions}>
-                    <Link href="/contact-us?product=lms" className="btnCustom btnGold">
-                      Request Demo <i className="fa-solid fa-arrow-pointer ms-1"></i>
-                    </Link>
-                  </div>
-                  <hr className={styles.divider} />
+                <div className={styles.cardActions}>
+                  <Link href={`/contact-us?product=${prod.id}`} className={styles.demoBtn}>
+                    <span>Request Demo</span>
+                    <i className="fa-solid fa-arrow-pointer" />
+                  </Link>
                 </div>
-              ))}
-            </div>
-          </div>
+              </article>
+            ))}
+          </main>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
