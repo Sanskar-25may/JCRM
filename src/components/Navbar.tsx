@@ -1,14 +1,29 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 
+const erpCatalogItems = [
+  { label: 'LMS Academic Portal', id: 'lms', icon: 'fa-graduation-cap' },
+  { label: 'HR Management', id: 'hr', icon: 'fa-people-group' },
+  { label: 'Hospital ERP', id: 'hospital', icon: 'fa-hospital' },
+  { label: 'Accounting ERP', id: 'accounting', icon: 'fa-file-invoice-dollar' },
+  { label: 'Gym Management', id: 'gym', icon: 'fa-dumbbell' },
+  { label: 'Cab Booking ERP', id: 'cab', icon: 'fa-car' },
+  { label: 'Food Delivery ERP', id: 'food', icon: 'fa-utensils' },
+  { label: 'E-Commerce ERP', id: 'ecommerce', icon: 'fa-cart-shopping' },
+  { label: 'AI Chatbot ERP', id: 'chatbot', icon: 'fa-robot' },
+  { label: 'Fraud Detection', id: 'fraud', icon: 'fa-shield-halved' },
+];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [erpDropdownOpen, setErpDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const erpDropdownRef = useRef<HTMLLIElement>(null);
 
   // Dark mode disabled; force light mode
   const darkMode = false;
@@ -23,13 +38,27 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close ERP dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (erpDropdownRef.current && !erpDropdownRef.current.contains(e.target as Node)) {
+        setErpDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setErpDropdownOpen(false);
+  };
 
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Courses', href: '/courses' },
-    { label: 'ERP Solutions', href: '/erp-solutions' },
+    { label: 'ERP Solutions', href: '/erp-solutions', hasDropdown: true },
     { label: 'Our Team', href: '/our-team' },
     { label: 'Workshop', href: '/workshops' },
     { label: 'Join', href: '/join-us' },
@@ -54,7 +83,57 @@ export default function Navbar() {
         <nav className={`${styles.navigation} ${menuOpen ? styles.active : ''}`}>
           <ul className={styles.navLinks}>
             {navItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = pathname === item.href || (item.hasDropdown && pathname.startsWith('/erp-solutions'));
+
+              if (item.hasDropdown) {
+                return (
+                  <li
+                    key={item.label}
+                    className={`${styles.navItem} ${styles.hasDropdown}`}
+                    ref={erpDropdownRef}
+                  >
+                    <button
+                      className={`${styles.navLink} ${styles.dropdownToggle} ${isActive ? styles.activeLink : ''}`}
+                      onClick={() => setErpDropdownOpen(!erpDropdownOpen)}
+                      aria-expanded={erpDropdownOpen}
+                      aria-haspopup="true"
+                    >
+                      {item.label}
+                      <i className={`fa-solid fa-chevron-down ${styles.dropdownChevron} ${erpDropdownOpen ? styles.chevronOpen : ''}`} />
+                    </button>
+                    {erpDropdownOpen && (
+                      <div className={styles.dropdown}>
+                        {/* Main ERP Page Link */}
+                        <Link
+                          href="/erp-solutions"
+                          className={styles.dropdownHeader}
+                          onClick={closeMenu}
+                        >
+                          <i className="fa-solid fa-layer-group" />
+                          <span>All ERP Solutions</span>
+                          <i className={`fa-solid fa-arrow-right ${styles.dropdownHeaderArrow}`} />
+                        </Link>
+                        <div className={styles.dropdownDivider} />
+                        {/* ERP Catalog Sub-items */}
+                        <div className={styles.dropdownGrid}>
+                          {erpCatalogItems.map((erp) => (
+                            <Link
+                              key={erp.id}
+                              href={`/erp-solutions?product=${erp.id}`}
+                              className={styles.dropdownItem}
+                              onClick={closeMenu}
+                            >
+                              <i className={`fa-solid ${erp.icon} ${styles.dropdownItemIcon}`} />
+                              <span>{erp.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                );
+              }
+
               return (
                 <li key={item.label} className={styles.navItem}>
                   <Link

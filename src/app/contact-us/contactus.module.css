@@ -387,35 +387,77 @@
   transform: translateY(-2px);
 }
 
-/* Responsiveness */
+/* Responsiveness — compact horizontal, keep grid layout */
 @media (max-width: 991px) {
   .grid {
-    grid-template-columns: 1fr;
+    gap: 24px;
   }
   .glassPane {
-    padding: 44px 28px;
+    padding: 40px 24px;
   }
   .title {
-    font-size: 38px;
+    font-size: 34px;
   }
 }
 
 @media (max-width: 576px) {
   .pageWrapper {
-    padding-top: 100px;
+    padding-top: 95px;
+    padding-bottom: 30px;
   }
   .glassPane {
-    padding: 36px 20px;
-    border-radius: 26px;
+    padding: 18px 12px;
+    border-radius: 22px;
+  }
+  .header {
+    margin-bottom: 20px;
   }
   .title {
-    font-size: 28px;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .infoCard {
+    padding: 14px 10px;
+    border-radius: 16px;
   }
   .sectionHeading {
-    font-size: 24px;
+    font-size: 16px;
   }
   .formCard {
-    padding: 32px 20px;
-    border-radius: 28px;
+    padding: 18px 12px;
+    border-radius: 20px;
+  }
+  .formGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .formGroup label {
+    font-size: 11px;
+  }
+  .formGroup input,
+  .formGroup select,
+  .formGroup textarea {
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  .successText {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .resetBtn {
+    padding: 9px 20px;
+    font-size: 12px;
+    border-radius: 16px;
   }
 }

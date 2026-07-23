@@ -330,46 +330,92 @@
   box-shadow: 0 0 28px rgba(245, 158, 11, 0.35);
 }
 
-/* Responsiveness */
+/* Responsiveness — keep horizontal layout, just scale down */
 @media (max-width: 991px) {
   .storyGrid {
-    grid-template-columns: 1fr;
+    gap: 28px;
   }
   .visionMissionGrid {
-    grid-template-columns: 1fr;
-  }
-  .statsStrip {
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+  .statsStrip {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 20px 16px;
+  }
   .glassPane {
-    padding: 44px 28px;
+    padding: 40px 24px;
   }
   .title {
-    font-size: 38px;
+    font-size: 34px;
   }
 }
 
 @media (max-width: 576px) {
   .pageWrapper {
-    padding-top: 100px;
+    padding-top: 95px;
+    padding-bottom: 30px;
   }
   .glassPane {
-    padding: 36px 20px;
-    border-radius: 26px;
+    padding: 20px 12px;
+    border-radius: 22px;
+  }
+  .header {
+    margin-bottom: 20px;
   }
   .title {
-    font-size: 28px;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .storyGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
   }
   .storyHeading {
-    font-size: 24px;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .storyText {
+    font-size: 11px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .visionMissionGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .statsStrip {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 12px 8px;
+    border-radius: 18px;
+  }
+  .statNumber {
+    font-size: 18px;
+  }
+  .statLabel {
+    font-size: 9px;
   }
   .ctaGroup {
-    flex-direction: column;
-    width: 100%;
-  }
-  .primaryBtn, .secondaryBtn {
-    width: 100%;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: nowrap;
     justify-content: center;
+  }
+  .primaryBtn {
+    padding: 10px 16px;
+    font-size: 12px;
+    border-radius: 18px;
+  }
+  .secondaryBtn {
+    padding: 10px 14px;
+    font-size: 12px;
+    border-radius: 18px;
   }
 }

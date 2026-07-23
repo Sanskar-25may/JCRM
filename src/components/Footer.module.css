@@ -301,41 +301,114 @@
   color: #38bdf8;
 }
 
-/* Responsiveness */
+/* Responsiveness — compact horizontal, no center stacking */
 @media (max-width: 991px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 24px;
+  }
+  .mainContent {
+    padding: 40px 0 28px 0;
   }
 }
 
 @media (max-width: 576px) {
+  .mainContent {
+    padding: 24px 0 18px 0;
+  }
+  .topStrip {
+    padding: 9px 0;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
   .grid {
-    grid-template-columns: 1fr;
-    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 14px;
+    text-align: left;
   }
-
   .brand {
-    justify-content: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
   }
-
+  .logo {
+    height: 30px;
+    width: 30px;
+  }
+  .brandText {
+    font-size: 14px;
+  }
+  .description {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
   .socials {
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 8px;
   }
-
+  .socialLink {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+  .heading {
+    font-size: 11px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
   .heading::after {
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: none;
   }
-
+  .links {
+    gap: 8px;
+  }
+  .link {
+    font-size: 11.5px;
+  }
+  .contactInfo {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
   .contactItem {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 6px;
+    font-size: 10.5px;
+    line-height: 1.4;
   }
-
+  .contactItem i {
+    font-size: 12px;
+    margin-top: 2px;
+    width: 12px;
+  }
+  .newsletter {
+    border-radius: 18px;
+  }
+  .newsletterInput {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+  .newsletterBtn {
+    padding: 6px 12px;
+    font-size: 11px;
+    border-radius: 14px;
+  }
+  .bottomBar {
+    padding: 14px 0;
+  }
   .bottomContent {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    text-align: left;
+  }
+  .copyright {
+    font-size: 9.5px;
+  }
+  .bottomLinks {
+    gap: 8px;
+    font-size: 9.5px;
   }
 }

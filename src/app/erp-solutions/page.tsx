@@ -1,12 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { mockErpProducts } from '@/data/mockData';
 import styles from './erpsolutions.module.css';
 
-export default function ErpSolutions() {
-  const [activeId, setActiveId] = useState<string>(mockErpProducts[0]?.id || 'lms');
+function ErpSolutionsInner() {
+  const searchParams = useSearchParams();
+  const productParam = searchParams.get('product');
+  const initialId = mockErpProducts.find(p => p.id === productParam)?.id || mockErpProducts[0]?.id || 'lms';
+  const [activeId, setActiveId] = useState<string>(initialId);
+
+  // Update active product if URL param changes (e.g. navbar dropdown click)
+  useEffect(() => {
+    if (productParam) {
+      const found = mockErpProducts.find(p => p.id === productParam);
+      if (found) setActiveId(found.id);
+    }
+  }, [productParam]);
+
 
   const selectedProduct =
     mockErpProducts.find((prod) => prod.id === activeId) || mockErpProducts[0];
@@ -137,5 +150,13 @@ export default function ErpSolutions() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ErpSolutions() {
+  return (
+    <Suspense fallback={<div style={{ padding: '180px 24px', textAlign: 'center', color: '#0055e5', fontWeight: 700 }}>Loading ERP Solutions...</div>}>
+      <ErpSolutionsInner />
+    </Suspense>
   );
 }
