@@ -365,7 +365,7 @@
   box-shadow: 0 14px 36px rgba(0, 85, 229, 0.48);
 }
 
-/* Responsiveness — keep horizontal layout, just scale down */
+/* Responsiveness — keep horizontal layout on tablet */
 @media (max-width: 991px) {
   .contentGrid {
     gap: 20px;
@@ -380,36 +380,16 @@
   }
 }
 
+/* Mobile: hide sidebar entirely — navbar dropdown is the catalog */
 @media (max-width: 768px) {
-  .contentGrid {
-    flex-direction: row;
-    gap: 14px;
-  }
-  .sidePanel {
-    flex: 0 0 130px;
-    padding: 16px 10px;
-    border-radius: 20px;
-  }
-  .panelTitle {
-    font-size: 11px;
-    letter-spacing: 0.4px;
-  }
-  .menuItem {
-    padding: 8px 10px;
-    font-size: 11.5px;
-    border-radius: 10px;
-  }
-  .menuItem i {
-    display: none;
-  }
   .pageWrapper {
     padding-top: 95px;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
   }
   .glassBanner {
-    padding: 22px 14px;
+    padding: 18px 14px;
     border-radius: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   .bannerTitle {
     font-size: 20px;
@@ -417,6 +397,18 @@
   }
   .bannerSubtitle {
     font-size: 12px;
+  }
+  .contentGrid {
+    flex-direction: column;
+    gap: 0;
+  }
+  /* Hide the catalog sidebar — replaced by navbar dropdown */
+  .sidePanel {
+    display: none;
+  }
+  /* Full-width ERP detail card */
+  .detailsCol {
+    width: 100%;
   }
   .activeErpCard {
     padding: 18px 14px;

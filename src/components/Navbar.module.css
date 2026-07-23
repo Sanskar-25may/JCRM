@@ -320,8 +320,22 @@
   color: #f59e0b;
 }
 
+/* ERP Desktop Link: visible on desktop, hidden on mobile */
+.erpDesktopLink {
+  display: inline-flex;
+}
 
-/* Responsive Navigation for Mobile */
+/* ERP Mobile Toggle: hidden on desktop, shown on mobile */
+.erpMobileToggle {
+  display: none;
+}
+
+/* Dropdown: hidden on desktop (mobile-only) */
+.hasDropdown .dropdown {
+  display: none;
+}
+
+
 @media (max-width: 991px) {
   .toggler {
     display: block;
@@ -362,16 +376,24 @@
     width: 100%;
   }
 
-  .dropdownToggle {
-    display: block;
+  /* On mobile: hide desktop ERP link, show mobile toggle */
+  .erpDesktopLink {
+    display: none !important;
+  }
+
+  .erpMobileToggle {
+    display: flex;
     font-size: 16px;
     padding: 10px 20px;
     width: 100%;
     text-align: left;
     border-radius: 30px;
+    align-items: center;
   }
 
-  .dropdown {
+  /* On mobile: show dropdown */
+  .hasDropdown .dropdown {
+    display: block;
     position: static;
     transform: none;
     width: 100%;
@@ -380,10 +402,25 @@
     margin-top: 4px;
     box-shadow: none;
     border: 1px solid rgba(0, 85, 229, 0.12);
+    padding: 6px;
   }
 
+  /* Single column list on mobile */
   .dropdownGrid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .dropdownItem {
+    padding: 10px 14px;
+    font-size: 13.5px;
+    border-radius: 10px;
+    white-space: normal;
+  }
+
+  .dropdownItemIcon {
+    font-size: 13px;
+    width: 16px;
   }
 
   .rightActions {

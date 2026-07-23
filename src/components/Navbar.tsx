@@ -92,8 +92,18 @@ export default function Navbar() {
                     className={`${styles.navItem} ${styles.hasDropdown}`}
                     ref={erpDropdownRef}
                   >
+                    {/* Desktop only: plain link — no dropdown */}
+                    <Link
+                      href="/erp-solutions"
+                      className={`${styles.navLink} ${styles.erpDesktopLink} ${isActive ? styles.activeLink : ''}`}
+                      onClick={closeMenu}
+                    >
+                      {item.label}
+                    </Link>
+
+                    {/* Mobile only: dropdown toggle */}
                     <button
-                      className={`${styles.navLink} ${styles.dropdownToggle} ${isActive ? styles.activeLink : ''}`}
+                      className={`${styles.dropdownToggle} ${styles.erpMobileToggle} ${isActive ? styles.activeLink : ''}`}
                       onClick={() => setErpDropdownOpen(!erpDropdownOpen)}
                       aria-expanded={erpDropdownOpen}
                       aria-haspopup="true"
@@ -101,20 +111,10 @@ export default function Navbar() {
                       {item.label}
                       <i className={`fa-solid fa-chevron-down ${styles.dropdownChevron} ${erpDropdownOpen ? styles.chevronOpen : ''}`} />
                     </button>
+
+                    {/* Dropdown — mobile only, no "All ERP Solutions" row, single column */}
                     {erpDropdownOpen && (
                       <div className={styles.dropdown}>
-                        {/* Main ERP Page Link */}
-                        <Link
-                          href="/erp-solutions"
-                          className={styles.dropdownHeader}
-                          onClick={closeMenu}
-                        >
-                          <i className="fa-solid fa-layer-group" />
-                          <span>All ERP Solutions</span>
-                          <i className={`fa-solid fa-arrow-right ${styles.dropdownHeaderArrow}`} />
-                        </Link>
-                        <div className={styles.dropdownDivider} />
-                        {/* ERP Catalog Sub-items */}
                         <div className={styles.dropdownGrid}>
                           {erpCatalogItems.map((erp) => (
                             <Link
@@ -133,6 +133,7 @@ export default function Navbar() {
                   </li>
                 );
               }
+
 
               return (
                 <li key={item.label} className={styles.navItem}>
