@@ -295,79 +295,111 @@
   border: none;
 }
 
-/* Responsiveness */
+/* Proportional Desktop-Style Compact Scaling for Mobile & Tablet */
 @media (max-width: 1200px) {
   .title {
-    font-size: 60px;
+    font-size: 56px;
   }
   .description {
-    font-size: 20px;
+    font-size: 19px;
   }
 }
 
 @media (max-width: 991px) {
   .heroWrapper {
     min-height: auto;
-    padding: 115px 20px 40px 20px;
+    padding: 110px 16px 30px 16px;
   }
   .glassPane {
-    padding: 56px 36px 44px 36px;
+    padding: 48px 28px 36px 28px;
     border-radius: 32px;
   }
   .title {
-    font-size: 48px;
+    font-size: 42px;
   }
   .description {
-    font-size: 18px;
+    font-size: 17px;
   }
   .statsStrip {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    padding: 28px 32px;
-  }
-  .statItem:not(:last-child)::after {
-    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 24px 20px;
   }
   .videoIframe {
-    height: 380px;
+    height: 360px;
   }
 }
 
 @media (max-width: 576px) {
   .heroWrapper {
-    padding: 100px 16px 30px 16px;
+    padding: 95px 12px 20px 12px;
+    min-height: auto;
   }
   .glassPane {
-    padding: 40px 20px 32px 20px;
-    border-radius: 26px;
+    padding: 24px 14px 20px 14px;
+    border-radius: 22px;
+    margin-bottom: 16px;
   }
   .title {
-    font-size: 36px;
-    letter-spacing: -1px;
+    font-size: 26px;
+    letter-spacing: -0.8px;
+    line-height: 1.18;
+    margin-bottom: 12px;
   }
   .description {
-    font-size: 16px;
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 20px;
   }
   .ctaGroup {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
     width: 100%;
   }
-  .primaryBtn, .youtubeBtn {
-    width: 100%;
-    justify-content: center;
+  .primaryBtn {
+    padding: 10px 20px;
+    font-size: 13.5px;
+    border-radius: 20px;
+    width: auto;
+  }
+  .youtubeBtn {
+    padding: 10px 18px;
+    font-size: 13px;
+    border-radius: 20px;
+    width: auto;
+  }
+  .youtubeBtn i {
+    font-size: 16px;
+  }
+  .featureChips {
+    gap: 6px;
+  }
+  .chip {
+    padding: 6px 12px;
+    font-size: 11.5px;
+    border-radius: 16px;
   }
   .statsStrip {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    padding: 20px 16px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 14px 8px;
+    border-radius: 20px;
+  }
+  .statItem:not(:last-child)::after {
+    display: none;
   }
   .statNumber {
-    font-size: 30px;
+    font-size: 18px;
+    margin-bottom: 2px;
   }
   .statLabel {
-    font-size: 13px;
+    font-size: 9.5px;
+    line-height: 1.2;
   }
   .videoIframe {
-    height: 260px;
+    height: 240px;
   }
 }

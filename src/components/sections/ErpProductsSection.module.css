@@ -161,7 +161,7 @@
   opacity: 0.88;
 }
 
-/* Responsiveness */
+/* Responsiveness - Proportional Compact Grid for Mobile */
 @media (max-width: 991px) {
   .glassPane {
     padding: 48px 32px;
@@ -178,17 +178,51 @@
 
 @media (max-width: 576px) {
   .sectionWrapper {
-    padding: 20px 16px 60px 16px;
+    padding: 16px 12px 40px 12px;
   }
   .glassPane {
-    padding: 36px 20px;
-    border-radius: 26px;
+    padding: 24px 12px;
+    border-radius: 22px;
+  }
+  .header {
+    margin-bottom: 24px;
   }
   .title {
-    font-size: 30px;
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 13px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   .card {
-    flex: 1 1 100%;
+    flex: none;
     max-width: 100%;
+    min-width: 0;
+    padding: 16px 10px 14px 10px;
+    border-radius: 18px;
+  }
+  .iconBox {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .cardTitle {
+    font-size: 13.5px;
+    margin-bottom: 4px;
+  }
+  .tagline {
+    font-size: 9.5px;
+    margin-bottom: 6px;
+  }
+  .cardDescription {
+    font-size: 11px;
+    line-height: 1.4;
   }
 }
