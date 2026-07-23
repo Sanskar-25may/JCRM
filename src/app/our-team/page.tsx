@@ -27,7 +27,7 @@ export default function OurTeam() {
   >('all');
   const [selectedDept, setSelectedDept] = useState('All');
   const [activeMember, setActiveMember] = useState<TeamMember | null>(null);
-  
+
   // Smart Scheduling Hire Modal State
   const [hireCandidate, setHireCandidate] = useState<TeamMember | null>(null);
   const [scheduleForm, setScheduleForm] = useState({
@@ -62,7 +62,7 @@ export default function OurTeam() {
 
     // Formatted WhatsApp message for JCRM Hiring Desk
     const textMsg = `Hello JCRM Technologies! I would like to hire/interview candidate: ${hireCandidate.name} (${hireCandidate.department}).%0A%0AClient Details:%0A- Name: ${scheduleForm.name}%0A- Mobile: ${scheduleForm.mobile}%0A- Email: ${scheduleForm.email}%0A- Hiring Type: ${scheduleForm.hiringType}%0A- Proposed Date: ${scheduleForm.interviewDate}%0A- Time Slot: ${scheduleForm.timeSlot}`;
-    
+
     // Open WhatsApp Web/App directly
     window.open(`https://wa.me/918310531309?text=${textMsg}`, '_blank');
     setScheduleSubmitted(true);
@@ -430,16 +430,17 @@ export default function OurTeam() {
           document.body
         )}
 
-      {/* 2. Smart Scheduling Hire Form Modal Portal (Matching User Screenshots 1, 2, 3) */}
+      {/* 2. Elevated Glassmorphism Scheduling Hire Form Modal */}
       {hireCandidate &&
         isMounted &&
         createPortal(
           <div className={styles.modalBackdrop} onClick={() => setHireCandidate(null)}>
             <div className={styles.scheduleModalContent} onClick={(e) => e.stopPropagation()}>
-              {/* Periwinkle Header Bar */}
+              {/* Royal Blue Gradient Header Bar */}
               <div className={styles.scheduleHeader}>
                 <h3 className={styles.scheduleTitle}>
-                  Scheduling With {hireCandidate.name}
+                  <i className="fa-regular fa-calendar-check" />
+                  <span>Scheduling With {hireCandidate.name}</span>
                 </h3>
                 <button
                   className={styles.scheduleCloseBtn}

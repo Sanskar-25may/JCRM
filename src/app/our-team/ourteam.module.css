@@ -516,21 +516,26 @@
 }
 
 /* ==========================================================================
-   SMART SCHEDULING HIRE MODAL (MATCHING EXACT USER SCREENSHOTS 1, 2, 3)
+   ELEVATED WEBSITE THEME GLASSMORPHISM SCHEDULING MODAL
    ========================================================================== */
 .scheduleModalContent {
   width: 100%;
-  max-width: 620px;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+  max-width: 680px;
+  border-radius: 36px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 2px solid #f59e0b;
+  box-shadow: 
+    0 0 35px rgba(245, 158, 11, 0.35),
+    0 25px 80px rgba(0, 85, 229, 0.20);
   overflow: hidden;
   position: relative;
 }
 
 .scheduleHeader {
-  background: #535680;
-  padding: 16px 24px;
+  background: linear-gradient(135deg, #0055e5 0%, #0077ff 50%, #38bdf8 100%);
+  padding: 20px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -538,71 +543,82 @@
 
 .scheduleTitle {
   font-family: 'Space Grotesk', -apple-system, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 800;
   color: #ffffff;
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .scheduleCloseBtn {
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .scheduleCloseBtn:hover {
-  color: #ffffff;
+  background: #ff0000;
+  border-color: #ff0000;
 }
 
 .scheduleFormBody {
-  padding: 28px 24px;
+  padding: 32px 28px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
 }
 
 .scheduleFormGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px 20px;
+  gap: 20px;
 }
 
 .scheduleFormGroup {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .scheduleLabel {
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 800;
   color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .scheduleInput,
 .scheduleSelect {
   width: 100%;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
+  padding: 13px 18px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(0, 85, 229, 0.18);
   outline: none;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 14.5px;
+  font-weight: 500;
   color: #0a0f1e;
-  background: #ffffff;
-  transition: all 0.2s ease;
+  background: rgba(241, 245, 249, 0.75);
+  transition: all 0.3s ease;
 }
 
 .scheduleInput:focus,
 .scheduleSelect:focus {
   border-color: #0055e5;
-  box-shadow: 0 0 0 3px rgba(0, 85, 229, 0.15);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 85, 229, 0.18);
 }
 
 .scheduleActionRow {
@@ -615,49 +631,49 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 24px;
-  border-radius: 8px;
-  background: #10b981;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 700;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.30);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.38);
   transition: all 0.25s ease;
 }
 
 .whatsappBtn:hover {
-  background: #059669;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.42);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.50);
 }
 
 /* Success Card Inside Schedule Modal */
 .scheduleSuccess {
   text-align: center;
-  padding: 20px 10px;
+  padding: 24px 12px;
 }
 
 .scheduleSuccessIcon {
-  font-size: 48px;
+  font-size: 52px;
   color: #10b981;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .scheduleSuccessTitle {
-  font-size: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
   font-weight: 800;
   color: #0a0f1e;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .scheduleSuccessText {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
   color: #475569;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 /* Responsiveness */
