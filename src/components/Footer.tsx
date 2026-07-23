@@ -158,11 +158,11 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} JCRM TECHNOLOGIES &bull; All Rights Reserved
             </p>
             <div className={styles.bottomLinks}>
-              <Link href="/terms">Privacy Policy</Link>
+              <Link href="/privacy-policy">Privacy Policy</Link>
               <span>|</span>
               <Link href="/terms">Terms &amp; Conditions</Link>
               <span>|</span>
-              <Link href="/terms">Disclaimer</Link>
+              <Link href="/disclaimer">Disclaimer</Link>
             </div>
           </div>
         </div>

@@ -1,0 +1,147 @@
+.pageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 110px;
+  padding-bottom: 80px;
+  z-index: 1;
+}
+
+.container {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Glassmorphism Document Card with Golden Glowing Border */
+.docCard {
+  width: 100%;
+  padding: 56px 48px;
+  border-radius: 36px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 
+    0 0 35px rgba(245, 158, 11, 0.20),
+    0 20px 60px rgba(0, 85, 229, 0.10);
+  display: flex;
+  flex-direction: column;
+}
+
+.docHeader {
+  margin-bottom: 36px;
+  border-bottom: 1.5px solid rgba(0, 85, 229, 0.12);
+  padding-bottom: 24px;
+}
+
+.title {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.titleHighlight {
+  background: linear-gradient(135deg, #0055e5 0%, #0077ff 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.effectiveDate {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0055e5;
+  margin-bottom: 14px;
+}
+
+.preamble {
+  font-size: 16px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.sectionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 44px;
+}
+
+.sectionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0a0f1e;
+}
+
+.sectionText {
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.contactBlock {
+  margin-top: 8px;
+  padding: 20px 24px;
+  border-radius: 20px;
+  background: rgba(241, 245, 249, 0.85);
+  border: 1px solid rgba(0, 85, 229, 0.12);
+  font-size: 14.5px;
+  color: #334155;
+  line-height: 1.7;
+}
+
+.contactBlock strong {
+  color: #0a0f1e;
+  font-size: 16px;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.backHomeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 36px;
+  border-radius: 28px;
+  background: #0055e5;
+  color: #ffffff;
+  font-size: 15.5px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 8px 24px rgba(0, 85, 229, 0.35);
+  transition: all 0.3s ease;
+}
+
+.backHomeBtn:hover {
+  background: #003eaa;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 85, 229, 0.45);
+}
+
+@media (max-width: 767px) {
+  .docCard {
+    padding: 36px 20px;
+    border-radius: 24px;
+  }
+  .title {
+    font-size: 30px;
+  }
+}
