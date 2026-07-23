@@ -1,10 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from './HeroSection.module.css';
 
 export default function HeroSection() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   const featureChips = [
     { icon: '💼', label: 'HR Management ERP' },
     { icon: '🎓', label: 'LMS Academic Portal' },
@@ -44,15 +46,14 @@ export default function HeroSection() {
               <span>Request Free Demo</span>
               <i className="fa-solid fa-arrow-right" />
             </Link>
-            <a
-              href="https://youtu.be/AHzgyPR-Cy4?si=umJXNVYvQ0izNZH_"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
               className={styles.youtubeBtn}
+              onClick={() => setIsVideoOpen(true)}
             >
               <i className="fa-brands fa-youtube" />
               <span>Why JCRM?</span>
-            </a>
+            </button>
           </div>
 
           {/* Floating Feature Chips */}
@@ -76,6 +77,28 @@ export default function HeroSection() {
           ))}
         </div>
       </div>
+
+      {/* Embedded Video Modal - Plays strictly in the same tab */}
+      {isVideoOpen && (
+        <div className={styles.modalBackdrop} onClick={() => setIsVideoOpen(false)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button
+              className={styles.closeModalBtn}
+              onClick={() => setIsVideoOpen(false)}
+              aria-label="Close video"
+            >
+              <i className="fa-solid fa-xmark" />
+            </button>
+            <iframe
+              src="https://www.youtube.com/embed/AHzgyPR-Cy4?autoplay=1"
+              className={styles.videoIframe}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Why JCRM Video Player"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
