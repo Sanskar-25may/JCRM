@@ -44,9 +44,15 @@ export default function HeroSection() {
               <span>Request Free Demo</span>
               <i className="fa-solid fa-arrow-right" />
             </Link>
-            <Link href="/erp-solutions" className={styles.secondaryBtn}>
-              <span>Explore ERP Solutions</span>
-            </Link>
+            <a
+              href="https://youtu.be/AHzgyPR-Cy4?si=umJXNVYvQ0izNZH_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.youtubeBtn}
+            >
+              <i className="fa-brands fa-youtube" />
+              <span>Why JCRM?</span>
+            </a>
           </div>
 
           {/* Floating Feature Chips */}
