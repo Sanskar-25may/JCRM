@@ -1,0 +1,266 @@
+.sectionWrapper {
+  position: relative;
+  width: 100%;
+  padding: 40px 24px 80px 24px;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Premium Golden Glassmorphism Pane with Glowing Amber Border */
+.goldenGlassPane {
+  width: 100%;
+  max-width: 1380px;
+  padding: 68px 56px;
+  border-radius: 42px;
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.88) 0%, rgba(253, 230, 138, 0.80) 50%, rgba(251, 191, 36, 0.68) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(120, 53, 15, 0.40);
+  box-shadow: 
+    0 0 25px rgba(245, 158, 11, 0.35),
+    0 24px 70px rgba(217, 119, 6, 0.20),
+    inset 0 0 15px rgba(255, 255, 255, 0.60);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  max-width: 900px;
+}
+
+.title {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+  color: #451a03; /* Rich dark amber text */
+  margin-bottom: 14px;
+}
+
+.subtitle {
+  font-size: 19px;
+  font-weight: 500;
+  color: #78350f;
+  line-height: 1.65;
+}
+
+/* 2-Column Split Content Grid */
+.contentGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Left Column: Checklist & CTAs */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.checkList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1.5px solid rgba(120, 53, 15, 0.20);
+  transition: all 0.3s ease;
+}
+
+.checkItem:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateX(6px);
+  border-color: rgba(120, 53, 15, 0.45);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
+}
+
+.checkIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #d97706;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+.checkText {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #451a03;
+}
+
+.btnGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: 30px;
+  background: #0a0f1e;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 8px 24px rgba(10, 15, 30, 0.30);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.primaryBtn:hover {
+  background: #0055e5;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 85, 229, 0.40);
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.90);
+  color: #0a0f1e;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1.5px solid rgba(120, 53, 15, 0.30);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.secondaryBtn:hover {
+  background: #ffffff;
+  border-color: #0055e5;
+  color: #0055e5;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 85, 229, 0.20);
+}
+
+/* Right Column: Quote Glass Card */
+.rightCol {
+  width: 100%;
+}
+
+.quoteCard {
+  padding: 44px 36px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(120, 53, 15, 0.35);
+  box-shadow: 
+    0 0 20px rgba(245, 158, 11, 0.20),
+    0 12px 40px rgba(120, 53, 15, 0.10);
+  position: relative;
+  transition: all 0.35s ease;
+}
+
+.quoteCard:hover {
+  border-color: rgba(120, 53, 15, 0.60);
+  box-shadow: 
+    0 0 28px rgba(245, 158, 11, 0.35),
+    0 16px 48px rgba(120, 53, 15, 0.15);
+  transform: translateY(-4px);
+}
+
+.quoteIcon {
+  font-size: 40px;
+  color: #d97706;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.quoteText {
+  font-family: 'Space Grotesk', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #451a03;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.quoteAuthor {
+  font-size: 15px;
+  font-weight: 600;
+  color: #78350f;
+  letter-spacing: 0.5px;
+}
+
+/* Responsiveness */
+@media (max-width: 991px) {
+  .goldenGlassPane {
+    padding: 48px 32px;
+    border-radius: 32px;
+  }
+  .title {
+    font-size: 38px;
+  }
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .quoteCard {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sectionWrapper {
+    padding: 20px 16px 60px 16px;
+  }
+  .goldenGlassPane {
+    padding: 36px 20px;
+    border-radius: 26px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .btnGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
