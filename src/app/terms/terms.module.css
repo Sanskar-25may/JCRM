@@ -1,92 +1,133 @@
-.termsPage {
+.pageWrapper {
+  position: relative;
   width: 100%;
+  padding-top: 110px;
+  padding-bottom: 80px;
+  z-index: 1;
 }
 
 .container {
   max-width: 900px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
-.divider {
-  border: 0;
-  height: 1px;
-  background: var(--border-soft);
-  margin: 50px 0;
-}
-
-/* =================================
-   BANNER
-================================= */
-.banner {
-  background: rgba(10, 15, 30, 0.82);
-  padding: 80px 0;
-  color: var(--bg-card);
-  text-align: center;
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 85, 229, 0.2);
-  border-radius: 24px;
-  max-width: 1200px;
-  margin: 30px auto;}
-
-.banner h1 {
-  color: #ffffff !important;
-
-  font-size: 40px;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.banner p {
-  color: rgba(255, 255, 255, 0.95) !important;
-
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.95);
-}
-
-/* =================================
-   POLICIES CONTENT
-================================= */
-.content {
-  padding: 80px 0;
-  background: transparent;
-}
-
-.layout {
+/* White Clean Document Card Matching Screenshot 2 */
+.docCard {
+  width: 100%;
+  padding: 56px 48px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(0, 85, 229, 0.20);
+  box-shadow: 
+    0 0 30px rgba(0, 85, 229, 0.15),
+    0 16px 50px rgba(15, 23, 42, 0.08);
   display: flex;
   flex-direction: column;
 }
 
-.section h2 {
-  font-size: 22px;
+.docHeader {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  font-size: 38px;
   font-weight: 800;
-  color: var(--text-primary);
+  color: #0a2540;
   margin-bottom: 8px;
+  letter-spacing: -0.8px;
 }
 
-.date {
-  font-size: 11px;
-  color: var(--text-tertiary);
+.effectiveDate {
+  font-size: 14px;
   font-weight: 700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: #475569;
+  margin-bottom: 16px;
 }
 
-.section p {
+.preamble {
+  font-size: 15px;
+  font-weight: 500;
+  color: #334155;
+  line-height: 1.65;
+}
+
+.sectionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.sectionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sectionTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0a2540;
+}
+
+.sectionText {
   font-size: 14.5px;
-  line-height: 1.75;
-  color: var(--text-secondary);
-  margin-bottom: 15px;
-  text-align: justify;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.65;
+}
+
+.contactBlock {
+  margin-top: 8px;
+  font-size: 14.5px;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.contactBlock strong {
+  color: #0a2540;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.backHomeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  border-radius: 12px;
+  background: #0055e5;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 6px 20px rgba(0, 85, 229, 0.30);
+  transition: all 0.3s ease;
+}
+
+.backHomeBtn:hover {
+  background: #003eaa;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 85, 229, 0.40);
 }
 
 @media (max-width: 767px) {
-  .banner h1 {
-  color: #ffffff !important;
-
-    font-size: 32px;
+  .docCard {
+    padding: 36px 20px;
+    border-radius: 20px;
+  }
+  .title {
+    font-size: 28px;
   }
 }
