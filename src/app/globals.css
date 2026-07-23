@@ -401,3 +401,49 @@ a {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
+
+/* Extracted Theme & Glassmorphism Utilities */
+.glass {
+  background: color-mix(in srgb, var(--bg-card) 72%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border-soft);
+  border-radius: 24px;
+}
+
+.glass-md {
+  background: color-mix(in srgb, var(--bg-card) 55%, transparent);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid var(--border-med);
+  border-radius: 20px;
+}
+
+.dot-grid {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--border-strong) 25%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary)  0%,
+    var(--accent-light)   25%,
+    var(--accent-cyan)    50%,
+    var(--accent-light)   75%,
+    var(--accent-primary) 100%
+  );
+  background-size: 300% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer-flow 5s linear infinite;
+}
+
+@keyframes shimmer-flow {
+  0%   { background-position: 0%   center; }
+  100% { background-position: 300% center; }
+}
