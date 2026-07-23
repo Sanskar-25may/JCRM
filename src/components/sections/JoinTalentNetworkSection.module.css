@@ -14,20 +14,20 @@
   align-items: center;
 }
 
-/* Premium Golden Glassmorphism Pane with Glowing Amber Border */
-.goldenGlassPane {
+/* Greyish Glassmorphism Section Pane with Blue Glow */
+.glassPane {
   width: 100%;
   max-width: 1380px;
   padding: 68px 56px;
   border-radius: 42px;
-  background: linear-gradient(135deg, rgba(254, 243, 199, 0.88) 0%, rgba(253, 230, 138, 0.80) 50%, rgba(251, 191, 36, 0.68) 100%);
+  background: rgba(241, 245, 249, 0.76);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1.5px solid rgba(120, 53, 15, 0.40);
+  border: 1.5px solid rgba(0, 85, 229, 0.40);
   box-shadow: 
-    0 0 25px rgba(245, 158, 11, 0.35),
-    0 24px 70px rgba(217, 119, 6, 0.20),
-    inset 0 0 15px rgba(255, 255, 255, 0.60);
+    0 0 25px rgba(0, 85, 229, 0.25),
+    0 24px 70px rgba(0, 85, 229, 0.14),
+    inset 0 0 15px rgba(0, 85, 229, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,14 +48,20 @@
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -1.2px;
-  color: #451a03; /* Rich dark amber text */
+  color: #0a0f1e;
   margin-bottom: 14px;
+}
+
+.titleHighlight {
+  background: linear-gradient(135deg, #0055e5 0%, #0077ff 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
   font-size: 19px;
   font-weight: 500;
-  color: #78350f;
+  color: #475569;
   line-height: 1.65;
 }
 
@@ -88,35 +94,35 @@
   padding: 12px 18px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.65);
-  border: 1.5px solid rgba(120, 53, 15, 0.20);
+  border: 1.5px solid rgba(0, 85, 229, 0.12);
   transition: all 0.3s ease;
 }
 
 .checkItem:hover {
   background: rgba(255, 255, 255, 0.95);
   transform: translateX(6px);
-  border-color: rgba(120, 53, 15, 0.45);
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
+  border-color: rgba(0, 85, 229, 0.35);
+  box-shadow: 0 0 16px rgba(0, 85, 229, 0.15);
 }
 
 .checkIcon {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #d97706;
+  background: #0055e5;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 13px;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 85, 229, 0.25);
 }
 
 .checkText {
   font-size: 16.5px;
   font-weight: 700;
-  color: #451a03;
+  color: #0a0f1e;
 }
 
 .btnGroup {
@@ -133,20 +139,20 @@
   gap: 10px;
   padding: 16px 36px;
   border-radius: 30px;
-  background: #0a0f1e;
+  background: #0055e5;
   color: #ffffff;
   font-size: 16px;
   font-weight: 700;
   text-decoration: none;
   border: none;
-  box-shadow: 0 8px 24px rgba(10, 15, 30, 0.30);
+  box-shadow: 0 8px 24px rgba(0, 85, 229, 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .primaryBtn:hover {
-  background: #0055e5;
+  background: #003eaa;
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 85, 229, 0.40);
+  box-shadow: 0 12px 32px rgba(0, 85, 229, 0.45);
 }
 
 .secondaryBtn {
@@ -160,7 +166,7 @@
   font-size: 16px;
   font-weight: 700;
   text-decoration: none;
-  border: 1.5px solid rgba(120, 53, 15, 0.30);
+  border: 1.5px solid rgba(0, 85, 229, 0.22);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -181,28 +187,28 @@
 .quoteCard {
   padding: 44px 36px;
   border-radius: 32px;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(120, 53, 15, 0.35);
+  border: 1.5px solid rgba(0, 85, 229, 0.20);
   box-shadow: 
-    0 0 20px rgba(245, 158, 11, 0.20),
-    0 12px 40px rgba(120, 53, 15, 0.10);
+    0 0 20px rgba(0, 85, 229, 0.10),
+    0 12px 40px rgba(15, 23, 42, 0.06);
   position: relative;
   transition: all 0.35s ease;
 }
 
 .quoteCard:hover {
-  border-color: rgba(120, 53, 15, 0.60);
+  border-color: rgba(0, 85, 229, 0.45);
   box-shadow: 
-    0 0 28px rgba(245, 158, 11, 0.35),
-    0 16px 48px rgba(120, 53, 15, 0.15);
+    0 0 28px rgba(0, 85, 229, 0.20),
+    0 16px 48px rgba(15, 23, 42, 0.10);
   transform: translateY(-4px);
 }
 
 .quoteIcon {
   font-size: 40px;
-  color: #d97706;
+  color: #0055e5;
   margin-bottom: 16px;
   line-height: 1;
 }
@@ -211,7 +217,7 @@
   font-family: 'Space Grotesk', Georgia, serif;
   font-size: 20px;
   font-weight: 700;
-  color: #451a03;
+  color: #0a0f1e;
   line-height: 1.5;
   margin-bottom: 16px;
 }
@@ -219,13 +225,13 @@
 .quoteAuthor {
   font-size: 15px;
   font-weight: 600;
-  color: #78350f;
+  color: #475569;
   letter-spacing: 0.5px;
 }
 
 /* Responsiveness */
 @media (max-width: 991px) {
-  .goldenGlassPane {
+  .glassPane {
     padding: 48px 32px;
     border-radius: 32px;
   }
@@ -245,7 +251,7 @@
   .sectionWrapper {
     padding: 20px 16px 60px 16px;
   }
-  .goldenGlassPane {
+  .glassPane {
     padding: 36px 20px;
     border-radius: 26px;
   }

@@ -4,6 +4,7 @@ import TransformCtaSection from "@/components/sections/TransformCtaSection";
 import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
 import PlacedCandidatesSection from "@/components/sections/PlacedCandidatesSection";
 import JoinTalentNetworkSection from "@/components/sections/JoinTalentNetworkSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <WhyChooseUsSection />
       <PlacedCandidatesSection />
       <JoinTalentNetworkSection />
+      <TestimonialsSection />
     </div>
   );
 }

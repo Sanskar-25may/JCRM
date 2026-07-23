@@ -16,12 +16,12 @@ export default function JoinTalentNetworkSection() {
   return (
     <section className={styles.sectionWrapper}>
       <div className={styles.container}>
-        {/* Golden Glassmorphism Section Pane */}
-        <div className={styles.goldenGlassPane}>
+        {/* Greyish Glassmorphism Section Pane */}
+        <div className={styles.glassPane}>
           {/* Section Header */}
           <div className={styles.header}>
             <h2 className={styles.title}>
-              Join Our Talent Network
+              Join Our <span className={styles.titleHighlight}>Talent Network</span>
             </h2>
             <p className={styles.subtitle}>
               We welcome UI/UX, Graphic Design, Frontend/Backend, Full Stack, Content Writing, Software Testing/QA, and Technical Support talent.
